@@ -1,0 +1,10 @@
+// Поместите параметры в этот файл, чтобы перезаписать параметры по умолчанию и пользовательские параметры.
+{
+	// Whether to lint Python files.
+	"python.linting.enabled": false,
+	
+	// Pattern used to exclude files and folders from ctags See http://ctags.sourceforge.net/ctags.html.
+	"python.autoComplete.extraPaths": [
+		"X:/python/gamesources/0.9.17.1"
+	]
+}
