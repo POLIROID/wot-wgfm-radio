@@ -41,8 +41,6 @@
 			
 			App.stage.addEventListener(Event.RESIZE, updatePositions);
 			
-			App.gameInputMgr.setKeyHandler(Keyboard.ESCAPE, KeyboardEvent.KEY_DOWN, onEscapeKeyUpHandler, true);
-			
 			addEventListener(WGFMEvent.VOLUME_CLICK, onVolumeClickHandler);
 			addEventListener(WGFMEvent.PLAY_CLICK, onPlayClickHandler);
 			addEventListener(WGFMEvent.PAUSE_CLICK, onPauseClickHandler);
@@ -73,8 +71,6 @@
 			removeEventListener(WGFMValueEvent.CHANNEL_CHANGED, onChannelChanged);
 			removeEventListener(WGFMDoubleValueEvent.SETTINGS_CHANGED, onSettingsChangedHandler);
 			removeEventListener(WGFMDoubleValueEvent.HOTKEY_CHANGED, onHotkeysChangedHandler);
-			
-			App.gameInputMgr.clearKeyHandler(Keyboard.ESCAPE, KeyboardEvent.KEY_DOWN);
 			
 			App.stage.removeEventListener(Event.RESIZE, updatePositions);
 			
@@ -186,11 +182,6 @@
 		private function onChannelChanged(e:WGFMValueEvent) : void
 		{
 			updateChannelS(e.value);
-		}
-		
-		private function onEscapeKeyUpHandler(e:InputEvent) : void
-		{
-			closeViewS();
 		}
 		
 		private function onCloseButtonClickHandler(e:WGFMEvent) : void

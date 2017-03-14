@@ -1,7 +1,7 @@
 
 import threading
 import urllib2
-from debug_utils import LOG_DEBUG, LOG_ERROR
+from debug_utils import LOG_DEBUG, LOG_ERROR, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
@@ -45,17 +45,18 @@ class ChannelController(object):
 				availible = self.__checkChannelUrl(channel.get('stream_url'))
 				channel['availible'] = availible
 				if availible:
-					availibleChannels += 1
+						availibleChannels += 1
 				self.__channels.append(channel)
-			
+		
 			self.__status = bool(availibleChannels)
 			self.__inited = True
-			
+				
 			g_eventsManager.onChannelsUpdated()
 
-		except Exception as e:
+		except:
 			LOG_ERROR('ChannelsController.grabber', e)
-	
+			LOG_CURRENT_EXCEPTION()
+
 	def __checkChannelUrl(self, url):
 		LOG_DEBUG('Checking channel url: %s' % str(url))
 		try:
@@ -70,7 +71,8 @@ class ChannelController(object):
 					return False
 			else:
 				return False
-		except Exception as e:
-			LOG_ERROR('ChannelsController.__checkChannelUrl', e)
+		except:
+			LOG_ERROR('ChannelsController.__checkChannelUrl')
+			LOG_CURRENT_EXCEPTION()
 			return False
-	
+		

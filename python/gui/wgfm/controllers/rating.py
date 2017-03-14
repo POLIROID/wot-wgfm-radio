@@ -2,22 +2,37 @@
 import time
 import urllib
 import urllib2
-import hashlib
-from adisp import process, async
+import threading
 from avatar_helpers import getAvatarDatabaseID
 from account_helpers import getAccountDatabaseID
-from debug_utils import LOG_DEBUG, LOG_NOTE
+from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.controllers import g_controllers
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, BUTTON_STATES
+from gui.wgfm.wgfm_constants import PLAYER_STATUS, BUTTON_STATES, USER_AGENT
 
 __all__ = ('RatingController', )
 
 class RatingController(object):
 	
-	buttonsState = property(lambda self: self.__getButtonsStates())
+	def get_buttonsStates(self):
+		"""return rating button (like/dislike) states"""
+		result = (BUTTON_STATES.NORMAL, BUTTON_STATES.NORMAL,)
+		
+		player = g_controllers.player
+
+		if player.tag in self.__states:
+			userLiked, alreadySended = self.__states[player.tag]
+			if not alreadySended:
+				result = ( BUTTON_STATES.SELECTED if userLiked else BUTTON_STATES.NORMAL, 
+						BUTTON_STATES.NORMAL if userLiked else BUTTON_STATES.SELECTED, )
+			else:
+				result = ( BUTTON_STATES.SELECTED_DISABLED if userLiked else BUTTON_STATES.NORMAL_DISABLED, 
+						BUTTON_STATES.NORMAL_DISABLED if userLiked else BUTTON_STATES.SELECTED_DISABLED, )
+		return result
+	
+	buttonsState = property(get_buttonsStates)
 
 	def __init__(self):
 		self.__states = {}
@@ -33,39 +48,23 @@ class RatingController(object):
 		"""vote for current tag in current channel"""
 		player = g_controllers.player
 
-		if player.status == PLAYER_STATUS.PLAYING and player.tag != '':
+		alreadyProcessed = False
+		if player.tag in self.__states:
+			_, alreadyProcessed = self.__states[player.tag]
+
+		if player.status == PLAYER_STATUS.PLAYING and player.tag != '' and player.tag and not alreadyProcessed:
 			self.__votes[player.channelIdx] = (player.tag, liked)
 		else:
 			return
 		
-		if player.channelIdx not in self.__states:
-			self.__states[player.channelIdx] = {}
-		
-		self.__states[player.channelIdx][player.tag] = (liked, False, )
+		self.__states[player.tag] = (liked, False, )
 		
 		g_controllers.battle.showRatingsMessage()
 		g_eventsManager.onRatingsUpdated()
-
-	def __getButtonsStates(self):
-		"""return rating button (like/dislike) states"""
-		result = (BUTTON_STATES.NORMAL, BUTTON_STATES.NORMAL,)
-		
-		player = g_controllers.player
-
-		if player.channelIdx in self.__states and player.tag in self.__states[player.channelIdx]:
-			userLiked, alreadySended = self.__states[player.channelIdx][player.tag]
-			if not alreadySended:
-				result = ( BUTTON_STATES.SELECTED if userLiked else BUTTON_STATES.NORMAL, 
-						BUTTON_STATES.NORMAL if userLiked else BUTTON_STATES.SELECTED, )
-			else:
-				result = ( BUTTON_STATES.SELECTED_DISABLED if userLiked else BUTTON_STATES.NORMAL_DISABLED, 
-						BUTTON_STATES.NORMAL_DISABLED if userLiked else BUTTON_STATES.SELECTED_DISABLED, )
-		
-		return result
 	
 	def processRating(self, force = False, channelIdx = -1):
-		
 		player = g_controllers.player
+		
 		if not force and player.tag == '':
 			return
 		
@@ -82,26 +81,25 @@ class RatingController(object):
 		if player.tag != savedTag or force:
 			
 			if force:
-				self.__states[channelIdx][savedTag] = [userLiked, True]
+				self.__states[savedTag] = [userLiked, True]
 				del self.__votes[channelIdx]
 			else:
-				self.__states[player.channelIdx][savedTag] = [userLiked, True]
+				self.__states[savedTag] = [userLiked, True]
 				del self.__votes[player.channelIdx]
 			
-			g_eventsManager.onRatingsUpdated()
+				g_eventsManager.onRatingsUpdated()
 			
-			self.__requestAPI({'force': force, 'savedTag': savedTag, 'userLiked': userLiked})
-		
-	@async
-	@process
-	def __requestAPI(self, ctx, callback = None):
+			threading.Thread(target=lambda : self.__requestAPI({'force': force, 'channelIdx': channelIdx, 'savedTag': savedTag, 'userLiked': userLiked})).start()
+			
+	
+	def __requestAPI(self, ctx):
 		
 		accID = int(getAccountDatabaseID() or getAvatarDatabaseID())
 			
 		data = {
 			'accID': None if accID == 0 or g_dataHolder.settings.get('sendStatistic', True) == False else accID,
 			'rate': 1 if ctx['userLiked'] else -1,
-			'channelName': g_controllers.channel.channels[channelIdx].get('displayName', '') if ctx['force'] else g_controllers.channel.channels[player.channelIdx].get('displayName', ''),
+			'channelName': g_controllers.channel.channels[ctx['channelIdx']].get('displayName', '') if ctx['force'] else g_controllers.channel.channels[g_controllers.player.channelIdx].get('displayName', ''),
 			'tag': ctx['savedTag']
 		}
 		
@@ -116,9 +114,10 @@ class RatingController(object):
 			request = urllib2.urlopen(url, timeout = 5)
 			response = request.read()
 			LOG_DEBUG('RatingController.processRating', response.replace('\n', ''))
-		except Exceptin as e:
-			LOG_ERROR('RatingController.processRating', e)
-			
+		except:
+			LOG_ERROR('RatingController.processRating')
+			LOG_CURRENT_EXCEPTION()
+
 	def __onRadioTagChanged(self):
 		self.processRating()
 	

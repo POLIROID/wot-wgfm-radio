@@ -36,7 +36,14 @@ def hooked_restoreMasterVolume(baseMethod, baseObject):
 
 @override(game, 'handleKeyEvent')
 def handleKeyEvent(baseMethod, event):
+	from gui.wgfm.controllers import g_controllers
+	# handling forced keylistners
+	for keyHandler in g_controllers.hotkey.forced:
+		if keyHandler(event):
+			return True
+	# handling ingame logic
 	result = baseMethod(event)
+	# firing key event 
 	g_eventsManager.onKeyEvent(event, result)
 	return result
 

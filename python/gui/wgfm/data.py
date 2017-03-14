@@ -6,7 +6,7 @@ import urllib2
 import zlib
 import time
 
-from debug_utils import LOG_ERROR, LOG_DEBUG
+from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import *
@@ -38,25 +38,26 @@ class DataHolder(object):
 		else:
 			LOG_DEBUG('No settings file')
 			self.saveSettings()	
-	
+
 	def init_config_onstart(self):
 		LOG_DEBUG('init_config_onstart')
 		if self.__parseConfig():
 			self.createConfigCache()
 		else:
 			self.loadConfigCache()
-	
+
 	def __parseConfig(self):
 		try:
-			
+				
 			def parse(response):
 				try:			
 					response = response.decode('utf-8-sig')
 					obj = byteify(json.loads(response))
 					return obj
-				except Exception as e:
-					LOG_ERROR('__parseConfig.parse', e)
-			
+				except:
+					LOG_ERROR('__parseConfig.parse')
+					LOG_CURRENT_EXCEPTION()
+				
 			req = urllib2.Request(CONFIG.CONFIG_URL)
 			conn = urllib2.urlopen(req, timeout = 5.0)
 			response = conn.read()			
@@ -65,11 +66,11 @@ class DataHolder(object):
 			return True
 		
 		except urllib2.URLError:
-			LOG_ERROR('DataHolder.__parseConfig', 'Site not available', False)
-		
-		except Exception as e:
-			LOG_ERROR('DataHolder.__parseConfig', e)
-			return False		
+			LOG_ERROR('DataHolder.__parseConfig', 'Site not available')
+		except:
+			LOG_ERROR('DataHolder.__parseConfig')
+			LOG_CURRENT_EXCEPTION()	
+		return False
 	
 	def createConfigCache(self):
 		try:
@@ -80,9 +81,10 @@ class DataHolder(object):
 				with open(CACHE_FILE, 'wb') as fh:
 					p = cPickle.dumps(cache)
 					fh.write(zlib.compress(p, 1))
-		except Exception as e:
-			LOG_ERROR('DataHolder.createConfigCache', e)
-	
+		except:
+			LOG_ERROR('DataHolder.createConfigCache')
+			LOG_CURRENT_EXCEPTION()
+
 	def loadConfigCache(self):
 		try:
 			with open(CACHE_FILE, 'rb') as fh:
@@ -91,9 +93,10 @@ class DataHolder(object):
 				self.__config = dict()
 				self.__config = p['data']			   
 		except IOError:
-			LOG_ERROR('DataHolder.loadConfigCache', 'Cache not found', False)
-		except Exception as e:
-			LOG_ERROR('DataHolder.loadConfigCache', e)
+			LOG_ERROR('DataHolder.loadConfigCache', 'Cache not found')
+		except:
+			LOG_ERROR('DataHolder.loadConfigCache')
+			LOG_CURRENT_EXCEPTION()
 	
 	def loadSettings(self):
 		try:
@@ -101,9 +104,10 @@ class DataHolder(object):
 				dec = zlib.decompress(fh.read())
 				pickle = cPickle.loads(dec)
 				self.__settings = pickle['data']			   
-		except Exception as e:
-			LOG_ERROR('DataHolder.load_settings', e)
-	
+		except:
+			LOG_ERROR('DataHolder.load_settings')
+			LOG_CURRENT_EXCEPTION()
+
 	def saveSettings(self):
 		try:
 			data = dict()
@@ -112,9 +116,10 @@ class DataHolder(object):
 				with open(SETTINGS_FILE, 'wb') as fh:
 					p = cPickle.dumps(data)
 					fh.write(zlib.compress(p, 1))
-		except Exception as e:
-			LOG_ERROR('DataHolder.saveSettings', e)
-	
+		except:
+			LOG_ERROR('DataHolder.saveSettings')
+			LOG_CURRENT_EXCEPTION()
+
 	def __save(self):
 		self.saveSettings()	
 		self.createConfigCache()

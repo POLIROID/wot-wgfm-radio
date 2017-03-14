@@ -1,11 +1,9 @@
 
 import BigWorld
-from debug_utils import LOG_DEBUG, LOG_NOTE
 import SoundGroups
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.controllers import g_controllers
 from gui.wgfm.wgfm_constants import VOLUME_STEP, VOLUME_STEP_LOW, VOLUME_STEP_VERY_LOW
 
 __all__ = ('VolumeController', )
@@ -105,9 +103,6 @@ class VolumeController(object):
 			return False
 		else:
 			return self.setVolume(newVolume)
-	
-	
-
 	
 	def __mutedByWindowVisibility(self):
 		isWindowVisible = BigWorld.isWindowVisible()

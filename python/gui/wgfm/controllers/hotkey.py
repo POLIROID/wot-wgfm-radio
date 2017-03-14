@@ -15,18 +15,29 @@ __all__ = ('HotkeyController', )
 
 class HotkeyController(object):
 	
+	forced = property(lambda self: self.__forcedHandlers)
 	accepting = property(lambda self: self.__isAccepting)
 	acceptingName = property(lambda self: self.__acceptingHotkeyName)
 
 	def __init__(self):
 		self.__isAccepting = False
 		self.__acceptingHotkeyName = None
-
+		self.__forcedHandlers = []
+	
 	def init(self):
 		g_eventsManager.onKeyEvent += self.onKeyEvent
 
 	def fini(self):
 		g_eventsManager.onKeyEvent -= self.onKeyEvent
+		self.__forcedHandlers = []
+	
+	def addForced(self, handler):
+		if handler not in self.__forcedHandlers:
+			self.__forcedHandlers.append(handler)
+	
+	def delForced(self, handler):
+		if handler in self.__forcedHandlers:
+			self.__forcedHandlers.remove(handler)
 	
 	def handleHotkeyUIEvent(self, command, name = None):
 		if command == HOTKEYS_COMMANDS.START_ACCEPT:

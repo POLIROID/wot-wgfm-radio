@@ -19,21 +19,32 @@ __all__ = ('PlayerController', )
 
 class PlayerController(object):
 	
-	status = property(lambda self: self.__get_status())
-	errorLabel = property(lambda self: self.__errorLabel)
-	tag = property(lambda self: self.__tag)
 	channelName = property(lambda self: self.__channelName)
 	channelIdx = property(lambda self: self.__currentChannel)
 	
+	def get_status(self):
+		if not g_controllers.channel.status:
+			self.__status = PLAYER_STATUS.ERROR
+			if not self.__errorLabel:
+				self.__errorLabel = l10n('#error_wgfm_url')
+		return self.__status
+	status = property(get_status)
+	
+	def set_errorLevel(self, errorLabel):
+		if not self.__errorLabel:
+			self.__errorLabel = errorLabel
+	errorLabel = property(lambda self: self.__errorLabel, set_errorLevel)
+
+	tag = property(lambda self: self.__tag)
+
 	def __init__(self):
 		
 		self.__status = PLAYER_STATUS.STOPPED
-		self.__errorLabel = ''
 		self.__tag = ''
+		self.__errorLabel = None
 		self.__channelName = ''
 		self.__playerProcess = None
 		self.__tagsCallback = None
-		
 		if g_dataHolder.settings.get('saveChannel', False):
 			self.__currentChannel = g_dataHolder.settings.get('lastChannel', 0)
 		else:
@@ -173,14 +184,9 @@ class PlayerController(object):
 					if new_tag != self.tag:												   
 						self.__tag = new_tag
 						g_eventsManager.onRadioTagChanged()
-		except Exception as e:
-			LOG_ERROR('PlayerController.__getRadioTags', e)
-	
-	def __get_status(self):
-		if not g_controllers.channel.status:
-			self.__status = PLAYER_STATUS.ERROR
-			self.__errorLabel = l10n('#error_wgfm_url')
-		return self.__status
+		except:
+			LOG_ERROR('PlayerController.__getRadioTags')
+			LOG_CURRENT_EXCEPTION()
 	
 	def __onVolumeChanged(self, volume):
 		self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume if not g_controllers.volume.muted else 0.0)

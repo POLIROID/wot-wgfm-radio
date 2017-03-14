@@ -74,13 +74,15 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 	
 	def _dispose(self):
 		
-		super(WGFMLobbyView, self)._dispose()
-		
 		g_eventsManager.onRadioChannelChanged -= self.__onRadioChannelChanged
 		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
 		g_eventsManager.onVolumeChanged -= self.__onVolumeChanged
 		g_eventsManager.onRatingsUpdated -= self.__onRatingsUpdated
 		g_eventsManager.onHotkeysChanged -= self.__onHotkeysChanged
+		
+		g_controllers.hotkey.delForced(self.__forcesKeyEventHandler)
+		
+		super(WGFMLobbyView, self)._dispose()
 	
 	def _dependedData(self):
 		
@@ -104,14 +106,15 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		g_eventsManager.onVolumeChanged += self.__onVolumeChanged
 		g_eventsManager.onRatingsUpdated += self.__onRatingsUpdated
 		g_eventsManager.onHotkeysChanged += self.__onHotkeysChanged
-	
+		g_controllers.hotkey.addForced(self.__forcesKeyEventHandler)
+		
 	def onFocusIn(self, *args):
 		if self._isDAAPIInited():
 			return False	
 	
 	def closeView(self):
 		"""fired by AS CloseButton click or ESC key press"""
-		if not g_controllers.hotkey.accepting:
+		if g_controllers.hotkey.accepting:
 			return
 		self.destroy()
 	
@@ -180,6 +183,12 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		"""sync hotskeys settings"""
 		return self.as_setHotkeysS(self.__generateHotkeysCtx())
 	
+	def __forcesKeyEventHandler(self, event):
+		if event.isKeyDown() and event.key == Keys.KEY_ESCAPE and not g_controllers.hotkey.accepting:
+			BigWorld.callback(0, self.closeView)
+			return True
+		return False
+			
 	def __generateLocalizationCtx(self):
 		"""result represented by LocalizationVO"""
 		return { 'closeButton': l10n('#ui_closeButton'), 'settingsTitle': l10n('#ui_settings_title'), \

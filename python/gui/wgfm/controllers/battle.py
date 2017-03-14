@@ -1,6 +1,6 @@
 
 import BigWorld
-from debug_utils import LOG_ERROR, LOG_NOTE
+from debug_utils import LOG_ERROR, LOG_CURRENT_EXCEPTION
 from messenger.m_constants import PROTO_TYPE
 from messenger.proto import proto_getter
 import random
@@ -63,8 +63,9 @@ class BattleController(object):
 						self.proto.arenaChat.broadcast(msg.encode('utf-8'), 0)
 					else:
 						self.__showInfoMessage(l10n('#battle_tips_cooldown'))
-		except Exception as e:
-			LOG_ERROR('broadcastRadioTagMessage',e)
+		except:
+			LOG_ERROR('broadcastRadioTagMessage')
+			LOG_CURRENT_EXCEPTION()
 	
 	def broadcastHelloMessage(self):
 		try:
@@ -77,8 +78,9 @@ class BattleController(object):
 					self.proto.arenaChat.broadcast(msg.encode('utf-8'), 0)
 				else:
 					self.__showInfoMessage(l10n('#battle_tips_cooldown'))
-		except Exception as e:
-			LOG_ERROR('broadcastHelloMessage',e)
+		except:
+			LOG_ERROR('broadcastHelloMessage')
+			LOG_CURRENT_EXCEPTION()
 	
 	def showVolumeChangedMessage(self, isUP):
 		if isUP:
@@ -92,18 +94,18 @@ class BattleController(object):
 	def showControlsMessage(self):
 		
 		if g_controllers.player.status == PLAYER_STATUS.ERROR:
-			self.__showInfoMessage(g_controllers.player.error_label)
+			self.__showInfoMessage(g_controllers.player.errorLabel)
 			return
 		
 		if g_controllers.player.tag != '':
 			self.__showInfoMessage(g_controllers.player.tag, useChannel=True, important=True)
 			
-		self.__showInfoMessage(l10n('#battle_tips_control_%s' % str(random.randint(1, 8))).format(
+		self.__showInfoMessage(l10n('#battle_tips_control_%s' % str(random.randint(1, 7))).format(
 				playRadio = parseKeyValueFull(g_dataHolder.settings['keyBindings']['playRadio']), 
 				stopRadio = parseKeyValueFull(g_dataHolder.settings['keyBindings']['stopRadio']),
 				nextChannel = parseKeyValueFull(g_dataHolder.settings['keyBindings']['nextChannel']),
 				previosChannel = parseKeyValueFull(g_dataHolder.settings['keyBindings']['previosChannel']),
-				volumeDown = parseKeyVparseKeyValueFullalue(g_dataHolder.settings['keyBindings']['volumeDown']),
+				volumeDown = parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeDown']),
 				volumeUp = parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeUp']),
 				dislikeCurrent = parseKeyValueFull(g_dataHolder.settings['keyBindings']['dislikeCurrent']),
 				likeCurrent = parseKeyValueFull(g_dataHolder.settings['keyBindings']['likeCurrent'])
@@ -117,27 +119,22 @@ class BattleController(object):
 		
 		self.__lastBroadcastTime = - BROADCAST_INTERVAL
 		BigWorld.callback(1.0, self.showControlsMessage)
-	
+
 	def __onDestroyBattle(self):
 		
 		self.__isPlayerInBattle = False
-
+	
 	def __onRadioTagChanged(self):
 		self.showRadioTagMessage()
 	
 	def __showInfoMessage(self, text, useChannel = False, important = False):
-		LOG_NOTE('__showInfoMessage', text, useChannel, important)
 		color = DEFAULT_BATTLE_MESSAGE_COLOR
-		
 		if useChannel:
 			message = '[WGFM-%s] %s' % (getChannelName(), text)
 		else:
 			message = '[WGFM] %s' % text
-		
 		if important:
 			lifeTime = DEFAULT_BATTLE_MESSAGE_LIFETIME + 2000
 		else:
 			lifeTime = DEFAULT_BATTLE_MESSAGE_LIFETIME
-		
 		g_eventsManager.showBattleMessage(message, color, lifeTime)
-	
