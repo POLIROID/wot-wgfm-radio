@@ -5,12 +5,13 @@ import json
 import urllib2
 import zlib
 import time
+from adisp import async, process
 
 from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.utils import *
-from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, SETTINGS_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS
+from gui.wgfm.utils import byteify, fetchURL, unpackTempFiles
+from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, SETTINGS_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT
 
 __all__ = ('g_dataHolder', )
 
@@ -38,39 +39,35 @@ class DataHolder(object):
 		else:
 			LOG_DEBUG('No settings file')
 			self.saveSettings()	
-
-	def init_config_onstart(self):
-		LOG_DEBUG('init_config_onstart')
-		if self.__parseConfig():
+	
+	@async
+	@process
+	def initConfigOnStart(self, callback):
+		parsedFromNet = yield self.__parseConfig()
+		if parsedFromNet:
 			self.createConfigCache()
 		else:
 			self.loadConfigCache()
-
-	def __parseConfig(self):
-		try:
-				
-			def parse(response):
-				try:			
-					response = response.decode('utf-8-sig')
-					obj = byteify(json.loads(response))
-					return obj
-				except:
-					LOG_ERROR('__parseConfig.parse')
-					LOG_CURRENT_EXCEPTION()
-				
-			req = urllib2.Request(CONFIG.CONFIG_URL)
-			conn = urllib2.urlopen(req, timeout = 5.0)
-			response = conn.read()			
-			self.__config = parse(response)
-			conn.close()
-			return True
+		callback(True)
+	
+	@async
+	@process
+	def __parseConfig(self, callback):
+		result = True
+		status, data = yield lambda callback: fetchURL(url = CONFIG.CONFIG_URL, callback = callback, timeout = 5.0, \
+										headers = {'User-Agent': USER_AGENT} )
+		if not status:
+			result = False
 		
-		except urllib2.URLError:
-			LOG_ERROR('DataHolder.__parseConfig', 'Site not available')
+		try:
+			cfg = byteify(json.loads(data.decode('utf-8-sig')))
+			self.__config = cfg
 		except:
-			LOG_ERROR('DataHolder.__parseConfig')
+			LOG_ERROR('DataHolder.__parseConfig', data)
 			LOG_CURRENT_EXCEPTION()	
-		return False
+			result = False
+
+		callback(result)
 	
 	def createConfigCache(self):
 		try:

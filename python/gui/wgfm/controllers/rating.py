@@ -1,20 +1,29 @@
 
 import time
-import urllib
-import urllib2
-import threading
-from avatar_helpers import getAvatarDatabaseID
-from account_helpers import getAccountDatabaseID
+from urllib import urlencode
+
+from adisp import async, process
 from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
+from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.controllers import g_controllers
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, BUTTON_STATES, USER_AGENT
+from gui.wgfm.utils import userDBID, fetchURL
+from gui.wgfm.wgfm_constants import PLAYER_STATUS, BUTTON_STATES, CONFIG, USER_AGENT
 
 __all__ = ('RatingController', )
 
 class RatingController(object):
+	
+	def __init__(self):
+		self.__states = {}
+		self.__votes = {}
+	
+	def init(self):
+		g_eventsManager.onRadioTagChanged += self.__onRadioTagChanged
+	
+	def fini(self):
+		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
 	
 	def get_buttonsStates(self):
 		"""return rating button (like/dislike) states"""
@@ -34,16 +43,6 @@ class RatingController(object):
 	
 	buttonsState = property(get_buttonsStates)
 
-	def __init__(self):
-		self.__states = {}
-		self.__votes = {}
-	
-	def init(self):
-		g_eventsManager.onRadioTagChanged += self.__onRadioTagChanged
-	
-	def fini(self):
-		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
-	
 	def vote(self, liked):
 		"""vote for current tag in current channel"""
 		player = g_controllers.player
@@ -62,7 +61,7 @@ class RatingController(object):
 		g_controllers.battle.showRatingsMessage()
 		g_eventsManager.onRatingsUpdated()
 	
-	def processRating(self, force = False, channelIdx = -1):
+	def syncRatings(self, force = False, channelIdx = -1):
 		player = g_controllers.player
 		
 		if not force and player.tag == '':
@@ -77,47 +76,37 @@ class RatingController(object):
 		
 		if savedTag is None or userLiked is None:
 			return
-
+		
 		if player.tag != savedTag or force:
-			
-			if force:
-				self.__states[savedTag] = [userLiked, True]
-				del self.__votes[channelIdx]
-			else:
-				self.__states[savedTag] = [userLiked, True]
-				del self.__votes[player.channelIdx]
-			
-				g_eventsManager.onRatingsUpdated()
-			
-			threading.Thread(target=lambda : self.__requestAPI({'force': force, 'channelIdx': channelIdx, 'savedTag': savedTag, 'userLiked': userLiked})).start()
-			
+			self.__processRatingData(userLiked, channelIdx if force else player.channelIdx, savedTag)
 	
-	def __requestAPI(self, ctx):
+	@process
+	def __processRatingData(self, userLiked, channelIdx, savedTag):
 		
-		accID = int(getAccountDatabaseID() or getAvatarDatabaseID())
-			
-		data = {
-			'accID': None if accID == 0 or g_dataHolder.settings.get('sendStatistic', True) == False else accID,
-			'rate': 1 if ctx['userLiked'] else -1,
-			'channelName': g_controllers.channel.channels[ctx['channelIdx']].get('displayName', '') if ctx['force'] else g_controllers.channel.channels[g_controllers.player.channelIdx].get('displayName', ''),
-			'tag': ctx['savedTag']
-		}
-		
-		url = '{url}?time={time}&{data}'.format(
+		url = CONFIG.RATING_GATEWAY.format(
 			url = g_dataHolder.config.get('ratingUrl', 'http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi'),
 			time = str(int(time.time())),
-			data = urllib.urlencode(data)
+			data = urlencode({
+				'accID': None if g_dataHolder.settings.get('sendStatistic', True) == False else userDBID(),
+				'rate': 1 if userLiked else -1,
+				'channelName': g_controllers.channel.channels[channelIdx].get('displayName', ''),
+				'tag': savedTag
+			})
 		)
 		
-		LOG_DEBUG('RatingController.processRating', url)
-		try:
-			request = urllib2.urlopen(url, timeout = 5)
-			response = request.read()
-			LOG_DEBUG('RatingController.processRating', response.replace('\n', ''))
-		except:
-			LOG_ERROR('RatingController.processRating')
-			LOG_CURRENT_EXCEPTION()
+		self.__states[savedTag] = [userLiked, True]
+		
+		g_eventsManager.onRatingsUpdated()
 
-	def __onRadioTagChanged(self):
-		self.processRating()
+		successful = yield self.__sendRatingData(url)
+		if successful:
+			del self.__votes[channelIdx]
 	
+	@async
+	@process
+	def __sendRatingData(self, url, callback):
+		status, _ = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, headers = {'User-Agent': USER_AGENT} )
+		callback(status)
+	
+	def __onRadioTagChanged(self):
+		self.syncRatings()

@@ -1,12 +1,19 @@
 
-__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers',\
- 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles')
+__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers', \
+ 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID' )
 
-import ResMgr
+import threading
+import httplib
+import urlparse
 import types
-import Keys
 import os
+import socket
+
+from avatar_helpers import getAvatarDatabaseID
+from account_helpers import getAccountDatabaseID
 from debug_utils import *
+import Keys
+import ResMgr
 
 def overrider(target, holder, name):
 	"""using for override any staff"""
@@ -38,10 +45,11 @@ def byteify(data):
 		return data
 
 def getChannelName():
+	"""using for format and cut WGFM on current channel name"""
 	from gui.wgfm.controllers import g_controllers
-	
 	channelName = g_controllers.player.channelName
-	return channelName.replace('WGFM ', '').replace('WGFM', '').replace(' ', '')
+	formattedName = channelName.replace('WGFM ', '').replace('WGFM', '').replace(' ', '')
+	return formattedName
 
 def getCurrentChannelIdx():
 	from gui.wgfm.controllers import g_controllers
@@ -58,10 +66,10 @@ def getCurrentChannelIdx():
 		saveChannel = g_dataHolder.settings.get('saveChannel', True)
 		if saveChannel:
 			savedIdx = g_dataHolder.settings.get('lastChannel', 0)
-			if channel.channels[savedIdx]['availible']:
+			if channel.channels[savedIdx]['available']:
 				return savedIdx
 		for idx, item in enumerate(channel.channels):
-			if item['availible']:
+			if item['available']:
 				return idx
 	return -1
 
@@ -182,4 +190,90 @@ def unpackTempFiles(vfs_path, realfs_path):
 		LOG_DEBUG('unpackTempFiles dir', vfs_path)
 		for item in directory_list(vfs_path):
 			unpackTempFiles(vfs_path + '/' + item, realfs_path + '\\' + item)
-	
+
+def userDBID():
+	return int(getAccountDatabaseID() or getAvatarDatabaseID()) or None
+
+def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', postData = None, onlyResponceStatus = False):
+	""" Implementation of http requester like BigWorld.fetchUrl
+	Ingame BigWorld.fetchUrl cant work with self-signed ssl certificates
+	"""
+	def request_thread(url, callback, headers, timeout, method, postData, onlyResponceStatus):
+		
+		try:
+			req = urlparse.urlparse(url)
+		except:
+			LOG_ERROR('fetchURL', 'bad request url', url)
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		if req.scheme == 'http':
+			connectionClass = httplib.HTTPConnection
+		elif req.scheme == 'https':
+			connectionClass = httplib.HTTPSConnection
+		else:
+			LOG_ERROR('fetchURL', 'bad request scheme', req.scheme)
+			return callback((False, None))
+		
+		try:
+			connection = connectionClass(host = req.hostname, port = req.port, timeout = timeout)
+		except:
+			LOG_ERROR('fetchURL', 'cant create connection')
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		try:
+			connection.putrequest(method, req.path)
+		except:
+			LOG_ERROR('fetchURL', 'cant pur request', method, req.path)
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		try:
+			if headers is not None:
+				for key, val in headers.iteritems():
+					connection.putheader(key, val)
+		except:
+			LOG_WARNING('fetchURL', 'cant pur headers', headers)
+		
+		try:
+			connection.endheaders()
+		except socket.timeout:
+			LOG_WARNING('fetchURL', 'socket timed out')
+			return callback((False, None))
+		except:
+			LOG_ERROR('fetchURL', 'cant endheaders')
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		try:
+			if postData and method == "POST":
+				connection.send(postData)
+		except:
+			LOG_ERROR('fetchURL', 'cant send postdata', postData)
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		try:
+			# @buffering for lag fix in [thread; @process; @async] bunch
+			responce = connection.getresponse(buffering=True) 
+		except:
+			LOG_ERROR('fetchURL', 'cant get responce')
+			LOG_CURRENT_EXCEPTION()
+			return callback((False, None))
+		
+		if responce.status != 200:
+			LOG_WARNING('fetchURL', 'bad responce status', responce.status, url)
+		
+		if onlyResponceStatus:
+			return callback((responce.status == 200, None))
+		
+		try:
+			responceData = responce.read()
+		except socket.timeout:
+			LOG_WARNING('fetchURL', 'socket timed out')
+			responceData = None
+		connection.close()
+		return callback((responce.status == 200, responceData))
+
+	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, postData, onlyResponceStatus, )).start()

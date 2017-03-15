@@ -2,17 +2,17 @@
 import threading
 import os
 import subprocess
-import urllib2
 from xml.dom import minidom
 
+from adisp import async, process
 import BigWorld
-from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
+from debug_utils import LOG_WARNING
 
+from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
-from gui.wgfm.controllers import g_controllers
-
+from gui.wgfm.utils import fetchURL
 from gui.wgfm.wgfm_constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, TAGS_UPDATE_INTERVAL, USER_AGENT
 
 __all__ = ('PlayerController', )
@@ -78,7 +78,7 @@ class PlayerController(object):
 	def __onChannelsUpdated(self):
 		data = list()
 		for channel in g_controllers.channel.channels:
-			if channel['availible']:
+			if channel['available']:
 				data.append(channel['stream_url'])
 	
 		self.__executePlayerCommand(PLAYER_COMMANDS.ADD_CHANNELS, '##'.join(data))
@@ -97,11 +97,9 @@ class PlayerController(object):
 		if g_dataHolder.settings.get('saveChannel', True):
 			g_dataHolder.settings['lastChannel'] = channelNum
 		
-		LOG_DEBUG('playRadio - currentChannel: %s, newChannel: %s' % (self.channelIdx, channelNum))
-		
 		channel = g_controllers.channel.channels[channelNum]
 		
-		if not channel['availible']:
+		if not channel['available']:
 			return
 		
 		self.__executePlayerCommand(PLAYER_COMMANDS.PLAY, channelNum)
@@ -131,7 +129,7 @@ class PlayerController(object):
 	def setChannel(self, channelIdx):
 		if channelIdx != self.__currentChannel:
 			
-			g_controllers.rating.processRating(force = True, channelIdx = self.channelIdx)
+			g_controllers.rating.syncRatings(force = True, channelIdx = self.channelIdx)
 			
 			self.__currentChannel = channelIdx
 			
@@ -150,43 +148,46 @@ class PlayerController(object):
 			BigWorld.callback(0.1, lambda : self.__executePlayerCommand(command, arg))
 	
 	def openExternal(self):
-		try:
-			channel = g_controllers.channel.channels[self.channelIdx]
-			url = channel.get('ext_url', None)
-			if url:
-				BigWorld.wg_openWebBrowser(url)
-		except:
-			LOG_CURRENT_EXCEPTION()
+		channel = g_controllers.channel.channels[self.channelIdx]
+		url = channel.get('ext_url', None)
+		if url:
+			BigWorld.wg_openWebBrowser(url)
 	
+	def __onVolumeChanged(self, volume):
+		self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume if not g_controllers.volume.muted else 0.0)
+
 	def __updateRadioTags(self):
 		if self.__tagsCallback:
 			BigWorld.cancelCallback(self.__tagsCallback)
 			self.__tagsCallback = None
 		self.__tagsCallback = BigWorld.callback(TAGS_UPDATE_INTERVAL, self.__updateRadioTags)
-		threading.Thread(target=self.__getRadioTags).start()
-		LOG_DEBUG('Updating tags')
+		self.__grabChannelTag()
 	
-	def __getRadioTags(self):
-		try:
-			channel = g_controllers.channel.channels[self.channelIdx]
-			if channel.get('tags_url', None):
-				request = urllib2.Request(channel.get('tags_url'))
-				request.add_header('User-Agent', USER_AGENT)
-				response = urllib2.urlopen(request, timeout = 5)				
-				tags_xml = minidom.parse(response)
-				response.close()
-				tags_items = tags_xml.getElementsByTagName('ArtistTitle')
-				if not tags_items:
-					return
-				tag_node = tags_items[0]
-				if tag_node is not None and tag_node.childNodes:
-					new_tag = tag_node.childNodes[0].data
-					if new_tag != self.tag:												   
-						self.__tag = new_tag
-						g_eventsManager.onRadioTagChanged()
-		except:
-			LOG_ERROR('PlayerController.__getRadioTags')
-			LOG_CURRENT_EXCEPTION()
+	@process
+	def __grabChannelTag(self):
+		tagUrl = g_controllers.channel.channels[self.channelIdx].get('tags_url', None)
+		if not tagUrl:
+			return
+		successful, parsedTag = yield self.__parseChannelTag(tagUrl)
+		if successful and parsedTag != self.tag:												   
+			self.__tag = parsedTag
+			g_eventsManager.onRadioTagChanged()
 	
-	def __onVolumeChanged(self, volume):
-		self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume if not g_controllers.volume.muted else 0.0)
+	@async
+	@process
+	def __parseChannelTag(self, url, callback):
+		status, data = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, \
+										headers = {'User-Agent': USER_AGENT} )
+		parsedTag = None
+		if status:
+			try:
+				tagsXml = minidom.parseString(data)
+				tagsItems = tagsXml.getElementsByTagName('ArtistTitle')
+				if tagsItems:
+					tagNode = tagsItems[0]
+					if tagNode is not None and tagNode.childNodes:
+						parsedTag = tagNode.childNodes[0].data
+			except:
+				LOG_WARNING('__parseChannelTag', 'cant parse data')
+				status = False
+		callback((status, parsedTag))

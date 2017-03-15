@@ -66,6 +66,7 @@ class CONFIG:
 	SAVE_CACHE = True
 	CONFIG_URL = 'http://cfg.wargaming.fm/v1'
 	EXPIRE_TIME = 6
+	RATING_GATEWAY = '{url}?time={time}&{data}'
 
 class PLAYER_STATUS:
 	INITED = 'inited'

@@ -1,11 +1,10 @@
 
-import threading
-import urllib2
-from debug_utils import LOG_DEBUG, LOG_ERROR, LOG_CURRENT_EXCEPTION
+from adisp import async, process
+from debug_utils import LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.controllers import g_controllers
+from gui.wgfm.utils import fetchURL
 from gui.wgfm.wgfm_constants import USER_AGENT
 
 __all__ = ('ChannelController', )
@@ -31,48 +30,28 @@ class ChannelController(object):
 	def grabChannels(self):
 		if not self.__initStarted:
 			self.__initStarted = True
-			threading.Thread(target=self.__grabber).start()
+			try:
+				self.__channelsStatusGrabber()
+			except:
+				LOG_CURRENT_EXCEPTION()
 	
-	def __grabber(self):
-		try:
-			
-			g_dataHolder.init_config_onstart()
-			channels = g_dataHolder.config.get('channels')
-			LOG_DEBUG('Checking channels: %s' % str(channels))
-			availibleChannels = 0
-			for channel in channels:
-				LOG_DEBUG('Checking channel: %s' % str(channel.get('displayName')))
-				availible = self.__checkChannelUrl(channel.get('stream_url'))
-				channel['availible'] = availible
-				if availible:
-						availibleChannels += 1
+	@process
+	def __channelsStatusGrabber(self):
+		yield g_dataHolder.initConfigOnStart()
+		channels = g_dataHolder.config.get('channels', [])
+		statuses = yield map(self.__channelStatus, [channel.get('stream_url') for channel in channels])
+		for idx, channel in enumerate(channels):
+			available = statuses[idx]
+			channel['available'] = available
+			if available:
 				self.__channels.append(channel)
-		
-			self.__status = bool(availibleChannels)
-			self.__inited = True
-				
-			g_eventsManager.onChannelsUpdated()
-
-		except:
-			LOG_ERROR('ChannelsController.grabber', e)
-			LOG_CURRENT_EXCEPTION()
-
-	def __checkChannelUrl(self, url):
-		LOG_DEBUG('Checking channel url: %s' % str(url))
-		try:
-			if url:
-				request = urllib2.Request(url)			
-				request.add_header('User-Agent', USER_AGENT)
-				response = urllib2.urlopen(request, timeout = 1.0)
-				response.close()
-				if response.msg == 'OK':
-					return True
-				else:
-					return False
-			else:
-				return False
-		except:
-			LOG_ERROR('ChannelsController.__checkChannelUrl')
-			LOG_CURRENT_EXCEPTION()
-			return False
-		
+		self.__status = bool(self.__channels)
+		self.__inited = True
+		g_eventsManager.onChannelsUpdated()
+	
+	@async
+	@process
+	def __channelStatus(self, url, callback):
+		status, _ = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, \
+										headers = {'User-Agent': USER_AGENT}, onlyResponceStatus = True )
+		callback(status)

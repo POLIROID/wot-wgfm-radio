@@ -80,7 +80,8 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		g_eventsManager.onRatingsUpdated -= self.__onRatingsUpdated
 		g_eventsManager.onHotkeysChanged -= self.__onHotkeysChanged
 		
-		g_controllers.hotkey.delForced(self.__forcesKeyEventHandler)
+		if g_controllers.hotkey:
+			g_controllers.hotkey.delForced(self.__forcesKeyEventHandler)
 		
 		super(WGFMLobbyView, self)._dispose()
 	
@@ -243,5 +244,5 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		channels = []
 		for channelIdx, channelData in enumerate(g_controllers.channel.channels):
 			channels.append( { 'data': channelIdx, 'label': channelData['displayName'], \
-							'enabled': channelData['availible'] } )
+							'enabled': channelData['available'] } )
 		return { 'channels': channels }
