@@ -9,19 +9,22 @@ from adisp import async, process
 
 from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
+
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import byteify, fetchURL, unpackTempFiles
-from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, SETTINGS_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT
+from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE, CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT
 
 __all__ = ('g_dataHolder', )
 
 class DataHolder(object):
 	
+	cache = property(lambda self: self.__cache)
 	config = property(lambda self: self.__config)
 	settings = property(lambda self: self.__settings)
 	
 	def __init__(self):
 		
+		self.__cache = DEFAULT_CACHE
 		self.__config = DEFAULT_CONFIG
 		self.__settings = DEFAULT_SETTINGS
 
@@ -39,6 +42,12 @@ class DataHolder(object):
 		else:
 			LOG_DEBUG('No settings file')
 			self.saveSettings()	
+
+		if (os.path.exists(CACHE_FILE)):
+			self.loadCache()
+		else:
+			LOG_DEBUG('No settings file')
+			self.saveCache()	
 	
 	@async
 	@process
@@ -75,7 +84,7 @@ class DataHolder(object):
 			cache['create_time'] = int(time.time())
 			if self.__config:
 				cache['data'] = self.__config			   
-				with open(CACHE_FILE, 'wb') as fh:
+				with open(CONFIG_CACHE_FILE, 'wb') as fh:
 					p = cPickle.dumps(cache)
 					fh.write(zlib.compress(p, 1))
 		except:
@@ -84,7 +93,7 @@ class DataHolder(object):
 
 	def loadConfigCache(self):
 		try:
-			with open(CACHE_FILE, 'rb') as fh:
+			with open(CONFIG_CACHE_FILE, 'rb') as fh:
 				dec = zlib.decompress(fh.read())
 				p = cPickle.loads(dec)
 				self.__config = dict()
@@ -102,23 +111,46 @@ class DataHolder(object):
 				pickle = cPickle.loads(dec)
 				self.__settings = pickle['data']			   
 		except:
-			LOG_ERROR('DataHolder.load_settings')
+			LOG_ERROR('DataHolder.loadSettings')
 			LOG_CURRENT_EXCEPTION()
 
 	def saveSettings(self):
 		try:
 			data = dict()
 			if self.__settings:
-				data['data'] = self.__settings			   
+				data['data'] = self.__settings
 				with open(SETTINGS_FILE, 'wb') as fh:
 					p = cPickle.dumps(data)
 					fh.write(zlib.compress(p, 1))
 		except:
 			LOG_ERROR('DataHolder.saveSettings')
 			LOG_CURRENT_EXCEPTION()
+	
+	def loadCache(self):
+		try:
+			with open(CACHE_FILE, 'rb') as fh:
+				dec = zlib.decompress(fh.read())
+				pickle = cPickle.loads(dec)
+				self.__cache = pickle['data']			   
+		except:
+			LOG_ERROR('DataHolder.loadCache')
+			LOG_CURRENT_EXCEPTION()
+
+	def saveCache(self):
+		try:
+			data = dict()
+			if self.__cache:
+				data['data'] = self.__cache
+				with open(CACHE_FILE, 'wb') as fh:
+					p = cPickle.dumps(data)
+					fh.write(zlib.compress(p, 1))
+		except:
+			LOG_ERROR('DataHolder.saveCache')
+			LOG_CURRENT_EXCEPTION()
 
 	def __save(self):
 		self.saveSettings()	
+		self.saveCache()	
 		self.createConfigCache()
 	
 g_dataHolder = DataHolder()

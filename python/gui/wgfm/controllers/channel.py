@@ -1,6 +1,5 @@
 
 from adisp import async, process
-from debug_utils import LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
@@ -30,10 +29,7 @@ class ChannelController(object):
 	def grabChannels(self):
 		if not self.__initStarted:
 			self.__initStarted = True
-			try:
-				self.__channelsStatusGrabber()
-			except:
-				LOG_CURRENT_EXCEPTION()
+			self.__channelsStatusGrabber()
 	
 	@process
 	def __channelsStatusGrabber(self):

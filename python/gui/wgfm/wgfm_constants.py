@@ -61,12 +61,21 @@ DEFAULT_SETTINGS = {
 	'isModpack': False,
 	'keyBindings': DEFAULT_BINDINGS
 }
+
+DEFAULT_CACHE = {
+	'announced_ids': []
+}
+
 class CONFIG:
 	SAVE_SETTINGS = True
 	SAVE_CACHE = True
 	CONFIG_URL = 'http://cfg.wargaming.fm/v1'
 	EXPIRE_TIME = 6
 	RATING_GATEWAY = '{url}?time={time}&{data}'
+
+class APIv2:
+	BASE_URL = 'http://wgfm.wgmods.org/api'
+	ANNOUNCE_GATEWAY = '/announcements'
 
 class PLAYER_STATUS:
 	INITED = 'inited'
@@ -97,6 +106,7 @@ class HOTKEYS_COMMANDS:
 
 BROADCAST_INTERVAL = 300
 TAGS_UPDATE_INTERVAL = 20
+ANNOUNCMENTS_UPDATE_INTERVAL = 15 * 60
 VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
@@ -111,6 +121,7 @@ DEFAULT_UI_LANGUAGE = 'ru'
 
 wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8', errors='ignore'))))
 SETTINGS_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'setting.dat')
+CONFIG_CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'config.dat')
 CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'cache.dat')
 
 TEMP_DATA_FOLDER = '%s\\world_of_tanks\\%s' % (tempfile.gettempdir(), 'wgfm')

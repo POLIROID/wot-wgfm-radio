@@ -5,6 +5,7 @@ __all__ = ('g_controllers', )
 
 class ControllersHolder():
 	
+	announcer = None
 	battle = None
 	channel = None
 	player = None
@@ -14,6 +15,7 @@ class ControllersHolder():
 	
 	def init(self):
 		
+		from gui.wgfm.controllers.announcer import AnnounceController
 		from gui.wgfm.controllers.battle import BattleController
 		from gui.wgfm.controllers.channel import ChannelController
 		from gui.wgfm.controllers.player import PlayerController
@@ -21,6 +23,7 @@ class ControllersHolder():
 		from gui.wgfm.controllers.volume import VolumeController
 		from gui.wgfm.controllers.hotkey import HotkeyController
 
+		self.announcer = AnnounceController()
 		self.battle = BattleController()
 		self.channel = ChannelController()
 		self.player = PlayerController()
@@ -28,6 +31,7 @@ class ControllersHolder():
 		self.volume = VolumeController()
 		self.hotkey = HotkeyController()
 
+		self.announcer.init()
 		self.battle.init()
 		self.channel.init()
 		self.player.init()
@@ -39,6 +43,7 @@ class ControllersHolder():
 		
 	def fini(self):
 
+		self.announcer.fini()
 		self.battle.fini()
 		self.channel.fini()
 		self.player.fini()
@@ -46,6 +51,7 @@ class ControllersHolder():
 		self.volume.fini()
 		self.hotkey.fini()
 		
+		self.announcer = None
 		self.battle = None
 		self.channel = None
 		self.player = None
