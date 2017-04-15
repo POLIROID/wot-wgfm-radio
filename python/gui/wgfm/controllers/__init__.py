@@ -11,7 +11,6 @@ class ControllersHolder():
 	hotkey = None
 	player = None
 	rating = None
-	telemetry = None
 	volume = None
 	
 	def init(self):
@@ -22,7 +21,6 @@ class ControllersHolder():
 		from gui.wgfm.controllers.hotkey import HotkeyController
 		from gui.wgfm.controllers.player import PlayerController
 		from gui.wgfm.controllers.rating import RatingController
-		from gui.wgfm.controllers.telemetry import TelemetryController
 		from gui.wgfm.controllers.volume import VolumeController
 
 		self.announcer = AnnounceController()
@@ -31,7 +29,6 @@ class ControllersHolder():
 		self.hotkey = HotkeyController()
 		self.player = PlayerController()
 		self.rating = RatingController()
-		self.telemetry = TelemetryController()
 		self.volume = VolumeController()
 
 		self.announcer.init()
@@ -40,7 +37,6 @@ class ControllersHolder():
 		self.hotkey.init()
 		self.player.init()
 		self.rating.init()
-		self.telemetry.init()
 		self.volume.init()
 		
 		g_eventsManager.onAppFinish += self.fini
@@ -53,7 +49,6 @@ class ControllersHolder():
 		self.hotkey.fini()
 		self.player.fini()
 		self.rating.fini()
-		self.telemetry.fini()
 		self.volume.fini()
 		
 		self.announcer = None
@@ -62,7 +57,6 @@ class ControllersHolder():
 		self.hotkey = None
 		self.player = None
 		self.rating = None
-		self.telemetry = None
 		self.volume = None
 
 g_controllers = ControllersHolder()

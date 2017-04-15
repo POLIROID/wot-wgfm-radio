@@ -154,7 +154,6 @@ class PlayerController(object):
 		channel = g_controllers.channel.channels[self.channelIdx]
 		url = channel.get('ext_url', None)
 		if url:
-			g_controllers.telemetry.sendEvent('url', 'open', url)
 			BigWorld.wg_openWebBrowser(url)
 	
 	def __onVolumeChanged(self, volume):

@@ -98,8 +98,6 @@ class RatingController(object):
 		
 		g_eventsManager.onRatingsUpdated()
 		
-		g_controllers.telemetry.userVote(userLiked, savedTag)
-
 		successful = yield self.__sendRatingData(url)
 		if successful:
 			del self.__votes[channelIdx]

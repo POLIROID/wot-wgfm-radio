@@ -151,12 +151,10 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		"""fired on AS settings section values changed"""
 		if name in g_dataHolder.settings:
 			g_dataHolder.settings.update({name: value})
-			g_controllers.telemetry.sendScreen('settings')
 
 	def updateHotkeys(self, name, command):
 		"""fired on AS hotkeys section by Hotkey control"""
 		g_controllers.hotkey.handleHotkeyUIEvent(command, name)
-		g_controllers.telemetry.sendScreen('settings')
 	
 	def defaultHotkeys(self):
 		"""fired on AS hotkeys section SetDefaultButton click"""
