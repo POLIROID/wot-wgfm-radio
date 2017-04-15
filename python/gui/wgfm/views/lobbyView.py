@@ -68,7 +68,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		self.as_setHotkeysS(self.__generateHotkeysCtx())
 
 		# process depended Data with waiting
-		self.as_showWaitingS(l10n('#ui_waiting_grabbingData'))
+		self.as_showWaitingS(l10n('ui.waiting.grabbingData'))
 		
 		self._dependedData()
 	
@@ -151,11 +151,13 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		"""fired on AS settings section values changed"""
 		if name in g_dataHolder.settings:
 			g_dataHolder.settings.update({name: value})
+			g_controllers.telemetry.sendScreen('settings')
 
 	def updateHotkeys(self, name, command):
 		"""fired on AS hotkeys section by Hotkey control"""
 		g_controllers.hotkey.handleHotkeyUIEvent(command, name)
-
+		g_controllers.telemetry.sendScreen('settings')
+	
 	def defaultHotkeys(self):
 		"""fired on AS hotkeys section SetDefaultButton click"""
 		g_controllers.hotkey.defaultAll()
@@ -192,9 +194,9 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			
 	def __generateLocalizationCtx(self):
 		"""result represented by LocalizationVO"""
-		return { 'closeButton': l10n('#ui_closeButton'), 'settingsTitle': l10n('#ui_settings_title'), \
-				'titleLabel': l10n('#ui_title'), 'hotkeysTitle': l10n('#ui_hotkeys_title'), \
-				'hotkeysDefault': l10n('#ui_hotkeys_defaultLink')  }
+		return { 'closeButton': l10n('ui.closeButton'), 'settingsTitle': l10n('ui.settings.title'), \
+				'titleLabel': l10n('ui.title'), 'hotkeysTitle': l10n('ui.hotkeys.title'), \
+				'hotkeysDefault': l10n('ui.hotkeys.defaultLink')  }
 
 	def __generateStateCtx(self):
 		"""result represented by StateVO"""
@@ -222,10 +224,10 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			keyValue = parseKeyValue(keySetData)
 			keyHasAlt, keyHasCtrl, keyHasShift = parseKeyModifiers(keySetData)
 			isAccepting = g_controllers.hotkey.accepting and g_controllers.hotkey.acceptingName == keySetName
-			hotkeys.append( { 'name': keySetName, 'label': l10n('#ui_hotkeys_%s' % keySetName), 'value': keyValue, \
+			hotkeys.append( { 'name': keySetName, 'label': l10n('ui.hotkeys.%s' % keySetName), 'value': keyValue, \
 					 'modifierCtrl': keyHasCtrl, 'modiferShift': keyHasShift, 'modifierAlt': keyHasAlt, \
-					 'isEmpty': not keySetData, 'isAccepting': isAccepting, 'labelDefault': l10n('#ui_hotkeys_cmdDefault'), \
-					 'labelClean': l10n('#ui_hotkeys_cmdClean') } )
+					 'isEmpty': not keySetData, 'isAccepting': isAccepting, 'labelDefault': l10n('ui.hotkeys.cmdDefault'), \
+					 'labelClean': l10n('ui.hotkeys.cmdClean') } )
 			
 		return { 'hotkeys': hotkeys }
 	
@@ -235,8 +237,8 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		settingsFields = ['saveVolume', 'saveChannel', 'muteOnVoip', 'autoPlay', 'sendStatistic', 'showBattleTips']
 		for settingName in settingsFields:
 			value = g_dataHolder.settings.get(settingName, False)
-			localName = l10n('#ui_settings_label_%s' % settingName)
-			localTooltip = l10n('#ui_settings_tooltip_%s' % settingName)
+			localName = l10n('ui.settings.label.%s' % settingName)
+			localTooltip = l10n('ui.settings.tooltip.%s' % settingName)
 			settings.append( { 'name': settingName, 'value': value, 'label': localName, 'tooltip': localTooltip } )
 		return { 'settings': settings }
 	

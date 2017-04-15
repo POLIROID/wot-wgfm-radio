@@ -24,16 +24,16 @@ class PlayerController(object):
 	
 	def get_status(self):
 		if not g_controllers.channel.status:
-			self.__status = PLAYER_STATUS.ERROR
-			if not self.__errorLabel:
-				self.__errorLabel = l10n('#error_wgfm_url')
+			self.errorLabel = l10n('error.wgfmUrl')
 		return self.__status
 	status = property(get_status)
 	
-	def set_errorLevel(self, errorLabel):
+	def set_errorLebel(self, errorLabel):
 		if not self.__errorLabel:
+			self.__status = PLAYER_STATUS.ERROR
 			self.__errorLabel = errorLabel
-	errorLabel = property(lambda self: self.__errorLabel, set_errorLevel)
+			g_eventsManager.onRadioStatusUpdated()
+	errorLabel = property(lambda self: self.__errorLabel, set_errorLebel)
 
 	tag = property(lambda self: self.__tag)
 
@@ -63,6 +63,9 @@ class PlayerController(object):
 		
 		g_eventsManager.onVolumeChanged += self.__onVolumeChanged
 		g_eventsManager.onChannelsUpdated += self.__onChannelsUpdated
+
+		if g_dataHolder.settings.get('autoPlay', False):
+			self.playRadio()
 
 	def fini(self):
 		
@@ -151,6 +154,7 @@ class PlayerController(object):
 		channel = g_controllers.channel.channels[self.channelIdx]
 		url = channel.get('ext_url', None)
 		if url:
+			g_controllers.telemetry.sendEvent('url', 'open', url)
 			BigWorld.wg_openWebBrowser(url)
 	
 	def __onVolumeChanged(self, volume):

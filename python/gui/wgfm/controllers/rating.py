@@ -97,6 +97,8 @@ class RatingController(object):
 		self.__states[savedTag] = [userLiked, True]
 		
 		g_eventsManager.onRatingsUpdated()
+		
+		g_controllers.telemetry.userVote(userLiked, savedTag)
 
 		successful = yield self.__sendRatingData(url)
 		if successful:

@@ -1,4 +1,13 @@
 ﻿
+__author__ = "Andruschyshyn Andrey"
+__copyright__ = "Copyright 2017, Wargaming"
+__credits__ = ["Andruschyshyn Andrey"]
+__license__ = "CC BY-NC-SA 4.0"
+__version__ = "3.0.7"
+__maintainer__ = "Andruschyshyn Andrey"
+__email__ = "p0lir0id@yandex.ru"
+__status__ = "Production"
+
 from gui.wgfm.data import *
 from gui.wgfm.hooks import *
 from gui.wgfm.lang import *
@@ -8,22 +17,4 @@ from gui.wgfm.wgfm_constants import *
 from gui.wgfm.controllers import *
 from gui.wgfm.views import *
 
-__all__ = ( )
-
 g_controllers.init()
-
-if g_dataHolder.settings.get('autoPlay', False):
-	g_controllers.player.playRadio()
-
-from gui.app_loader.loader import g_appLoader
-from gui.modsListApi import g_modsListApi
-g_modsListApi.addModification(
-	id = 'wgfm', 
-	name = l10n('#modslist_name'), 
-	description = l10n('#modslist_description'), 
-	icon = 'gui/maps/wgfm/modsListApi.png',
-	enabled = True, 
-	login = True, 
-	lobby = True, 
-	callback = lambda : g_appLoader.getDefLobbyApp().loadView(WGFM_LOBBY_WINDOW_UI)
-)

@@ -7,8 +7,6 @@ class EventsManager(object):
 
 	def __init__(self):
 		
-		self.showRadio = Event.Event()
-		
 		self.showBattleMessage = Event.Event()
 		
 		self.onAppFinish = Event.Event()

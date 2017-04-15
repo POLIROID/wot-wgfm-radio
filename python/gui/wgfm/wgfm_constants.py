@@ -110,13 +110,20 @@ ANNOUNCMENTS_UPDATE_INTERVAL = 15 * 60
 VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
-MOD_VERSION = '3.0.6 (0.9.17.1)'
+MOD_VERSION = '3.0.7'
 MOD_VERSION_NUM = 7
 USER_AGENT = 'WGFM-RadioPlayer/' + MOD_VERSION
 
 WGFM_LOBBY_WINDOW_UI = 'wgfmLobby'
 WGFM_BATTLE_INJECTOR_UI = 'wgfmBattleInjector'
 WGFM_BATTLE_COMPONENTS_UI = 'wgfmBattle'
+
+LANGUAGE_CODES = ('ru', 'uk', 'be', 'en', 'de', 'et', 'bg', 'da', 'fi', 'fil', 'fr', 'el', 'hu', 'id', \
+	'it', 'ja', 'ms', 'nl', 'no', 'pl', 'pt', 'pt_br', 'ro', 'sr', 'vi', 'zh_sg', 'zh_tw', 'hr', 'th', \
+	'lv', 'lt', 'cs', 'es_ar', 'tr', 'zh_cn', 'es', 'kk', 'sv', )
+
+LANGUAGE_FILE_PATH = 'mods/net.wargaming.wgfmradio/text/%s.yml'
+
 DEFAULT_UI_LANGUAGE = 'ru'
 
 wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8', errors='ignore'))))
@@ -125,7 +132,7 @@ CONFIG_CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'config.dat')
 CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'cache.dat')
 
 TEMP_DATA_FOLDER = '%s\\world_of_tanks\\%s' % (tempfile.gettempdir(), 'wgfm')
-TEMP_DATA_FOLDER_VFS = 'temp_resources/wgfm'
+TEMP_DATA_FOLDER_VFS = 'mods/net.wargaming.wgfmradio/temp'
 
 CONSOLE_PLAYER = '%s\\wgfm_player.exe' % TEMP_DATA_FOLDER 
 

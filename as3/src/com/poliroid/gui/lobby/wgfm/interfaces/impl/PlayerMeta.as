@@ -1,11 +1,11 @@
 package com.poliroid.gui.lobby.wgfm.interfaces.impl 
 {
 	
-	import com.poliroid.gui.lobby.wgfm.data.StateVO;
 	import net.wg.data.constants.Errors;
 	import net.wg.infrastructure.base.AbstractView;
 	import net.wg.infrastructure.exceptions.AbstractException;
 	
+	import com.poliroid.gui.lobby.wgfm.data.StateVO;
 	import com.poliroid.gui.lobby.wgfm.data.HotkeysVO;
 	import com.poliroid.gui.lobby.wgfm.data.SettingsVO;
 	import com.poliroid.gui.lobby.wgfm.data.LocalizationVO;

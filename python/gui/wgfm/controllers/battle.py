@@ -43,7 +43,7 @@ class BattleController(object):
 	def showRadioTagMessage(self):
 		"""fired on player tag changed"""
 		if g_controllers.player.tag == '':
-			self.__showInfoMessage(l10n('#battle_player_stop'))
+			self.__showInfoMessage(l10n('battle.player.stop'))
 		else:			
 			self.__showInfoMessage(g_controllers.player.tag, useChannel=True, important=True)
 		
@@ -52,17 +52,17 @@ class BattleController(object):
 			if not self.__isPlayerInBattle:
 				return
 			if g_controllers.player.tag == '':
-				self.__showInfoMessage(l10n('#battle_player_stop'))
+				self.__showInfoMessage(l10n('battle.player.stop'))
 			else:
 				if self.proto is None:
 					self.__showInfoMessage(g_controllers.player.tag, useChannel=True, important=True)
 				else:
 					if BigWorld.time() - BROADCAST_INTERVAL > self.__lastBroadcastTime:
 						self.__lastBroadcastTime = BigWorld.time()
-						msg = l10n('#battle_broadcast_track_%s' % str(random.randint(1, 5))) % g_controllers.player.tag
+						msg = l10n('battle.broadcast.track%s' % str(random.randint(1, 5))) % g_controllers.player.tag
 						self.proto.arenaChat.broadcast(msg.encode('utf-8'), 0)
 					else:
-						self.__showInfoMessage(l10n('#battle_tips_cooldown'))
+						self.__showInfoMessage(l10n('battle.tips.cooldown'))
 		except:
 			LOG_ERROR('broadcastRadioTagMessage')
 			LOG_CURRENT_EXCEPTION()
@@ -74,22 +74,22 @@ class BattleController(object):
 			if self.proto:
 				if BigWorld.time() - BROADCAST_INTERVAL > self.__lastBroadcastTime:
 					self.__lastBroadcastTime = BigWorld.time()
-					msg = l10n('#battle_broadcast_hello_%s' % str(random.randint(1, 4)))
+					msg = l10n('battle.broadcast.hello%s' % str(random.randint(1, 9)))
 					self.proto.arenaChat.broadcast(msg.encode('utf-8'), 0)
 				else:
-					self.__showInfoMessage(l10n('#battle_tips_cooldown'))
+					self.__showInfoMessage(l10n('battle.tips.cooldown'))
 		except:
 			LOG_ERROR('broadcastHelloMessage')
 			LOG_CURRENT_EXCEPTION()
 	
 	def showVolumeChangedMessage(self, isUP):
 		if isUP:
-			self.__showInfoMessage(l10n('#battle_player_volumeup'))
+			self.__showInfoMessage(l10n('battle.player.volumeup'))
 		else:
-			self.__showInfoMessage(l10n('#battle_player_volumedown'))
+			self.__showInfoMessage(l10n('battle.player.volumedown'))
 	
 	def showRatingsMessage(self):
-		self.__showInfoMessage(l10n('#battle_tips_rating'))
+		self.__showInfoMessage(l10n('battle.tips.rating'))
 	
 	def showControlsMessage(self):
 		
@@ -100,7 +100,7 @@ class BattleController(object):
 		if g_controllers.player.tag != '':
 			self.__showInfoMessage(g_controllers.player.tag, useChannel=True, important=True)
 			
-		self.__showInfoMessage(l10n('#battle_tips_control_%s' % str(random.randint(1, 7))).format(
+		self.__showInfoMessage(l10n('battle.tips.control%s' % str(random.randint(1, 7))).format(
 				playRadio = parseKeyValueFull(g_dataHolder.settings['keyBindings']['playRadio']), 
 				stopRadio = parseKeyValueFull(g_dataHolder.settings['keyBindings']['stopRadio']),
 				nextChannel = parseKeyValueFull(g_dataHolder.settings['keyBindings']['nextChannel']),

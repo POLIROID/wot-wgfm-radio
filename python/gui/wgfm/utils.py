@@ -1,6 +1,7 @@
 
 __all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers', \
- 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID' )
+ 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields', \
+ 'readFromVFS', )
 
 import threading
 import httplib
@@ -233,6 +234,8 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 			if headers is not None:
 				for key, val in headers.iteritems():
 					connection.putheader(key, val)
+			if req.scheme == 'https' and 'Content-length' not in headers:
+				connection.putheader('Content-length', len(postData))
 		except:
 			LOG_WARNING('fetchURL', 'cant pur headers', headers)
 		
@@ -277,3 +280,23 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 		return callback((responce.status == 200, responceData))
 
 	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, postData, onlyResponceStatus, )).start()
+
+def parseLangFields(langCode):
+	"""split items by lines and key value by : 
+	like yaml format"""
+	from gui.wgfm.wgfm_constants import LANGUAGE_FILE_PATH
+	result = {}
+	langData = readFromVFS(LANGUAGE_FILE_PATH % langCode)
+	if langData:
+		for item in langData.splitlines():
+			if ': ' not in item: continue
+			key, value = item.split(": ", 1)
+			result[key] = value
+	return result
+
+def readFromVFS(path):
+	"""using for read files from VFS"""
+	file = ResMgr.openSection(path)
+	if file is not None and ResMgr.isFile(path):
+		return str(file.asBinary)
+	return None

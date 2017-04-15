@@ -36,7 +36,7 @@ class DataHolder(object):
 		
 		# unpack temp files
 		unpackTempFiles(TEMP_DATA_FOLDER_VFS, TEMP_DATA_FOLDER)
-
+		
 		if (os.path.exists(SETTINGS_FILE)):
 			self.loadSettings()
 		else:
