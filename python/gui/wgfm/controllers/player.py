@@ -53,11 +53,22 @@ class PlayerController(object):
 	def init(self):
 
 		def launch_player(data):
-			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+			
+			# starting player process
+			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE, \
+													stderr=subprocess.PIPE, shell=True)
+			# initing player
 			self.__executePlayerCommand(PLAYER_COMMANDS.INIT)
+			
+			# updating status
 			self.__status = PLAYER_STATUS.INITED
-			self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, g_controllers.volume.volume if not g_controllers.volume.muted else 0.0)
-	
+			
+			# setting volume
+			volume = 0.0
+			if not g_controllers.volume.muted:
+				volume = g_controllers.volume.volume
+			self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume)
+		
 		data = [CONSOLE_PLAYER, '-pid', str(os.getpid())]
 		threading.Thread(target=launch_player, args=(data, )).start()
 		

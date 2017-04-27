@@ -11,7 +11,8 @@ __all__ = ('BattleController', )
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import getChannelName, parseKeyValueFull
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, BROADCAST_INTERVAL, WGFM_BATTLE_INJECTOR_UI, DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME
+from gui.wgfm.wgfm_constants import PLAYER_STATUS, BROADCAST_INTERVAL, WGFM_BATTLE_INJECTOR_UI, \
+									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 

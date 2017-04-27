@@ -10,9 +10,10 @@ import types
 import os
 import socket
 
+import BigWorld
 from avatar_helpers import getAvatarDatabaseID
 from account_helpers import getAccountDatabaseID
-from debug_utils import *
+from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
 import Keys
 import ResMgr
 
@@ -81,7 +82,6 @@ def parseKeyNameByID(key_id):
 	return ''
 
 def parseKeyValue(keyset):
-	
 	if isinstance(keyset, types.ListType):
 		for keyItem in keyset:
 			if isinstance(keyItem, types.IntType):
@@ -179,7 +179,6 @@ def unpackTempFiles(vfs_path, realfs_path):
 	for work with tham from real FS
 	"""
 	if ResMgr.isFile(vfs_path):
-		LOG_DEBUG('unpackTempFiles file', vfs_path)
 		realfs_dir = os.path.dirname(realfs_path)
 		if not os.path.exists(realfs_dir):
 			os.makedirs(realfs_dir)
@@ -188,14 +187,34 @@ def unpackTempFiles(vfs_path, realfs_path):
 			with open(realfs_path, 'wb') as fh:
 				fh.write(data)
 	elif ResMgr.isDir(vfs_path):
-		LOG_DEBUG('unpackTempFiles dir', vfs_path)
 		for item in directory_list(vfs_path):
 			unpackTempFiles(vfs_path + '/' + item, realfs_path + '\\' + item)
 
 def userDBID():
 	return int(getAccountDatabaseID() or getAvatarDatabaseID()) or None
 
-def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', postData = None, onlyResponceStatus = False):
+def parseLangFields(langCode):
+	"""split items by lines and key value by : 
+	like yaml format"""
+	from gui.wgfm.wgfm_constants import LANGUAGE_FILE_PATH
+	result = {}
+	langData = readFromVFS(LANGUAGE_FILE_PATH % langCode)
+	if langData:
+		for item in langData.splitlines():
+			if ': ' not in item: continue
+			key, value = item.split(": ", 1)
+			result[key] = value
+	return result
+
+def readFromVFS(path):
+	"""using for read files from VFS"""
+	file = ResMgr.openSection(path)
+	if file is not None and ResMgr.isFile(path):
+		return str(file.asBinary)
+	return None
+
+def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', postData = None, \
+			onlyResponceStatus = False):
 	""" Implementation of http requester like BigWorld.fetchUrl
 	Ingame BigWorld.fetchUrl cant work with self-signed ssl certificates
 	"""
@@ -279,24 +298,5 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 		connection.close()
 		return callback((responce.status == 200, responceData))
 
-	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, postData, onlyResponceStatus, )).start()
-
-def parseLangFields(langCode):
-	"""split items by lines and key value by : 
-	like yaml format"""
-	from gui.wgfm.wgfm_constants import LANGUAGE_FILE_PATH
-	result = {}
-	langData = readFromVFS(LANGUAGE_FILE_PATH % langCode)
-	if langData:
-		for item in langData.splitlines():
-			if ': ' not in item: continue
-			key, value = item.split(": ", 1)
-			result[key] = value
-	return result
-
-def readFromVFS(path):
-	"""using for read files from VFS"""
-	file = ResMgr.openSection(path)
-	if file is not None and ResMgr.isFile(path):
-		return str(file.asBinary)
-	return None
+	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, \
+					postData, onlyResponceStatus, )).start()

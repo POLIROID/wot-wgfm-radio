@@ -105,7 +105,8 @@ class RatingController(object):
 	@async
 	@process
 	def __sendRatingData(self, url, callback):
-		status, _ = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, headers = {'User-Agent': USER_AGENT} )
+		status, _ = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, \
+													headers = {'User-Agent': USER_AGENT} )
 		callback(status)
 	
 	def __onRadioTagChanged(self):

@@ -5,14 +5,14 @@ import json
 
 import BigWorld
 from adisp import async, process
-from debug_utils import *
+from debug_utils import LOG_WARNING
 from helpers import time_utils, isPlayerAccount
 from gui import SystemMessages
 from PlayerEvents import g_playerEvents
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.utils import byteify, fetchURL
-from gui.wgfm.wgfm_constants import APIv2, USER_AGENT, ANNOUNCMENTS_UPDATE_INTERVAL
+from gui.wgfm.wgfm_constants import APIv2, USER_AGENT, TAGS_UPDATE_INTERVAL, ANNOUNCMENTS_UPDATE_INTERVAL
 
 class AnnounceController(object):
 	
@@ -59,7 +59,7 @@ class AnnounceController(object):
 				announcement['showed'] = True
 				self.__showedIds.append(announcement['id'])
 		
-		self.__cheackCallbackID = BigWorld.callback(10, self.cheackAnnouncements)
+		self.__cheackCallbackID = BigWorld.callback(TAGS_UPDATE_INTERVAL, self.cheackAnnouncements)
 	
 	def __processAnnounceData(self, announcementData):
 		for announcementItem in announcementData:

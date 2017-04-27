@@ -109,7 +109,7 @@ class VolumeController(object):
 		if self.__isWindowVisible != isWindowVisible:
 			self.__isWindowVisible = isWindowVisible
 					
-			def volumeByWindowVisibility(self, volume, timeout=0.0):
+			def volumeByWindowVisibility(self, volume, timeout = 0.0):
 				callback = lambda : g_eventsManager.onVolumeChangedHidden(round(float(volume), 2))
 				BigWorld.callback(timeout, callback)
 				

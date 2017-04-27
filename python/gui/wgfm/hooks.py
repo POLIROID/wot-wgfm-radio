@@ -6,18 +6,18 @@ from gui.app_loader.loader import g_appLoader
 from gui.modsListApi import g_modsListApi
 
 from gui.wgfm.data import g_dataHolder
-from gui.wgfm.events import *
-from gui.wgfm.lang import *
-from gui.wgfm.utils import *
+from gui.wgfm.events import g_eventsManager
+from gui.wgfm.lang import l10n
+from gui.wgfm.utils import override
 from gui.wgfm.wgfm_constants import WGFM_LOBBY_WINDOW_UI
 
 __all__ = ()
 
 # adding menu item to modslist
 add = g_modsListApi.addModification
-add(id = 'wgfm', name = l10n('modslist.name'), description = l10n('modslist.description'), \
-	icon = 'gui/maps/wgfm/modsListApi.png',	enabled = True,	login = True, lobby = True, \
-	callback = lambda : g_appLoader.getDefLobbyApp().loadView(WGFM_LOBBY_WINDOW_UI) )
+add(id = 'wgfm', name = l10n('modslist.name'), description = l10n('modslist.description'), enabled = True, \
+	callback = lambda : g_appLoader.getDefLobbyApp().loadView(WGFM_LOBBY_WINDOW_UI), login = True, \
+	lobby = True, icon = 'gui/maps/wgfm/modsListApi.png' )
 
 # app battle loaded
 @override(_AppLoader, 'showBattlePage')
