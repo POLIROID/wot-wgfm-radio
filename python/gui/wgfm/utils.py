@@ -193,12 +193,11 @@ def unpackTempFiles(vfs_path, realfs_path):
 def userDBID():
 	return int(getAccountDatabaseID() or getAvatarDatabaseID()) or None
 
-def parseLangFields(langCode):
-	"""split items by lines and key value by : 
+def parseLangFields(langFile):
+	"""split items by lines and key value by ':'
 	like yaml format"""
-	from gui.wgfm.wgfm_constants import LANGUAGE_FILE_PATH
 	result = {}
-	langData = readFromVFS(LANGUAGE_FILE_PATH % langCode)
+	langData = readFromVFS(langFile)
 	if langData:
 		for item in langData.splitlines():
 			if ': ' not in item: continue
@@ -243,7 +242,7 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 			return callback((False, None))
 		
 		try:
-			connection.putrequest(method, req.path)
+			connection.putrequest(method, req.path if req.query == '' else '%s?%s' % (req.path, req.query))
 		except:
 			LOG_ERROR('fetchURL', 'cant pur request', method, req.path)
 			LOG_CURRENT_EXCEPTION()
@@ -297,6 +296,6 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 			responceData = None
 		connection.close()
 		return callback((responce.status == 200, responceData))
-
+	
 	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, \
 					postData, onlyResponceStatus, )).start()

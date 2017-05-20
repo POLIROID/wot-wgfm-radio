@@ -150,8 +150,8 @@ class DataHolder(object):
 			LOG_CURRENT_EXCEPTION()
 
 	def __save(self):
-		self.saveSettings()	
-		self.saveCache()	
+		self.saveSettings()
+		self.saveCache()
 		self.createConfigCache()
 	
 g_dataHolder = DataHolder()
