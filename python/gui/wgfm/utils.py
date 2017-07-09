@@ -183,7 +183,7 @@ def unpackTempFiles(vfs_path, realfs_path):
 		if not os.path.exists(realfs_dir):
 			os.makedirs(realfs_dir)
 		data = file_read(vfs_path)
-		if data:
+		if data and not os.path.isfile(realfs_path):
 			with open(realfs_path, 'wb') as fh:
 				fh.write(data)
 	elif ResMgr.isDir(vfs_path):
