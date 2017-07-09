@@ -59,6 +59,7 @@ DEFAULT_SETTINGS = {
 	'autoPlay': False,
 	'showBattleTips': True,
 	'isModpack': False,
+	'muteOnMinimize': True,
 	'keyBindings': DEFAULT_BINDINGS
 }
 

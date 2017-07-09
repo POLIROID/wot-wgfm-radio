@@ -232,7 +232,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 	def __generateSettingsCtx(self):
 		"""result represented by SettingsVO"""
 		settings = []
-		settingsFields = ['saveVolume', 'saveChannel', 'muteOnVoip', 'autoPlay', 'sendStatistic', 'showBattleTips']
+		settingsFields = ['saveVolume', 'saveChannel', 'muteOnVoip', 'autoPlay', 'sendStatistic', 'showBattleTips', 'muteOnMinimize']
 		for settingName in settingsFields:
 			value = g_dataHolder.settings.get(settingName, False)
 			localName = l10n('ui.settings.label.%s' % settingName)

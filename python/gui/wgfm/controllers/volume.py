@@ -86,7 +86,7 @@ class VolumeController(object):
 			self.setVolume(1)
 			return False
 		else:
-			return self.setVolume(newVolume)			 
+			return self.setVolume(newVolume)
 		
 	def volumeDown(self):
 		if self.__volume <= 0.2:
@@ -106,10 +106,10 @@ class VolumeController(object):
 	
 	def __mutedByWindowVisibility(self):
 		isWindowVisible = BigWorld.isWindowVisible()
-		if self.__isWindowVisible != isWindowVisible:
+		if self.__isWindowVisible != isWindowVisible and g_dataHolder.settings.get('muteOnMinimize', True):
 			self.__isWindowVisible = isWindowVisible
 					
-			def volumeByWindowVisibility(self, volume, timeout = 0.0):
+			def volumeByWindowVisibility(volume, timeout = 0.0):
 				callback = lambda : g_eventsManager.onVolumeChangedHidden(round(float(volume), 2))
 				BigWorld.callback(timeout, callback)
 				

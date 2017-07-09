@@ -42,12 +42,14 @@ ui.settings.label.muteOnVoip: Использовать настройки VOIP
 ui.settings.label.autoPlay: Авто-воспроизведение при старте
 ui.settings.label.sendStatistic: Отправлять статистику
 ui.settings.label.showBattleTips: Отображать подсказки в бою
+ui.settings.label.muteOnMinimize: Приглушать при сворачивании
 ui.settings.tooltip.saveVolume: {HEADER}Запомнить громкость{/HEADER}{BODY}При следующем включении громкость останется на том же уровне{/BODY}
 ui.settings.tooltip.saveChannel: {HEADER}Запомнить выбранный канал{/HEADER}{BODY}При следующем включении звучать будет последний выбранный вами канал{/BODY}
 ui.settings.tooltip.muteOnVoip: {HEADER}Использовать настройки VOIP{/HEADER}{BODY}При использовании внутриигровой связи радио будет приглушаться. Уровень приглушения зависит от настройки "Общий уровень громкости окружения во время разговора" в игровом клиенте{/BODY}
 ui.settings.tooltip.autoPlay: {HEADER}Авто-воспроизведение при старте{/HEADER}{BODY}При запуске клиента радио будет автоматически включаться{/BODY}
 ui.settings.tooltip.sendStatistic: {HEADER}Отправлять статистику{/HEADER}{BODY}Помогите нам улучшить радио, отправив нам статистику его использования вами!{/BODY}
 ui.settings.tooltip.showBattleTips: {HEADER}Отображать подсказки в бою{/HEADER}{BODY}Показывать клавиши управления в начале боя{/BODY}
+ui.settings.tooltip.muteOnMinimize: {HEADER}Приглушать при сворачивании{/HEADER}{BODY}Приглушать радио при сворачивании клиента игры{/BODY}
 ui.hotkeys.title: Горячие клавиши
 ui.hotkeys.defaultLink: Стандартные настройки
 ui.hotkeys.cmdDefault: По умолчанию

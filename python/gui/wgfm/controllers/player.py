@@ -73,6 +73,7 @@ class PlayerController(object):
 		threading.Thread(target=launch_player, args=(data, )).start()
 		
 		g_eventsManager.onVolumeChanged += self.__onVolumeChanged
+		g_eventsManager.onVolumeChangedHidden += self.__onVolumeChanged
 		g_eventsManager.onChannelsUpdated += self.__onChannelsUpdated
 
 		if g_dataHolder.settings.get('autoPlay', False):
@@ -85,6 +86,7 @@ class PlayerController(object):
 			self.__tagsCallback = None
 		
 		g_eventsManager.onVolumeChanged -= self.__onVolumeChanged
+		g_eventsManager.onVolumeChangedHidden += self.__onVolumeChanged
 		g_eventsManager.onChannelsUpdated -= self.__onChannelsUpdated
 
 		self.__executePlayerCommand(PLAYER_COMMANDS.EXIT)
