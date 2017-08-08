@@ -10,15 +10,15 @@ ANIMATE_PATH = 'C:\\Program Files\\Adobe\\Adobe Animate CC 2015\\Animate.exe'
 
 # game data
 COPY_INTO_GAME = True
-GAME_VERSION = '0.9.19.1'
-GAME_FOLDER = 'X:/wot_ct'
+GAME_VERSION = '0.9.19.1.2'
+GAME_FOLDER = 'Z:/wot'
 
 # modification data
 MODIFICATION_AUTHOR = 'net.wargaming'
 MODIFICATION_DESCRIPTION = 'Listen WarGaming.FM directly ingame'
 MODIFICATION_IDENTIFICATOR = 'wgfmradio'
 MODIFICATION_NAME = 'WarGaming.FM'
-MODIFICATION_VERSION = '3.1.1'
+MODIFICATION_VERSION = '3.1.2'
 
 # result package name
 PACKAGE_NAME = '{author}.{name}_{version}.wotmod'.format( author = MODIFICATION_AUTHOR, \
