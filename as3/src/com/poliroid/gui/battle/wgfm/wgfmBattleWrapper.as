@@ -4,7 +4,6 @@
 	import net.wg.infrastructure.base.AbstractView;
 	import net.wg.gui.battle.views.vehicleMessages.VehicleMessages;
 	import net.wg.gui.battle.views.vehicleMessages.VehicleMessage;
-	import net.wg.gui.battle.random.views.BattlePage;
 	import flash.utils.setTimeout;
 	
 	public class wgfmBattleWrapper extends BattleUIDisplayable
@@ -14,14 +13,17 @@
 		
 		public function as_showMessage(messageText:String, messageColor:uint, messageLifeTime:uint) : void
 		{
-			var vehicleMessages:VehicleMessages = (battlePage as BattlePage).vehicleMessageList as VehicleMessages;
-			var vehicleMessage:VehicleMessage = vehicleMessages._renderersPool.createItem() as VehicleMessage; 
-			if (vehicleMessage) {
+			var vehicleMessages:VehicleMessages = battlePage.vehicleMessageList as VehicleMessages;
+			var vehicleMessage:VehicleMessage = vehicleMessages._renderersPool.createItem() as VehicleMessage;
+			if (vehicleMessage) 
+			{
 				vehicleMessage._lifeTime = messageLifeTime;
 				vehicleMessage.markUsed();
 				vehicleMessage.setData("wgfm", messageText, true, messageColor);
 				vehicleMessages.pushMessage(vehicleMessage);
-			} else {
+			}
+			else
+			{
 				setTimeout(as_showMessage, 50, messageText, messageColor, messageLifeTime);
 			}
 		}
