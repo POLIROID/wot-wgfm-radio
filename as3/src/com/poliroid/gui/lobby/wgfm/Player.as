@@ -101,7 +101,7 @@
 			{
 				waiting = new Waiting();
 				addChild(waiting);
-				waiting.backgroundAlpha = 90;
+				//waiting.alpha = 0.9;
 			}
 			waiting.setMessage(message);
 			waiting.setSize(App.appWidth, App.appHeight);
