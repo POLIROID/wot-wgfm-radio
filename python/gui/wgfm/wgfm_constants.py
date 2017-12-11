@@ -58,7 +58,7 @@ DEFAULT_SETTINGS = {
 	'sendStatistic': True,
 	'autoPlay': False,
 	'showBattleTips': True,
-	'isModpack': False,
+	'isModpack': True,
 	'muteOnMinimize': True,
 	'keyBindings': DEFAULT_BINDINGS
 }
@@ -111,7 +111,7 @@ ANNOUNCMENTS_UPDATE_INTERVAL = 15 * 60
 VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
-MOD_VERSION = '3.2.2'
+MOD_VERSION = '3.2.4'
 MOD_VERSION_NUM = 7
 USER_AGENT = 'WGFM-RadioPlayer/' + MOD_VERSION
 

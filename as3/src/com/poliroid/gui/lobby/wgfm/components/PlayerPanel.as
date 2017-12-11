@@ -56,6 +56,7 @@ package com.poliroid.gui.lobby.wgfm.components
 		
 		override protected function configUI() : void 
 		{
+			super.configUI();
 			settingsPanel.header.addEventListener(WGFMEvent.HEADER_CLICK, updateSettingsPanelState);
 			hotkeysPanel.header.addEventListener(WGFMEvent.HEADER_CLICK, updateHotkeysPanelState);
 			closeButton.addEventListener(ButtonEvent.CLICK, onCloseClick);

@@ -8,7 +8,7 @@ package com.poliroid.gui.lobby.wgfm.events
 		
 		public static const SETTINGS_CHANGED:String = "settingsChanged";
 		
-		public static const HOTKEY_CHANGED:String = "settingsChanged";
+		public static const HOTKEY_CHANGED:String = "hotkeyChanged";
 		
 		private var _name:String;
 		
