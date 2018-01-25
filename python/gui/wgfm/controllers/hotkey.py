@@ -68,7 +68,7 @@ class HotkeyController(object):
 		g_dataHolder.settings['keyBindings'].update( { name: value } )
 		g_eventsManager.onHotkeysChanged()
 	
-	def onKeyEvent(self, event, prevresult):
+	def onKeyEvent(self, event, alreadyHandled):
 		
 		if not event.isKeyDown() or MessengerEntry.g_instance.gui.isFocused():
 			return
@@ -81,21 +81,23 @@ class HotkeyController(object):
 
 		if g_controllers.player.status == PLAYER_STATUS.ERROR:
 			return
-		
-		if checkKeySet(keyBindings['broadcastHello']):
-			g_controllers.battle.broadcastHelloMessage()
-		
-		if checkKeySet(keyBindings['broadcastCurrent']):
-			g_controllers.battle.broadcastRadioTagMessage()
-		
-		if checkKeySet(keyBindings['likeCurrent']):
-			if g_controllers.player.status == PLAYER_STATUS.PLAYING:
-				g_controllers.rating.vote(True)
-		
-		if checkKeySet(keyBindings['dislikeCurrent']):
-			if g_controllers.player.status == PLAYER_STATUS.PLAYING:
-				g_controllers.rating.vote(False)
-		
+
+		if not alreadyHandled:
+
+			if checkKeySet(keyBindings['broadcastHello']):
+				g_controllers.battle.broadcastHelloMessage()
+			
+			if checkKeySet(keyBindings['broadcastCurrent']):
+				g_controllers.battle.broadcastRadioTagMessage()
+			
+			if checkKeySet(keyBindings['likeCurrent']):
+				if g_controllers.player.status == PLAYER_STATUS.PLAYING:
+					g_controllers.rating.vote(True)
+			
+			if checkKeySet(keyBindings['dislikeCurrent']):
+				if g_controllers.player.status == PLAYER_STATUS.PLAYING:
+					g_controllers.rating.vote(False)
+			
 		if checkKeySet(keyBindings['previosChannel']):
 			idx = previosChannel()
 			if idx != -1:
@@ -121,7 +123,7 @@ class HotkeyController(object):
 		
 		if checkKeySet(keyBindings['volumeUp']):
 			if g_controllers.volume.volumeUp():
-				g_controllers.battle.showVolumeChangedMessage(True)		
+				g_controllers.battle.showVolumeChangedMessage(True)
 
 	def processAccept(self, event):
 		
