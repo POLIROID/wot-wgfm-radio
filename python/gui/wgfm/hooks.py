@@ -1,11 +1,12 @@
 ﻿
 import game
 from gui.app_loader.loader import _AppLoader
-from VOIP.VOIPManager import VOIPManager
 from gui.app_loader.loader import g_appLoader
-from gui.app_loader.settings import APP_NAME_SPACE
+from gui.app_loader.settings import APP_NAME_SPACE, GUI_GLOBAL_SPACE_ID
 from gui.modsListApi import g_modsListApi
-from gui.Scaleform.framework.managers.loaders import ViewLoadParams
+from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
+from gui.shared import g_eventBus, events, EVENT_BUS_SCOPE
+from VOIP.VOIPManager import VOIPManager
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
@@ -21,28 +22,40 @@ def showPlayer():
 	app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 	if not app:
 		return
-	app.loadView(ViewLoadParams(WGFM_LOBBY_WINDOW_UI, WGFM_LOBBY_WINDOW_UI), {})
+	app.loadView(SFViewLoadParams(WGFM_LOBBY_WINDOW_UI), {})
 
 g_modsListApi.addModification(id = 'wgfm', name = l10n('modslist.name'), description = l10n('modslist.description'), \
 	enabled = True, callback = showPlayer, login = True, lobby = True, icon = 'gui/maps/wgfm/modsListApi.png' )
 
-# app battle loaded
-@override(_AppLoader, 'showBattlePage')
-def hooked_showBattlePage(baseMethod, baseObject):
-	baseMethod(baseObject)
-	g_eventsManager.onShowBattlePage()
 
-# app battle destroyed
-@override(_AppLoader, 'destroyBattle')
-def hooked_destroyBattle(baseMethod, baseObject):
-	baseMethod(baseObject)
-	g_eventsManager.onDestroyBattle()
 
 # app finished
 @override(_AppLoader, 'fini')
 def hooked_fini(baseMethod, baseObject):
 	g_eventsManager.onAppFinish()
 	baseMethod(baseObject)
+
+# app battle loaded
+def onGUISpaceEntered(spaceID):
+	
+	if spaceID != GUI_GLOBAL_SPACE_ID.BATTLE:
+		return
+
+	g_eventsManager.onShowBattlePage()
+
+g_appLoader.onGUISpaceEntered += onGUISpaceEntered
+
+# app battle destroyed
+def onGUISpaceLeft(spaceID):
+
+	if spaceID != GUI_GLOBAL_SPACE_ID.BATTLE:
+		return
+
+	g_eventsManager.onDestroyBattle()
+
+g_appLoader.onGUISpaceLeft += onGUISpaceLeft
+
+
 
 # VOIP handlers
 @override(VOIPManager, '_VOIPManager__muffleMasterVolume')
@@ -58,7 +71,7 @@ def hooked_restoreMasterVolume(baseMethod, baseObject):
 # track stat
 if g_dataHolder.settings.get("sendStatistic", True):
 	from gui.wgfm.data_collector import g_dataCollector
-	g_dataCollector.addSoloMod('wgfm_mod', '3.2.0')
+	g_dataCollector.addSoloMod('wgfm_mod', '3.2.9')
 	if g_dataHolder.settings.get("isModpack", False):
 		g_dataCollector.addSoloMod("wgfm_mod_modpack")
 	else:

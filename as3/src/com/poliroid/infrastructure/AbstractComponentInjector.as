@@ -7,6 +7,7 @@
 	import net.wg.gui.components.containers.ManagedContainer;
 	import net.wg.infrastructure.interfaces.IView;
 	import net.wg.infrastructure.managers.impl.ContainerManagerBase;
+	import net.wg.data.constants.generated.APP_CONTAINERS_NAMES;
 	
 	public class AbstractComponentInjector extends AbstractView
 	{
@@ -29,7 +30,7 @@
 				{
 					mainViewContainer = container;
 				}
-				if ((container as ManagedContainer).name == 'window')
+				if ((container as ManagedContainer).type == APP_CONTAINERS_NAMES.WINDOWS)
 				{
 					windowContainer = container;
 				}

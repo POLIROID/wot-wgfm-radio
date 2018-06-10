@@ -6,7 +6,7 @@ from messenger.proto import proto_getter
 import random
 from gui.app_loader.loader import g_appLoader
 from gui.app_loader.settings import APP_NAME_SPACE
-from gui.Scaleform.framework.managers.loaders import ViewLoadParams
+from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
 
 __all__ = ('BattleController', )
 
@@ -121,7 +121,7 @@ class BattleController(object):
 		app = g_appLoader.getApp(APP_NAME_SPACE.SF_BATTLE)
 		if not app:
 			return
-		app.loadView(ViewLoadParams(WGFM_BATTLE_INJECTOR_UI, WGFM_BATTLE_INJECTOR_UI), {})
+		app.loadView(SFViewLoadParams(WGFM_BATTLE_INJECTOR_UI, WGFM_BATTLE_INJECTOR_UI), {})
 		
 		self.__lastBroadcastTime = - BROADCAST_INTERVAL
 		BigWorld.callback(1.0, self.showControlsMessage)
