@@ -4,6 +4,7 @@
 	import net.wg.gui.components.containers.MainViewContainer;
 	import net.wg.infrastructure.base.AbstractView;
 	import net.wg.infrastructure.interfaces.IManagedContainer;
+	import net.wg.infrastructure.interfaces.ISimpleManagedContainer;
 	import net.wg.gui.components.containers.ManagedContainer;
 	import net.wg.infrastructure.interfaces.IView;
 	import net.wg.infrastructure.managers.impl.ContainerManagerBase;
@@ -22,15 +23,16 @@
 			initSettings();
 			
 			var mainViewContainer:IManagedContainer;
-			var windowContainer:IManagedContainer;
+			var windowContainer:ISimpleManagedContainer;
 			
-			for each (var container:IManagedContainer in (App.containerMgr as ContainerManagerBase).containersMap)
+			for each (var container:ISimpleManagedContainer in (App.containerMgr as ContainerManagerBase).containersMap)
 			{
 				if ((container as MainViewContainer) != null)
 				{
-					mainViewContainer = container;
+					mainViewContainer = container as MainViewContainer;
 				}
-				if ((container as ManagedContainer).type == APP_CONTAINERS_NAMES.WINDOWS)
+				var mngdContainer:ManagedContainer = container as ManagedContainer;
+				if (mngdContainer != null && mngdContainer.type == APP_CONTAINERS_NAMES.WINDOWS)
 				{
 					windowContainer = container;
 				}
@@ -54,8 +56,7 @@
 			}
 			
 			mainViewContainer.setFocusedView(mainViewContainer.getTopmostView());
-			windowContainer.removeChild(this)
-
+			windowContainer.removeChild(this);
 		}
 		
 		private function initSettings() : void
