@@ -77,7 +77,7 @@ class BattleController(object):
 			if self.proto:
 				if BigWorld.time() - BROADCAST_INTERVAL > self.__lastBroadcastTime:
 					self.__lastBroadcastTime = BigWorld.time()
-					msg = l10n('battle.broadcast.hello%s' % str(random.randint(1, 9)))
+					msg = l10n('battle.broadcast.hello%s' % str(random.randint(1, 6)))
 					self.proto.arenaChat.broadcast(msg.encode('utf-8'), 0)
 				else:
 					self.__showInfoMessage(l10n('battle.tips.cooldown'))

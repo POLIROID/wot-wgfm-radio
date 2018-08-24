@@ -16,15 +16,12 @@ battle.broadcast.track2: Тащим до победы вместе с [%s] на 
 battle.broadcast.track3: Включай [%s] на Wargaming.FM!
 battle.broadcast.track4: Мне нравится! Присоединяйся! [%s] на Wargaming.FM!
 battle.broadcast.track5: Выбери музыку для победы! [%s] на Wargaming.FM!
-battle.broadcast.hello1: Всем удачи, парни! Ни крита ни засвета! 
-battle.broadcast.hello2: Ещё один бой и спать! И так до утра =)
-battle.broadcast.hello3: Чёрт побери! Давайте выиграем, а?
-battle.broadcast.hello4: Нужна победа, сто пудов! Соберитесь, парни!
-battle.broadcast.hello5: Не стойте в кустах, комары покусают =)
-battle.broadcast.hello6: Кто первым сольётся, будет мыть ангар!
-battle.broadcast.hello7: Всем хорошего боя, ребята! Удачи!
-battle.broadcast.hello8: Кто последним выживает, тот арту и добирает!
-battle.broadcast.hello9: Ребята! Будет трудно, но мы прорвёмся!
+battle.broadcast.hello1: Спасибо WGFM за хорошую музыку!
+battle.broadcast.hello2: Отличное настроение, спасибо WGFM!
+battle.broadcast.hello3: Wargaming.FM - вы крутые! Спасибо!
+battle.broadcast.hello4: WGFM, давай еще больше драйва!
+battle.broadcast.hello5: Держи благодарочку, танковое радио! WGFM форэва!
+battle.broadcast.hello6: Вот это ржачные ведущие на Wargaming.FM! Ахахахах
 error.workingDir: Ошибка. Файлы мода не найдены!
 error.localRadioUrl: Ошибка. Чтото блокирует файлу wgfm_player.exe доступ к сети интернет.
 error.cache: Ошибка. Не удалось получить ссылку на вещание!
