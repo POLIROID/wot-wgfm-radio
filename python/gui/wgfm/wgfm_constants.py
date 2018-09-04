@@ -40,7 +40,7 @@ DEFAULT_BINDINGS = {
 	'broadcastHello': [Keys.KEY_L, [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL]],
 	'broadcastCurrent': [Keys.KEY_L],
 	'likeCurrent': [Keys.KEY_Y],
-	'dislikeCurrent': [Keys.KEY_N],
+	'dislikeCurrent': [Keys.KEY_U],
 	'previosChannel': [Keys.KEY_PGDN],
 	'nextChannel': [Keys.KEY_PGUP],
 	'playRadio': [Keys.KEY_F9],
@@ -111,7 +111,7 @@ ANNOUNCMENTS_UPDATE_INTERVAL = 15 * 60
 VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
-MOD_VERSION = '3.3.0'
+MOD_VERSION = '3.3.1'
 MOD_VERSION_NUM = 7
 USER_AGENT = 'WGFM-RadioPlayer/' + MOD_VERSION
 
