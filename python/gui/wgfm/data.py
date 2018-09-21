@@ -13,7 +13,7 @@ from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import byteify, fetchURL, unpackTempFiles
 from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE, \
-	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT
+	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT, SETTINGS_VERSION
 
 __all__ = ('g_dataHolder', )
 
@@ -108,21 +108,25 @@ class DataHolder(object):
 	def loadSettings(self):
 		try:
 			with open(SETTINGS_FILE, 'rb') as fh:
-				dec = zlib.decompress(fh.read())
-				pickle = cPickle.loads(dec)
-				self.__settings = pickle['data']			   
+				raw_data = zlib.decompress(fh.read())
+				pickle_data = cPickle.loads(raw_data)
+				(version, settings, ) = pickle_data
+				if version == SETTINGS_VERSION:
+					self.__settings = settings
+				else:
+					self.saveSettings()
+		except ValueError:
+			self.saveSettings()
 		except:
 			LOG_ERROR('DataHolder.loadSettings')
 			LOG_CURRENT_EXCEPTION()
 
 	def saveSettings(self):
 		try:
-			data = dict()
-			if self.__settings:
-				data['data'] = self.__settings
-				with open(SETTINGS_FILE, 'wb') as fh:
-					p = cPickle.dumps(data)
-					fh.write(zlib.compress(p, 1))
+			with open(SETTINGS_FILE, 'wb') as fh:
+				pickle_data = cPickle.dumps((SETTINGS_VERSION, self.__settings,))
+				raw_data = zlib.compress(pickle_data, 1)
+				fh.write(raw_data)
 		except:
 			LOG_ERROR('DataHolder.saveSettings')
 			LOG_CURRENT_EXCEPTION()
