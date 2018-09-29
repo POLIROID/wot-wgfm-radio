@@ -2,6 +2,10 @@
 import Keys
 import BigWorld
 
+import GUI
+from gui.app_loader.loader import g_appLoader
+from gui.app_loader.settings import APP_NAME_SPACE
+from gui.Scaleform.genConsts.APP_CONTAINERS_NAMES import APP_CONTAINERS_NAMES
 from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractViewMeta
 from gui.Scaleform.framework.entities.View import View
 from debug_utils import *
@@ -71,8 +75,32 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		self.as_showWaitingS(l10n('ui.waiting.grabbingData'))
 		
 		self._dependedData()
+		
+		self.__blur = GUI.WGUIBackgroundBlur()
+		
+		app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
+		if app:
+			
+			self.__blur.enable = True
+			
+			ownLayer = APP_CONTAINERS_NAMES.VIEWS
+			
+			layers = [
+				APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
+				APP_CONTAINERS_NAMES.SERVICE_LAYOUT
+			]
+			blurAnimRepeatCount = 10
+			app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
 	
 	def _dispose(self):
+		
+		if self.__blur is not None:
+			self.__blur.enable = False
+			self.__blur = None
+		
+		app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
+		if app:
+			app.unblurBackgroundViews()
 		
 		g_eventsManager.onRadioChannelChanged -= self.__onRadioChannelChanged
 		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
