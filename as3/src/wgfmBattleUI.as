@@ -9,6 +9,7 @@
 		{
 			componentName = "wgfmBattle";
 			componentUI = wgfmBattleWrapper;
+			super.onPopulate();
 		}
 	}
 }
