@@ -7,7 +7,7 @@ import BigWorld
 DEFAULT_CONFIG = {
 	"version": 1,
 	"updateUrl": "http://res-mods.ru/mod/46093",
-	"ratingUrl"    :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
+	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
 	"channels": [
 		{
 			"displayName": "WGFM Main",

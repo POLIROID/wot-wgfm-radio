@@ -80,16 +80,14 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		
 		app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 		if app:
-			
 			self.__blur.enable = True
-			
 			ownLayer = APP_CONTAINERS_NAMES.VIEWS
-			
+			blurAnimRepeatCount = 5
 			layers = [
 				APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
-				APP_CONTAINERS_NAMES.SERVICE_LAYOUT
+				APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
+				APP_CONTAINERS_NAMES.MARKER
 			]
-			blurAnimRepeatCount = 10
 			app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
 	
 	def _dispose(self):
