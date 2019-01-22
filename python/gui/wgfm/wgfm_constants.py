@@ -6,32 +6,32 @@ import BigWorld
 
 DEFAULT_CONFIG = {
 	"version": 1,
-	"updateUrl": "http://res-mods.ru/mod/46093",
+	"updateUrl": "https://wgmods.net/19/",
 	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
 	"channels": [
 		{
 			"displayName": "WGFM Main",
 			"stream_url": "http://sv.wargaming.fm:8061/128",
 			"ext_url": "http://wargaming.fm/1",
-			"tags_url": "http://sv.wargaming.fm:81/broad.xml"
+			"tags_url": "https://sv.wargaming.fm/tag1/title.xml"
 		},
 		{
 			"displayName": "WGFM Music only",
 			"stream_url": "http://sv.wargaming.fm:8062/128",
 			"ext_url": "http://wargaming.fm/2",
-			"tags_url": "http://sv.wargaming.fm:82/broad.xml"
+			"tags_url": "https://sv.wargaming.fm/tag2/title.xml"
 		},
 		{
 			"displayName": "WGFM Trance",
 			"stream_url": "http://sv.wargaming.fm:8063/128",
 			"ext_url": "http://wargaming.fm/3",
-			"tags_url": "http://sv.wargaming.fm:83/broad.xml"
+			"tags_url": "https://sv.wargaming.fm/tag3/title.xml"
 		},
 		{
 			"displayName": "WGFM Rock",
 			"stream_url": "http://sv.wargaming.fm:8064/128",
 			"ext_url": "http://wargaming.fm/4",
-			"tags_url": "http://sv.wargaming.fm:84/broad.xml"
+			"tags_url": "https://sv.wargaming.fm/tag4/title.xml"
 		}
 	]
 }
