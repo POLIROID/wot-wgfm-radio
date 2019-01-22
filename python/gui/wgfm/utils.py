@@ -252,10 +252,10 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 			if headers is not None:
 				for key, val in headers.iteritems():
 					connection.putheader(key, val)
-			if req.scheme == 'https' and 'Content-length' not in headers:
+			if req.scheme == 'https' and 'Content-length' not in headers and postData is not None:
 				connection.putheader('Content-length', len(postData))
 		except:
-			LOG_WARNING('fetchURL', 'cant pur headers', headers)
+			LOG_WARNING('fetchURL', 'cant put headers', headers)
 		
 		try:
 			connection.endheaders()
