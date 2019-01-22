@@ -71,7 +71,8 @@ def hooked_restoreMasterVolume(baseMethod, baseObject):
 # track stat
 if g_dataHolder.settings.get("sendStatistic", True):
 	from gui.wgfm.data_collector import g_dataCollector
-	g_dataCollector.addSoloMod('wgfm_mod', '3.2.9')
+	from gui.wgfm import __version__
+	g_dataCollector.addSoloMod('wgfm_mod', __version__)
 	if g_dataHolder.settings.get("isModpack", False):
 		g_dataCollector.addSoloMod("wgfm_mod_modpack")
 	else:
