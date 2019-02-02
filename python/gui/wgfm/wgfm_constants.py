@@ -6,7 +6,7 @@ import BigWorld
 
 DEFAULT_CONFIG = {
 	"version": 1,
-	"updateUrl": "https://wgmods.net/19/",
+	"updateUrl": "https://wgmods.net/19/details",
 	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
 	"channels": [
 		{
@@ -74,9 +74,7 @@ class CONFIG:
 	EXPIRE_TIME = 6
 	RATING_GATEWAY = '{url}?time={time}&{data}'
 
-class APIv2:
-	BASE_URL = 'http://wgfm.wgmods.org/api'
-	ANNOUNCE_GATEWAY = '/announcements'
+ANNOUNCE_GATEWAY = 'https://static.wgmods.org/wgfm/announcements.json'
 
 class PLAYER_STATUS:
 	INITED = 'inited'

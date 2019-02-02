@@ -12,7 +12,7 @@ from PlayerEvents import g_playerEvents
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.utils import byteify, fetchURL
-from gui.wgfm.wgfm_constants import APIv2, USER_AGENT, TAGS_UPDATE_INTERVAL, ANNOUNCMENTS_UPDATE_INTERVAL
+from gui.wgfm.wgfm_constants import ANNOUNCE_GATEWAY, USER_AGENT, TAGS_UPDATE_INTERVAL, ANNOUNCMENTS_UPDATE_INTERVAL
 
 class AnnounceController(object):
 	
@@ -88,7 +88,7 @@ class AnnounceController(object):
 	def __getAnnounceData(self, callback):
 		
 		request = {
-			'url': APIv2.BASE_URL + APIv2.ANNOUNCE_GATEWAY,
+			'url': ANNOUNCE_GATEWAY,
 			'timeout': 5.0,
 			'headers': {
 				'User-Agent': USER_AGENT
