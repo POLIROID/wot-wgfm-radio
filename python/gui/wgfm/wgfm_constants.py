@@ -74,7 +74,7 @@ class CONFIG:
 	EXPIRE_TIME = 6
 	RATING_GATEWAY = '{url}?time={time}&{data}'
 
-ANNOUNCE_GATEWAY = 'https://static.wgmods.org/wgfm/announcements.json'
+ANNOUNCE_GATEWAY = 'http://static.wgmods.org/wgfm/announcements.json'
 
 class PLAYER_STATUS:
 	INITED = 'inited'

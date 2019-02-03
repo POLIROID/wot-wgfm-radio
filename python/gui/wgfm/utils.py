@@ -214,8 +214,10 @@ def readFromVFS(path):
 
 def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', postData = None, \
 			onlyResponceStatus = False):
-	""" Implementation of http requester like BigWorld.fetchUrl
+	""" piece of shit down
 	Ingame BigWorld.fetchUrl cant work with self-signed ssl certificates
+	Ingame BigWorld.fetchUrl cant get only headers of request response without body (Method HEAD)
+	Ingame _ssl fail with handshake on cloudflare.com (SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure)
 	"""
 	def request_thread(url, callback, headers, timeout, method, postData, onlyResponceStatus):
 		
@@ -297,5 +299,17 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 		connection.close()
 		return callback((responce.status == 200, responceData))
 	
-	threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, \
+	if onlyResponceStatus:
+		threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, \
 					postData, onlyResponceStatus, )).start()
+	else:
+		if headers:
+			headers = tuple(('{}: {}'.format(k, v) for k, v in headers.iteritems() if v))
+		else:
+			headers = tuple()
+		args = [headers, timeout, method]
+		if postData:
+			args.append(postData)
+		def responseProcessor(response):
+			callback((response.responseCode, response.body))
+		BigWorld.fetchURL(url, responseProcessor, *args)
