@@ -5,13 +5,13 @@
 	},
 	"game": {
 		"folder": "E:\\wot\\ct",
-		"version": "1.4.0.0 Common Test"
+		"version": "1.4.1.0 Common Test"
 	},
 	"info": {
 		"id": "wgfmradio",
 		"author": "net.wargaming",
 		"name": "WarGaming.FM",
 		"description": "Listen WarGaming.FM directly ingame",
-		"version": "3.3.6"
+		"version": "3.3.7"
 	}
 }
