@@ -2,7 +2,6 @@
 from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
 
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.wgfm_constants import DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME
 
 __all__ = ('WGFMBattleView', )
 
@@ -13,15 +12,14 @@ class WGFMBattleViewMeta(BaseDAAPIComponent):
 			self.flashObject.as_showMessage(text, color, lifeTime)
 
 class WGFMBattleView(WGFMBattleViewMeta):
-	
+
 	def _populate(self):
 		super(WGFMBattleView, self)._populate()
 		g_eventsManager.showBattleMessage += self.__showBattleMessage
-	
+
 	def _dispose(self):
 		g_eventsManager.showBattleMessage -= self.__showBattleMessage
-		super(WGFMBattleView, self)._dispose()	   
-	
-	def __showBattleMessage(self, message, color = DEFAULT_BATTLE_MESSAGE_COLOR, lifetime = DEFAULT_BATTLE_MESSAGE_LIFETIME):
+		super(WGFMBattleView, self)._dispose()
+
+	def __showBattleMessage(self, message, color, lifetime):
 		self.as_showMessageS(message, color, lifetime)
-	

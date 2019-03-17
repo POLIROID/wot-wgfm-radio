@@ -158,7 +158,7 @@ package poliroid.gui.lobby.wgfm.interfaces.impl
 		protected function showWaiting(message:String) : void
 		{
 			var message:String = "as_showWaiting" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, message);
 			throw new AbstractException(message);
 		}
 		
@@ -172,35 +172,35 @@ package poliroid.gui.lobby.wgfm.interfaces.impl
 		protected function setState(ctx:StateVO) : void
 		{
 			var message:String = "as_updateState" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, ctx);
 			throw new AbstractException(message);
 		}
 		
 		protected function setChannels(channels:Array) : void
 		{
 			var message:String = "as_updateChannels" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, channels);
 			throw new AbstractException(message);
 		}
 		
 		protected function setHotkeys(ctx:HotkeysVO) : void
 		{
 			var message:String = "as_updateHotkeys" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, ctx);
 			throw new AbstractException(message);
 		}
 		
 		protected function setSettings(data:SettingsVO) : void
 		{
 			var message:String = "as_setSettings" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, data);
 			throw new AbstractException(message);
 		}
 		
 		protected function setLocalization(data:LocalizationVO) : void
 		{
 			var message:String = "as_setLocalization" + Errors.ABSTRACT_INVOKE;
-			DebugUtils.LOG_ERROR(message);
+			DebugUtils.LOG_ERROR(message, data);
 			throw new AbstractException(message);
 		}
 	}

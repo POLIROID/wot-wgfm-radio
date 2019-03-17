@@ -18,7 +18,6 @@
 	import poliroid.gui.lobby.wgfm.data.StateVO;
 	import poliroid.gui.lobby.wgfm.events.WGFMEvent;
 	import poliroid.gui.lobby.wgfm.events.WGFMValueEvent;
-	import poliroid.gui.lobby.wgfm.events.WGFMDoubleValueEvent;
 	import poliroid.gui.lobby.wgfm.interfaces.impl.PlayerMeta;
 	
 	public class Player extends PlayerMeta implements IEventDispatcher 
@@ -30,7 +29,7 @@
 		
 		public var player:PlayerPanel = null;
 		
-		public function Player() : void 
+		public function Player()
 		{
 			super();
 		}
@@ -51,8 +50,8 @@
 			addEventListener(WGFMEvent.DEFAULT_HOTKEYS_CLICK, onDefaultHotkeysClickHandler);
 			addEventListener(WGFMValueEvent.VOLUME_CHANGED, onVolumeChanged);
 			addEventListener(WGFMValueEvent.CHANNEL_CHANGED, onChannelChanged);
-			addEventListener(WGFMDoubleValueEvent.SETTINGS_CHANGED, onSettingsChangedHandler);
-			addEventListener(WGFMDoubleValueEvent.HOTKEY_CHANGED, onHotkeysChangedHandler);
+			addEventListener(WGFMValueEvent.SETTINGS_CHANGED, onSettingsChangedHandler);
+			addEventListener(WGFMValueEvent.HOTKEY_CHANGED, onHotkeysChangedHandler);
 			
 			updatePositions();
 		}
@@ -69,15 +68,15 @@
 			removeEventListener(WGFMEvent.DEFAULT_HOTKEYS_CLICK, onDefaultHotkeysClickHandler);
 			removeEventListener(WGFMValueEvent.VOLUME_CHANGED, onVolumeChanged);
 			removeEventListener(WGFMValueEvent.CHANNEL_CHANGED, onChannelChanged);
-			removeEventListener(WGFMDoubleValueEvent.SETTINGS_CHANGED, onSettingsChangedHandler);
-			removeEventListener(WGFMDoubleValueEvent.HOTKEY_CHANGED, onHotkeysChangedHandler);
+			removeEventListener(WGFMValueEvent.SETTINGS_CHANGED, onSettingsChangedHandler);
+			removeEventListener(WGFMValueEvent.HOTKEY_CHANGED, onHotkeysChangedHandler);
 			
 			App.stage.removeEventListener(Event.RESIZE, updatePositions);
 			
 			super.onDispose();
 		}
 		
-		private function updatePositions(e:Event = null) : void
+		private function updatePositions() : void
 		{
 			var appWidth:Number = App.appWidth;
 			var appHeight:Number = App.appHeight;
@@ -92,7 +91,7 @@
 			
 			player.x = int((appWidth - 300) / 2);
 			player.y = int((appHeight / 2) - 200);
-			player.updatePositions(appWidth, appHeight);
+			player.updatePositions();
 		}
 		
 		override protected function showWaiting(message:String) : void
@@ -101,7 +100,6 @@
 			{
 				waiting = new Waiting();
 				addChild(waiting);
-				//waiting.alpha = 0.9;
 			}
 			waiting.setMessage(message);
 			waiting.setSize(App.appWidth, App.appHeight);
@@ -189,12 +187,12 @@
 			closeViewS();
 		}
 		
-		private function onSettingsChangedHandler(e:WGFMDoubleValueEvent) : void
+		private function onSettingsChangedHandler(e:WGFMValueEvent) : void
 		{
 			updateSettingsS(e.name, e.value);
 		}
 		
-		private function onHotkeysChangedHandler(e:WGFMDoubleValueEvent) : void
+		private function onHotkeysChangedHandler(e:WGFMValueEvent) : void
 		{
 			updateHotkeysS(e.name, e.value);
 		}

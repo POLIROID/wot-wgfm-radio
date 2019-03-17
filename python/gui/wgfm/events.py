@@ -1,4 +1,3 @@
-
 import Event
 
 __all__ = ('g_eventsManager', )
@@ -6,9 +5,9 @@ __all__ = ('g_eventsManager', )
 class EventsManager(object):
 
 	def __init__(self):
-		
+
 		self.showBattleMessage = Event.Event()
-		
+
 		self.onAppFinish = Event.Event()
 		self.onShowBattlePage = Event.Event()
 		self.onDestroyBattle = Event.Event()

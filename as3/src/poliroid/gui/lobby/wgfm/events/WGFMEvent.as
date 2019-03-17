@@ -1,4 +1,4 @@
-package poliroid.gui.lobby.wgfm.events
+﻿package poliroid.gui.lobby.wgfm.events
 {
 	import flash.events.Event;
 	
@@ -28,6 +28,11 @@ package poliroid.gui.lobby.wgfm.events
 		public function WGFMEvent(type:String, bubbles:Boolean = true, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
+		}
+		
+		override public function clone() : Event
+		{
+			return new WGFMEvent(type, bubbles, cancelable);
 		}
 	}
 }

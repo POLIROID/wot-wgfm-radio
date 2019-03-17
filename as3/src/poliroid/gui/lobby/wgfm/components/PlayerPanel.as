@@ -28,9 +28,7 @@ package poliroid.gui.lobby.wgfm.components
 	
 	public class PlayerPanel extends UIComponentEx
 	{
-		
-		private static const PANELS_PADDING:Number = 10;
-		
+
 		private var state:StateVO = new StateVO( {} );
 		
 		public var controlsPanelMain:ControlsPanelMain = null;
@@ -89,7 +87,7 @@ package poliroid.gui.lobby.wgfm.components
 			}
 		}
 		
-		public function updatePositions(appWidth:Number, appHeight:Number):void 
+		public function updatePositions():void 
 		{
 			updatePanelsPositions();
 		}
@@ -97,7 +95,7 @@ package poliroid.gui.lobby.wgfm.components
 		public function updateState(newState:StateVO) : void
 		{
 			
-			controlsPanelMain.updateState(state, newState);
+			controlsPanelMain.updateState(newState);
 			
 			controlsPanelActive.updateState(state, newState);
 			
@@ -143,7 +141,7 @@ package poliroid.gui.lobby.wgfm.components
 			dispatchEvent(new WGFMEvent(WGFMEvent.CLOSE_CLICK));
 		}
 		
-		private function updatePanelsPositions(e:WGFMEvent = null) : void 
+		private function updatePanelsPositions() : void 
 		{
 			invalidate('ANIMATION_UPDATE');
 			if (_timeoutID != 0) 
@@ -159,7 +157,7 @@ package poliroid.gui.lobby.wgfm.components
 			_timeoutID = setTimeout(clearInterval, 500, _intervalID);
 		}
 		
-		private function updateHotkeysPanelState(e:WGFMEvent = null) : void 
+		private function updateHotkeysPanelState() : void 
 		{
 			if (hotkeysPanel.header.opened)
 			{
@@ -173,7 +171,7 @@ package poliroid.gui.lobby.wgfm.components
 			updatePanelsPositions();
 		}
 		
-		private function updateSettingsPanelState(e:WGFMEvent = null) : void 
+		private function updateSettingsPanelState() : void 
 		{
 			if (settingsPanel.header.opened)
 			{

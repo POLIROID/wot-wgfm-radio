@@ -16,9 +16,10 @@
 	import net.wg.infrastructure.interfaces.IContextItem;
 	
 	import poliroid.gui.lobby.wgfm.data.HotkeyItemVO;
-	import poliroid.gui.lobby.wgfm.events.WGFMDoubleValueEvent;
+	import poliroid.gui.lobby.wgfm.events.WGFMValueEvent;
 	
-	public class Hotkey extends SoundButtonEx implements ISoundButtonEx  {
+	public class Hotkey extends SoundButtonEx implements ISoundButtonEx 
+	{
 		
 		private static const COMMAND_START_ACCEPT:String = 'startAccept';
 		private static const COMMAND_STOP_ACCEPT:String = 'stopAccept';
@@ -37,10 +38,9 @@
 		private var model:HotkeyItemVO = null;
 		private var _contextMenu:ContextMenu = null;
 		
-		public function Hotkey() : void 
+		public function Hotkey()
 		{
 			super();
-			
 		}
 		
 		override protected function configUI() : void 
@@ -80,7 +80,7 @@
 			{
 				if (model.isAccepting)
 				{
-					dispatchEvent(new WGFMDoubleValueEvent(WGFMDoubleValueEvent.HOTKEY_CHANGED, model.name, COMMAND_STOP_ACCEPT));
+					dispatchEvent(new WGFMValueEvent(WGFMValueEvent.HOTKEY_CHANGED, model.name, COMMAND_STOP_ACCEPT));
 				}
 				
 				hidePopUp();
@@ -100,12 +100,9 @@
 				_contextMenu.stage.addEventListener(Event.RESIZE, hidePopUp);
 			}
 			
-			if (App.utils.commons.isLeftButton(e)) 
+			if (App.utils.commons.isLeftButton(e) && !model.isAccepting) 
 			{
-				if (!model.isAccepting)
-				{
-					dispatchEvent(new WGFMDoubleValueEvent(WGFMDoubleValueEvent.HOTKEY_CHANGED, model.name, COMMAND_START_ACCEPT));
-				}
+				dispatchEvent(new WGFMValueEvent(WGFMValueEvent.HOTKEY_CHANGED, model.name, COMMAND_START_ACCEPT));
 			}
 		}
 		
@@ -113,10 +110,12 @@
 		private function hidePopUp() : void {
 			if (_contextMenu != null) {
 				var _cmdo :DisplayObject = DisplayObject(_contextMenu);
-				if (_cmdo.stage && _cmdo.stage.hasEventListener(Event.RESIZE)) {
+				if (_cmdo.stage && _cmdo.stage.hasEventListener(Event.RESIZE))
+				{
 					_cmdo.stage.removeEventListener(Event.RESIZE, hidePopUp);
 				}
-				if (_contextMenu is IDisposable) {
+				if (_contextMenu is IDisposable)
+				{
 					IDisposable(_contextMenu).dispose();
 				}
 				
@@ -130,11 +129,11 @@
 			hidePopUp();
 			if (event == "0") 
 			{
-				dispatchEvent(new WGFMDoubleValueEvent(WGFMDoubleValueEvent.HOTKEY_CHANGED, model.name, COMMAND_DEFAULT));
+				dispatchEvent(new WGFMValueEvent(WGFMValueEvent.HOTKEY_CHANGED, model.name, COMMAND_DEFAULT));
 			}
 			else if (event == "1") 
 			{
-				dispatchEvent(new WGFMDoubleValueEvent(WGFMDoubleValueEvent.HOTKEY_CHANGED, model.name, COMMAND_CLEAN));
+				dispatchEvent(new WGFMValueEvent(WGFMValueEvent.HOTKEY_CHANGED, model.name, COMMAND_CLEAN));
 			}
 		}
 	}

@@ -14,7 +14,7 @@ from gui.wgfm.lang import *
 from gui.wgfm.events import *
 from gui.wgfm.utils import *
 from gui.wgfm.wgfm_constants import *
-from gui.wgfm.controllers import *
+from gui.wgfm.controllers import g_controllers
 from gui.wgfm.views import *
 
 g_controllers.init()

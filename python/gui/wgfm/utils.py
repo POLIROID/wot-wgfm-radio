@@ -1,24 +1,25 @@
-
-__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers', \
- 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields', \
- 'readFromVFS', )
-
-import threading
 import httplib
-import urlparse
-import types
 import os
 import socket
+import threading
+import types
+import urlparse
 
 import BigWorld
+import Keys
+import ResMgr
 from avatar_helpers import getAvatarDatabaseID
 from account_helpers import getAccountDatabaseID
 from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
-import Keys
-import ResMgr
 
-def overrider(target, holder, name):
+__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers', \
+ 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields', \
+ 'readFromVFS', 'timestamp')
+
+def override(holder, name, target=None):
 	"""using for override any staff"""
+	if target is None:
+		return lambda target: override(holder, name, target)
 	original = getattr(holder, name)
 	overrided = lambda *a, **kw: target(original, *a, **kw)
 	if not isinstance(holder, types.ModuleType) and isinstance(original, types.FunctionType):
@@ -27,24 +28,17 @@ def overrider(target, holder, name):
 		setattr(holder, name, property(overrided))
 	else:
 		setattr(holder, name, overrided)
-def decorator(function):
-	def wrapper(*args, **kwargs):
-		def decorate(handler):
-			function(handler, *args, **kwargs)
-		return decorate
-	return wrapper
-override = decorator(overrider)
 
 def byteify(data):
 	"""using for convert unicode key/value to utf-8"""
-	if isinstance(data, types.DictType): 
-		return { byteify(key): byteify(value) for key, value in data.iteritems() }
-	elif isinstance(data, types.ListType) or isinstance(data, tuple) or isinstance(data, set):
-		return [ byteify(element) for element in data ]
+	result = data
+	if isinstance(data, types.DictType):
+		result = {byteify(key): byteify(value) for key, value in data.iteritems()}
+	elif isinstance(data, (types.ListType, tuple, set)):
+		result = [byteify(element) for element in data]
 	elif isinstance(data, types.UnicodeType):
-		return data.encode('utf-8')
-	else: 
-		return data
+		result = data.encode('utf-8')
+	return result
 
 def getChannelName():
 	"""using for format and cut WGFM on current channel name"""
@@ -55,25 +49,27 @@ def getChannelName():
 
 def getCurrentChannelIdx():
 	from gui.wgfm.controllers import g_controllers
-	from gui.wgfm.data import g_dataHolder	
+	from gui.wgfm.data import g_dataHolder
 	from gui.wgfm.wgfm_constants import PLAYER_STATUS
-	
+
+	result = 0
 	player = g_controllers.player
 	if player.status == PLAYER_STATUS.ERROR:
-		return -1	 
+		result = -1
 	elif player.status == PLAYER_STATUS.PLAYING or player.channelIdx != -1:
-		return player.channelIdx
+		result = player.channelIdx
 	else:
 		channel = g_controllers.channel
 		saveChannel = g_dataHolder.settings.get('saveChannel', True)
-		if saveChannel:
-			savedIdx = g_dataHolder.settings.get('lastChannel', 0)
-			if channel.channels[savedIdx]['available']:
-				return savedIdx
-		for idx, item in enumerate(channel.channels):
-			if item['available']:
-				return idx
-	return -1
+		savedIdx = g_dataHolder.settings.get('lastChannel', 0)
+		if saveChannel and channel.channels[savedIdx]['available']:
+			result = savedIdx
+		else:
+			for idx, item in enumerate(channel.channels):
+				if item['available']:
+					result = idx
+					break
+	return result
 
 def parseKeyNameByID(key_id):
 	for attr in dir(Keys):
@@ -89,19 +85,22 @@ def parseKeyValue(keyset):
 	return ''
 
 def parseKeyValueFull(keyset):
-	
 	isAlt, isCtrl, isShift = parseKeyModifiers(keyset)
-	
-	if isAlt: result = "ALT + "
-	elif isCtrl: result = "CTRL + "
-	elif isShift: result = "SHIFT + "
-	else: result = ""
-	
+
+	if isAlt:
+		result = "ALT + "
+	elif isCtrl:
+		result = "CTRL + "
+	elif isShift:
+		result = "SHIFT + "
+	else:
+		result = ""
+
 	if isinstance(keyset, types.ListType):
 		for keyItem in keyset:
 			if isinstance(keyItem, types.IntType):
 				return result + parseKeyNameByID(keyItem)
-	
+
 	return result
 
 def parseKeyModifiers(keyset):
@@ -110,29 +109,31 @@ def parseKeyModifiers(keyset):
 		alt = [Keys.KEY_LALT, Keys.KEY_RALT] in keyset
 		ctrl = [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL] in keyset
 		shift = [Keys.KEY_LSHIFT, Keys.KEY_RSHIFT] in keyset
-	return (alt, ctrl, shift)
+	return alt, ctrl, shift
 
 def previosChannel():
 	from gui.wgfm.controllers import g_controllers
+	result = -1
 	if not g_controllers.channel.inited:
 		g_controllers.channel.grabChannels()
-		return -1
-	new = g_controllers.player.channelIdx - 1
-	if new in range(0, len(g_controllers.channel.channels)):
-		return new
+		result = -1
 	else:
-		return -1
+		new = g_controllers.player.channelIdx - 1
+		if new in range(0, len(g_controllers.channel.channels)):
+			result = new
+	return result
 
 def nextChannel():
 	from gui.wgfm.controllers import g_controllers
+	result = -1
 	if not g_controllers.channel.inited:
 		g_controllers.channel.grabChannels()
 		return -1
-	new = g_controllers.player.channelIdx + 1
-	if new in range(0, len(g_controllers.channel.channels)):
-		return new
 	else:
-		return -1
+		new = g_controllers.player.channelIdx + 1
+		if new in range(0, len(g_controllers.channel.channels)):
+			result = new
+	return result
 
 def checkKeySet(keyset):
 	result = True
@@ -154,13 +155,13 @@ def file_read(vfs_path, as_binary=True):
 	vfs_path: path in VFS, for example, 'scripts/client/gui/mods/mod_.pyc'
 	as_binary: set to True if file is binary
 	"""
+	result = None
 	vfs_file = ResMgr.openSection(vfs_path)
 	if vfs_file is not None and ResMgr.isFile(vfs_path):
+		result = str(vfs_file.asString)
 		if as_binary:
-			return str(vfs_file.asBinary)
-		else:
-			return str(vfs_file.asString)
-	return None
+			result = str(vfs_file.asBinary)
+	return result
 
 def directory_list(vfs_path):
 	"""Lists files in directory from VFS
@@ -175,7 +176,7 @@ def directory_list(vfs_path):
 	return sorted(result)
 
 def unpackTempFiles(vfs_path, realfs_path):
-	"""Unpack files to AppData/Local/Temp 
+	"""Unpack files to AppData/Local/Temp
 	for work with tham from real FS
 	"""
 	if ResMgr.isFile(vfs_path):
@@ -200,7 +201,8 @@ def parseLangFields(langFile):
 	langData = readFromVFS(langFile)
 	if langData:
 		for item in langData.splitlines():
-			if ': ' not in item: continue
+			if ': ' not in item:
+				continue
 			key, value = item.split(": ", 1)
 			result[key] = value
 	return result
@@ -212,96 +214,96 @@ def readFromVFS(path):
 		return str(file.asBinary)
 	return None
 
-def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', postData = None, \
-			onlyResponceStatus = False):
+def request_thread(url, callback, headers, timeout, method, postData, onlyResponceStatus):
+
+	try:
+		req = urlparse.urlparse(url)
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'bad request url', url)
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	if req.scheme == 'http':
+		connectionClass = httplib.HTTPConnection
+	elif req.scheme == 'https':
+		connectionClass = httplib.HTTPSConnection
+	else:
+		LOG_ERROR('fetchURL', 'bad request scheme', req.scheme)
+		return callback((False, None))
+
+	try:
+		connection = connectionClass(host=req.hostname, port=req.port, timeout=timeout)
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'cant create connection')
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	try:
+		connection.putrequest(method, req.path if req.query == '' else '%s?%s' % (req.path, req.query))
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'cant pur request', method, req.path)
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	try:
+		if headers is not None:
+			for key, val in headers.iteritems():
+				connection.putheader(key, val)
+		if req.scheme == 'https' and 'Content-length' not in headers and postData is not None:
+			connection.putheader('Content-length', len(postData))
+	except: #NOSONAR
+		LOG_WARNING('fetchURL', 'cant put headers', headers)
+
+	try:
+		connection.endheaders()
+	except socket.timeout:
+		LOG_WARNING('fetchURL', 'socket timed out')
+		return callback((False, None))
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'cant endheaders')
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	try:
+		if postData and method == "POST":
+			connection.send(postData)
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'cant send postdata', postData)
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	try:
+		# @buffering for lag fix in [thread; @process; @async] bunch
+		responce = connection.getresponse(buffering=True)
+	except: #NOSONAR
+		LOG_ERROR('fetchURL', 'cant get responce')
+		LOG_CURRENT_EXCEPTION()
+		return callback((False, None))
+
+	if responce.status != 200:
+		LOG_WARNING('fetchURL', 'bad responce status', responce.status, url)
+
+	if onlyResponceStatus:
+		return callback((responce.status == 200, None))
+
+	try:
+		responceData = responce.read()
+	except socket.timeout:
+		LOG_WARNING('fetchURL', 'socket timed out')
+		responceData = None
+	connection.close()
+	return callback((responce.status == 200, responceData))
+
+def fetchURL(url, callback, headers=None, timeout=30.0, method='GET', postData=None, \
+			onlyResponceStatus=False):
 	""" piece of shit down
 	Ingame BigWorld.fetchUrl cant work with self-signed ssl certificates
 	Ingame BigWorld.fetchUrl cant get only headers of request response without body (Method HEAD)
 	Ingame _ssl fail with handshake on cloudflare.com (SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure)
 	"""
-	def request_thread(url, callback, headers, timeout, method, postData, onlyResponceStatus):
-		
-		try:
-			req = urlparse.urlparse(url)
-		except:
-			LOG_ERROR('fetchURL', 'bad request url', url)
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		if req.scheme == 'http':
-			connectionClass = httplib.HTTPConnection
-		elif req.scheme == 'https':
-			connectionClass = httplib.HTTPSConnection
-		else:
-			LOG_ERROR('fetchURL', 'bad request scheme', req.scheme)
-			return callback((False, None))
-		
-		try:
-			connection = connectionClass(host = req.hostname, port = req.port, timeout = timeout)
-		except:
-			LOG_ERROR('fetchURL', 'cant create connection')
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		try:
-			connection.putrequest(method, req.path if req.query == '' else '%s?%s' % (req.path, req.query))
-		except:
-			LOG_ERROR('fetchURL', 'cant pur request', method, req.path)
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		try:
-			if headers is not None:
-				for key, val in headers.iteritems():
-					connection.putheader(key, val)
-			if req.scheme == 'https' and 'Content-length' not in headers and postData is not None:
-				connection.putheader('Content-length', len(postData))
-		except:
-			LOG_WARNING('fetchURL', 'cant put headers', headers)
-		
-		try:
-			connection.endheaders()
-		except socket.timeout:
-			LOG_WARNING('fetchURL', 'socket timed out')
-			return callback((False, None))
-		except:
-			LOG_ERROR('fetchURL', 'cant endheaders')
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		try:
-			if postData and method == "POST":
-				connection.send(postData)
-		except:
-			LOG_ERROR('fetchURL', 'cant send postdata', postData)
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		try:
-			# @buffering for lag fix in [thread; @process; @async] bunch
-			responce = connection.getresponse(buffering=True) 
-		except:
-			LOG_ERROR('fetchURL', 'cant get responce')
-			LOG_CURRENT_EXCEPTION()
-			return callback((False, None))
-		
-		if responce.status != 200:
-			LOG_WARNING('fetchURL', 'bad responce status', responce.status, url)
-		
-		if onlyResponceStatus:
-			return callback((responce.status == 200, None))
-		
-		try:
-			responceData = responce.read()
-		except socket.timeout:
-			LOG_WARNING('fetchURL', 'socket timed out')
-			responceData = None
-		connection.close()
-		return callback((responce.status == 200, responceData))
-	
 	if onlyResponceStatus:
-		threading.Thread(target = request_thread, args = (url, callback, headers, timeout, method, \
-					postData, onlyResponceStatus, )).start()
+		threading.Thread(target=request_thread, args=(url, callback, headers, timeout, method, \
+					postData, onlyResponceStatus)).start()
 	else:
 		if headers:
 			headers = tuple(('{}: {}'.format(k, v) for k, v in headers.iteritems() if v))
@@ -313,3 +315,7 @@ def fetchURL(url, callback, headers = None, timeout = 30.0, method = 'GET', post
 		def responseProcessor(response):
 			callback((response.responseCode, response.body))
 		BigWorld.fetchURL(url, responseProcessor, *args)
+
+def timestamp():
+	from helpers import time_utils
+	return time_utils.getCurrentLocalServerTimestamp()

@@ -53,33 +53,33 @@
 			super.onDispose();
 		}
 		
-		public function updateState(oldState:StateVO, newState:StateVO) : void 
+		public function updateState(state:StateVO) : void 
 		{
-			playButton.playing = newState.isPlaying;
+			playButton.playing = state.isPlaying;
 			
-			volumeButton.volume = newState.currentVolume;
-			volumeButton.muted = newState.isMuted;
+			volumeButton.volume = state.currentVolume;
+			volumeButton.muted = state.isMuted;
 			
-			volumeSlider.value = newState.currentVolume;
-			volumeSlider.enabled = !newState.isError && !newState.isMuted;
+			volumeSlider.value = state.currentVolume;
+			volumeSlider.enabled = !state.isError && !state.isMuted;
 			
-			stationsDropdown.selectedIndex = newState.currentChannelIdx;
-			stationsDropdown.enabled = !newState.isError;
+			stationsDropdown.selectedIndex = state.currentChannelIdx;
+			stationsDropdown.enabled = !state.isError;
 			
-			playButton.enabled = !newState.isError;
-			volumeButton.enabled = !newState.isError;
+			playButton.enabled = !state.isError;
+			volumeButton.enabled = !state.isError;
 		}
 		
 		private function handleVolumeSlider(e:SliderEvent) : void 
 		{
 			var volume:Number = volumeSlider.value;
-			dispatchEvent(new WGFMValueEvent(WGFMValueEvent.VOLUME_CHANGED, volume));
+			dispatchEvent(new WGFMValueEvent(WGFMValueEvent.VOLUME_CHANGED, '', volume));
 		}
 		
 		private function handleStationsDropdown(e:ListEvent) : void 
 		{
 			var channelIdx:Number = stationsDropdown.selectedIndex;
-			dispatchEvent(new WGFMValueEvent(WGFMValueEvent.CHANNEL_CHANGED, channelIdx));
+			dispatchEvent(new WGFMValueEvent(WGFMValueEvent.CHANNEL_CHANGED, '', channelIdx));
 		}
 		
 	}

@@ -1,4 +1,4 @@
-package poliroid.gui.lobby.wgfm.components.settings 
+﻿package poliroid.gui.lobby.wgfm.components.settings 
 {
 	import flash.events.Event;
 	import flash.utils.Dictionary;
@@ -7,7 +7,7 @@ package poliroid.gui.lobby.wgfm.components.settings
 	import net.wg.gui.components.controls.CheckBox;
 	
 	import poliroid.gui.lobby.wgfm.events.WGFMEvent;
-	import poliroid.gui.lobby.wgfm.events.WGFMDoubleValueEvent;
+	import poliroid.gui.lobby.wgfm.events.WGFMValueEvent;
 	import poliroid.gui.lobby.wgfm.data.SettingsVO;
 	import poliroid.gui.lobby.wgfm.data.SettingItemVO;
 	
@@ -101,7 +101,7 @@ package poliroid.gui.lobby.wgfm.components.settings
 		private function handleSettingsItemClick(e:Event) : void 
 		{
 			var target:CheckBox = e.target as CheckBox;
-			dispatchEvent(new WGFMDoubleValueEvent(WGFMDoubleValueEvent.SETTINGS_CHANGED, target.name, target.selected));
+			dispatchEvent(new WGFMValueEvent(WGFMValueEvent.SETTINGS_CHANGED, target.name, target.selected));
 		}
 		
 	}

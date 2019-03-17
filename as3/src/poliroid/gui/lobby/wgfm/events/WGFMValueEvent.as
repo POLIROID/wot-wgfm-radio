@@ -9,22 +9,33 @@
 		
 		public static const VOLUME_CHANGED:String = "volumeChanged";
 		
-		private var _value:Number;
+		public static const SETTINGS_CHANGED:String = "settingsChanged";
 		
-		public function WGFMValueEvent(type:String, value:Number = 0, bubbles:Boolean = true, cancelable:Boolean = false)
+		public static const HOTKEY_CHANGED:String = "hotkeyChanged";
+		
+		private var _name;
+		private var _value;
+		
+		public function WGFMValueEvent(type:String, name = null, value = null, bubbles:Boolean = true, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
-			this._value = value;
+			_name = name;
+			_value = value;
 		}
 		
 		override public function clone() : Event
 		{
-			return new WGFMValueEvent(type, this._value, bubbles, cancelable);
+			return new WGFMValueEvent(type, _name, _value, bubbles, cancelable);
 		}
 		
-		public function get value() : Number
+		public function get name()
 		{
-			return this._value;
+			return _name;
+		}
+
+		public function get value()
+		{
+			return _value;
 		}
 	}
 }

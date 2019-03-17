@@ -11,7 +11,7 @@
 	
 	import poliroid.gui.lobby.wgfm.controls.Hotkey;
 	import poliroid.gui.lobby.wgfm.events.WGFMEvent;
-	import poliroid.gui.lobby.wgfm.events.WGFMDoubleValueEvent;
+	import poliroid.gui.lobby.wgfm.events.WGFMValueEvent;
 	import poliroid.gui.lobby.wgfm.data.HotkeysVO;
 	import poliroid.gui.lobby.wgfm.data.HotkeyItemVO;
 	

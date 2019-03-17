@@ -1,70 +1,72 @@
-﻿
-import os
-import Keys
+﻿import os
 import tempfile
+
 import BigWorld
+import Keys
 
-DEFAULT_CONFIG = {
-	"version": 1,
-	"updateUrl": "https://wgmods.net/19/details",
-	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
-	"channels": [
-		{
-			"displayName": "WGFM Main",
-			"stream_url": "http://sv.wargaming.fm:8061/128",
-			"ext_url": "http://wargaming.fm/1",
-			"tags_url": "https://sv.wargaming.fm/tag1/title.xml"
-		},
-		{
-			"displayName": "WGFM Music only",
-			"stream_url": "http://sv.wargaming.fm:8062/128",
-			"ext_url": "http://wargaming.fm/2",
-			"tags_url": "https://sv.wargaming.fm/tag2/title.xml"
-		},
-		{
-			"displayName": "WGFM Trance",
-			"stream_url": "http://sv.wargaming.fm:8063/128",
-			"ext_url": "http://wargaming.fm/3",
-			"tags_url": "https://sv.wargaming.fm/tag3/title.xml"
-		},
-		{
-			"displayName": "WGFM Rock",
-			"stream_url": "http://sv.wargaming.fm:8064/128",
-			"ext_url": "http://wargaming.fm/4",
-			"tags_url": "https://sv.wargaming.fm/tag4/title.xml"
-		}
-	]
+from gui.wgfm import __version__
+
+DEFAULT_CONFIG = { \
+	"version": 1, \
+	"updateUrl": "https://wgmods.net/19/details", \
+	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi", \
+	"channels": [ \
+		{ \
+			"displayName": "WGFM Main", \
+			"stream_url": "http://sv.wargaming.fm:8061/128", \
+			"ext_url": "http://wargaming.fm/1", \
+			"tags_url": "https://sv.wargaming.fm/tag1/title.xml" \
+		}, \
+		{ \
+			"displayName": "WGFM Music only", \
+			"stream_url": "http://sv.wargaming.fm:8062/128", \
+			"ext_url": "http://wargaming.fm/2", \
+			"tags_url": "https://sv.wargaming.fm/tag2/title.xml" \
+		}, \
+		{ \
+			"displayName": "WGFM Trance", \
+			"stream_url": "http://sv.wargaming.fm:8063/128", \
+			"ext_url": "http://wargaming.fm/3", \
+			"tags_url": "https://sv.wargaming.fm/tag3/title.xml" \
+		}, \
+		{ \
+			"displayName": "WGFM Rock", \
+			"stream_url": "http://sv.wargaming.fm:8064/128", \
+			"ext_url": "http://wargaming.fm/4", \
+			"tags_url": "https://sv.wargaming.fm/tag4/title.xml" \
+		} \
+	] \
 }
 
-DEFAULT_BINDINGS = {
-	'broadcastHello': [Keys.KEY_L, [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL]],
-	'broadcastCurrent': [Keys.KEY_L],
-	'likeCurrent': [Keys.KEY_Y],
-	'dislikeCurrent': [Keys.KEY_U],
-	'previosChannel': [Keys.KEY_PGDN],
-	'nextChannel': [Keys.KEY_PGUP],
-	'playRadio': [Keys.KEY_F9],
-	'stopRadio': [Keys.KEY_F10],
-	'volumeDown': [Keys.KEY_F11],
-	'volumeUp': [Keys.KEY_F12]
+DEFAULT_BINDINGS = { \
+	'broadcastHello': [Keys.KEY_L, [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL]], \
+	'broadcastCurrent': [Keys.KEY_L], \
+	'likeCurrent': [Keys.KEY_Y], \
+	'dislikeCurrent': [Keys.KEY_U], \
+	'previosChannel': [Keys.KEY_PGDN], \
+	'nextChannel': [Keys.KEY_PGUP], \
+	'playRadio': [Keys.KEY_F9], \
+	'stopRadio': [Keys.KEY_F10], \
+	'volumeDown': [Keys.KEY_F11], \
+	'volumeUp': [Keys.KEY_F12] \
 }
 
-DEFAULT_SETTINGS = {
-	'saveVolume': True,
-	'lastVolume': 1.0,
-	'saveChannel': True,
-	'lastChannel': 0,
-	'muteOnVoip': False,
-	'sendStatistic': True,
-	'autoPlay': False,
-	'showBattleTips': True,
-	'isModpack': False,
-	'muteOnMinimize': True,
-	'keyBindings': DEFAULT_BINDINGS
+DEFAULT_SETTINGS = { \
+	'saveVolume': True, \
+	'lastVolume': 1.0, \
+	'saveChannel': True, \
+	'lastChannel': 0, \
+	'muteOnVoip': False, \
+	'sendStatistic': True, \
+	'autoPlay': False, \
+	'showBattleTips': True, \
+	'isModpack': False, \
+	'muteOnMinimize': True, \
+	'keyBindings': DEFAULT_BINDINGS \
 }
 
-DEFAULT_CACHE = {
-	'announced_ids': []
+DEFAULT_CACHE = { \
+	'announced_ids': [] \
 }
 
 class CONFIG:
@@ -72,6 +74,7 @@ class CONFIG:
 	SAVE_CACHE = True
 	CONFIG_URL = 'http://cfg.wargaming.fm/v1'
 	EXPIRE_TIME = 6
+	RATING_URL = 'http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi'
 	RATING_GATEWAY = '{url}?time={time}&{data}'
 
 ANNOUNCE_GATEWAY = 'http://static.wgmods.org/wgfm/announcements.json'
@@ -110,7 +113,6 @@ VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
 
-from gui.wgfm import __version__
 USER_AGENT = 'WGFM-RadioPlayer/' + __version__
 
 WGFM_LOBBY_WINDOW_UI = 'wgfmLobby'
@@ -125,7 +127,8 @@ LANGUAGE_FILE_PATH = 'mods/net.wargaming.wgfmradio/text/%s.yml'
 
 DEFAULT_UI_LANGUAGE = 'ru'
 
-wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8', errors='ignore'))))
+wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8', \
+																		errors='ignore'))))
 SETTINGS_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'setting.dat')
 CONFIG_CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'config.dat')
 CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'cache.dat')
@@ -133,10 +136,10 @@ CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'cache.dat')
 TEMP_DATA_FOLDER = '%s\\world_of_tanks\\%s' % (tempfile.gettempdir(), 'wgfm')
 TEMP_DATA_FOLDER_VFS = 'mods/net.wargaming.wgfmradio/temp'
 
-CONSOLE_PLAYER = '%s\\wgfm_player.exe' % TEMP_DATA_FOLDER 
+CONSOLE_PLAYER = '%s\\wgfm_player.exe' % TEMP_DATA_FOLDER
 
-# RED = 14753553; GREEN = 7653168; YELLOW = 16745752; PURPLE = 8886779
-DEFAULT_BATTLE_MESSAGE_COLOR = 7653168
+# (r, g, b) color to AS3 Flash RGBHEX(uint)
+DEFAULT_BATTLE_MESSAGE_COLOR = 116 << 16 | 199 << 8 | 48
 DEFAULT_BATTLE_MESSAGE_LIFETIME = 4000
 
 SETTINGS_VERSION = 1

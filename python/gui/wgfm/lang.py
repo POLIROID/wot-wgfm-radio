@@ -1,4 +1,3 @@
-
 from constants import DEFAULT_LANGUAGE
 from helpers import getClientLanguage
 
@@ -22,9 +21,9 @@ else:
 
 def l10n(key):
 	'''returns localized value relative to key'''
+	result = key
 	if key in _LANGUAGE:
-		return _LANGUAGE[key]
+		result = _LANGUAGE[key]
 	elif key in _LANGUAGES[DEFAULT_UI_LANGUAGE]:
-		return _LANGUAGES[DEFAULT_UI_LANGUAGE][key]
-	else:
-		return key
+		result = _LANGUAGES[DEFAULT_UI_LANGUAGE][key]
+	return result

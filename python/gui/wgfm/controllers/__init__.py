@@ -1,10 +1,9 @@
-﻿
-from gui.wgfm.events import g_eventsManager
+﻿from gui.wgfm.events import g_eventsManager
 
 __all__ = ('g_controllers', )
 
 class ControllersHolder():
-	
+
 	announcer = None
 	battle = None
 	channel = None
@@ -12,9 +11,9 @@ class ControllersHolder():
 	player = None
 	rating = None
 	volume = None
-	
+
 	def init(self):
-		
+
 		from gui.wgfm.controllers.announcer import AnnounceController
 		from gui.wgfm.controllers.battle import BattleController
 		from gui.wgfm.controllers.channel import ChannelController
@@ -38,11 +37,11 @@ class ControllersHolder():
 		self.player.init()
 		self.rating.init()
 		self.volume.init()
-		
+
 		g_eventsManager.onAppFinish += self.fini
-		
+
 	def fini(self):
-		
+
 		self.announcer.fini()
 		self.battle.fini()
 		self.channel.fini()
@@ -50,7 +49,7 @@ class ControllersHolder():
 		self.player.fini()
 		self.rating.fini()
 		self.volume.fini()
-		
+
 		self.announcer = None
 		self.battle = None
 		self.channel = None

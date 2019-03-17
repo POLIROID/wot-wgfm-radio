@@ -1,5 +1,5 @@
-
 from adisp import async, process
+from debug_utils import LOG_DEBUG
 
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
@@ -9,17 +9,25 @@ from gui.wgfm.wgfm_constants import USER_AGENT
 __all__ = ('ChannelController', )
 
 class ChannelController(object):
-	
-	channels = property(lambda self: self.__channels)
-	status = property(lambda self: self.__status)
-	inited = property(lambda self: self.__inited)
+
+	@property
+	def channels(self):
+		return self.__channels
+
+	@property
+	def status(self):
+		return self.__status
+
+	@property
+	def inited(self):
+		return self.__inited
 
 	def __init__(self):
 		self.__channels = list()
 		self.__status = True
 		self.__initStarted = False
 		self.__inited = False
-	
+
 	def init(self):
 		pass
 
@@ -30,7 +38,7 @@ class ChannelController(object):
 		if not self.__initStarted:
 			self.__initStarted = True
 			self.__channelsStatusGrabber()
-	
+
 	@process
 	def __channelsStatusGrabber(self):
 		yield g_dataHolder.initConfigOnStart()
@@ -44,10 +52,11 @@ class ChannelController(object):
 		self.__status = bool(self.__channels)
 		self.__inited = True
 		g_eventsManager.onChannelsUpdated()
-	
+
 	@async
 	@process
-	def __channelStatus(self, url, callback):
-		status, _ = yield lambda callback: fetchURL(url = url, callback = callback, timeout = 5.0, \
-										headers = {'User-Agent': USER_AGENT}, onlyResponceStatus = True )
+	def __channelStatus(self, url, callback=None):
+		LOG_DEBUG('channelStatus', url, self.__status)
+		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0, \
+										headers={'User-Agent': USER_AGENT}, onlyResponceStatus=True)
 		callback(status)

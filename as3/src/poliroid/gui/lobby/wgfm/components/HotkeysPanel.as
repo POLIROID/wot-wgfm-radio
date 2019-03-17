@@ -21,11 +21,6 @@
 			super();
 		}
 		
-		override protected function configUI() : void 
-		{
-			super.configUI();
-		}
-		
 		override protected function onDispose() : void 
 		{
 			header = null;
