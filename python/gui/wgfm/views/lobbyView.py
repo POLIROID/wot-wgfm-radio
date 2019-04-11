@@ -3,7 +3,7 @@ import GUI
 import Keys
 from debug_utils import *
 
-from gui.app_loader.loader import g_appLoader
+from gui.shared.personality import ServicesLocator
 from gui.app_loader.settings import APP_NAME_SPACE
 from gui.Scaleform.genConsts.APP_CONTAINERS_NAMES import APP_CONTAINERS_NAMES
 from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractViewMeta
@@ -80,7 +80,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		self.__blur = GUI.WGUIBackgroundBlur()
 
-		app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
+		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 		if app:
 			self.__blur.enable = True
 			ownLayer = APP_CONTAINERS_NAMES.VIEWS
@@ -98,7 +98,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			self.__blur.enable = False
 			self.__blur = None
 
-		app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
+		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 		if app:
 			app.unblurBackgroundViews()
 

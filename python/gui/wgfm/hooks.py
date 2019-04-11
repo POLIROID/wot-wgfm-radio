@@ -1,14 +1,15 @@
 ﻿import game
 from debug_utils import LOG_ERROR
 from gui.app_loader.loader import _AppLoader
-from gui.app_loader.loader import g_appLoader
-from gui.app_loader.settings import APP_NAME_SPACE, GUI_GLOBAL_SPACE_ID
+from gui.app_loader.settings import APP_NAME_SPACE
+from gui.shared.personality import ServicesLocator
 from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import override
 from gui.wgfm.wgfm_constants import WGFM_LOBBY_WINDOW_UI
+from skeletons.gui.app_loader import GuiGlobalSpaceID
 from VOIP.VOIPManager import VOIPManager
 
 __all__ = ()
@@ -16,7 +17,7 @@ __all__ = ()
 # adding menu item to modslist
 def showPlayer():
 	"""fire load popover view on button click"""
-	app = g_appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
+	app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 	if not app:
 		return
 	app.loadView(SFViewLoadParams(WGFM_LOBBY_WINDOW_UI), {})
@@ -55,17 +56,17 @@ def hooked_fini(baseMethod, baseObject):
 
 # app battle loaded
 def onGUISpaceEntered(spaceID):
-	if spaceID != GUI_GLOBAL_SPACE_ID.BATTLE:
+	if spaceID != GuiGlobalSpaceID.BATTLE:
 		return
 	g_eventsManager.onShowBattlePage()
-g_appLoader.onGUISpaceEntered += onGUISpaceEntered
+ServicesLocator.appLoader.onGUISpaceEntered += onGUISpaceEntered
 
 # app battle destroyed
 def onGUISpaceLeft(spaceID):
-	if spaceID != GUI_GLOBAL_SPACE_ID.BATTLE:
+	if spaceID != GuiGlobalSpaceID.BATTLE:
 		return
 	g_eventsManager.onDestroyBattle()
-g_appLoader.onGUISpaceLeft += onGUISpaceLeft
+ServicesLocator.appLoader.onGUISpaceLeft += onGUISpaceLeft
 
 
 

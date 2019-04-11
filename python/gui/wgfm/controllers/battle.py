@@ -2,7 +2,7 @@ import random
 
 import BigWorld
 from debug_utils import LOG_DEBUG, LOG_ERROR, LOG_CURRENT_EXCEPTION
-from gui.app_loader.loader import g_appLoader
+from gui.shared.personality import ServicesLocator
 from gui.app_loader.settings import APP_NAME_SPACE
 from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
 from gui.wgfm.events import g_eventsManager
@@ -116,8 +116,7 @@ class BattleController(object):
 	def __onShowBattlePage(self):
 
 		self.__isPlayerInBattle = True
-
-		app = g_appLoader.getApp(APP_NAME_SPACE.SF_BATTLE)
+		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_BATTLE)
 		if not app:
 			return
 		app.loadView(SFViewLoadParams(WGFM_BATTLE_INJECTOR_UI, WGFM_BATTLE_INJECTOR_UI), {})
