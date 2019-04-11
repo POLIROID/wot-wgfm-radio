@@ -17,4 +17,10 @@ from gui.wgfm.wgfm_constants import *
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.views import *
 
-g_controllers.init()
+__all__ = ('init', 'fini')
+
+def init():
+	g_controllers.init()
+
+def fini():
+	g_eventsManager.onAppFinish()

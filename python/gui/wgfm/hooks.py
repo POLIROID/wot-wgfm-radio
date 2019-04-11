@@ -1,6 +1,5 @@
 ﻿import game
 from debug_utils import LOG_ERROR
-from gui.app_loader.loader import _AppLoader
 from gui.app_loader.settings import APP_NAME_SPACE
 from gui.shared.personality import ServicesLocator
 from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
@@ -46,13 +45,6 @@ if g_modsListApi:
 	g_modsListApi.addModification(id='wgfm', name=l10n('modslist.name'), enabled=True, \
 		description=l10n('modslist.description'), icon='gui/maps/wgfm/modsListApi.png', \
 		login=True, lobby=True, callback=showPlayer)
-
-
-# app finished
-@override(_AppLoader, 'fini')
-def hooked_fini(baseMethod, baseObject):
-	g_eventsManager.onAppFinish()
-	baseMethod(baseObject)
 
 # app battle loaded
 def onGUISpaceEntered(spaceID):
