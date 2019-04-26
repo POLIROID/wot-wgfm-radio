@@ -30,13 +30,14 @@ def override(holder, name, target=None):
 		setattr(holder, name, overrided)
 
 def byteify(data):
-	"""using for convert unicode key/value to utf-8"""
+	"""Encodes data with UTF-8
+	:param data: Data to encode"""
 	result = data
-	if isinstance(data, types.DictType):
+	if isinstance(data, dict):
 		result = {byteify(key): byteify(value) for key, value in data.iteritems()}
-	elif isinstance(data, (types.ListType, tuple, set)):
+	elif isinstance(data, (list, tuple, set)):
 		result = [byteify(element) for element in data]
-	elif isinstance(data, types.UnicodeType):
+	elif isinstance(data, unicode):
 		result = data.encode('utf-8')
 	return result
 
@@ -136,18 +137,16 @@ def nextChannel():
 	return result
 
 def checkKeySet(keyset):
+	"""Verify is keys is pressed
+	:param keyset: list of keys to be checked"""
 	result = True
 	if not keyset:
 		result = False
 	for item in keyset:
-		if isinstance(item, types.IntType) and not BigWorld.isKeyDown(item):
+		if isinstance(item, int) and not BigWorld.isKeyDown(item):
 			result = False
-			break
-		if isinstance(item, types.ListType):
-			for keyItem in item:
-				if not BigWorld.isKeyDown(keyItem):
-					result = False
-					break
+		if isinstance(item, list):
+			result = result and any(map(BigWorld.isKeyDown, item))
 	return result
 
 def file_read(vfs_path, as_binary=True):
