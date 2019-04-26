@@ -78,29 +78,24 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		self._dependedData()
 
-		self.__blur = GUI.WGUIBackgroundBlur()
-
-		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
-		if app:
-			self.__blur.enable = True
-			ownLayer = APP_CONTAINERS_NAMES.VIEWS
-			blurAnimRepeatCount = 5
-			layers = [
-				APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
-				APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
-				APP_CONTAINERS_NAMES.MARKER
-			]
-			app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
+		self._blur = GUI.WGUIBackgroundBlur()
+		self._blur.enable = True
+		ownLayer = APP_CONTAINERS_NAMES.VIEWS
+		blurAnimRepeatCount = 5
+		layers = [
+			APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
+			APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
+			APP_CONTAINERS_NAMES.MARKER
+		]
+		self.app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
 
 	def _dispose(self):
 
-		if self.__blur is not None:
-			self.__blur.enable = False
-			self.__blur = None
+		if self._blur is not None:
+			self._blur.enable = False
+			self._blur = None
 
-		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
-		if app:
-			app.unblurBackgroundViews()
+		self.app.unblurBackgroundViews()
 
 		g_eventsManager.onRadioChannelChanged -= self.__onRadioChannelChanged
 		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
