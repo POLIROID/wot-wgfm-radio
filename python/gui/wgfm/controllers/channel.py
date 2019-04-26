@@ -57,6 +57,6 @@ class ChannelController(object):
 	@process
 	def __channelStatus(self, url, callback=None):
 		LOG_DEBUG('channelStatus', url, self.__status)
-		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0, \
+		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,
 										headers={'User-Agent': USER_AGENT}, onlyResponceStatus=True)
 		callback(status)

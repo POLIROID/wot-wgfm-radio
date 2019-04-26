@@ -85,10 +85,10 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			self.__blur.enable = True
 			ownLayer = APP_CONTAINERS_NAMES.VIEWS
 			blurAnimRepeatCount = 5
-			layers = [ \
-				APP_CONTAINERS_NAMES.SYSTEM_MESSAGES, \
-				APP_CONTAINERS_NAMES.SERVICE_LAYOUT, \
-				APP_CONTAINERS_NAMES.MARKER \
+			layers = [
+				APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
+				APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
+				APP_CONTAINERS_NAMES.MARKER
 			]
 			app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
 
@@ -220,8 +220,8 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 	def __generateLocalizationCtx(self):
 		"""result represented by LocalizationVO"""
-		return {'closeButton': l10n('ui.closeButton'), 'settingsTitle': l10n('ui.settings.title'), \
-				'titleLabel': l10n('ui.title'), 'hotkeysTitle': l10n('ui.hotkeys.title'), \
+		return {'closeButton': l10n('ui.closeButton'), 'settingsTitle': l10n('ui.settings.title'),
+				'titleLabel': l10n('ui.title'), 'hotkeysTitle': l10n('ui.hotkeys.title'),
 				'hotkeysDefault': l10n('ui.hotkeys.defaultLink')}
 
 	def __generateStateCtx(self):
@@ -232,14 +232,14 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 		volume = round(g_controllers.volume.volume * UI_VOLUME_MULTIPLIYER, 2)
 		tag = player.errorLabel if player.status == PLAYER_STATUS.ERROR else player.tag
 		likeButtonStatus, dislikeButtonStatus = g_controllers.rating.buttonsState
-		return {'isPlaying': playing, 'isMuted': g_controllers.volume.muted, 'currentVolume': volume, \
-				'currentChannelIdx': getCurrentChannelIdx(), 'currentCompositionName': tag, 'isError': isError, \
+		return {'isPlaying': playing, 'isMuted': g_controllers.volume.muted, 'currentVolume': volume,
+				'currentChannelIdx': getCurrentChannelIdx(), 'currentCompositionName': tag, 'isError': isError,
 				'likeButtonStatus': likeButtonStatus, 'dislikeButtonStatus': dislikeButtonStatus}
 
 	def __generateHotkeysCtx(self):
 		"""result represented by HotKeysVO"""
 		hotkeys = []
-		keySetNames = ['playRadio', 'stopRadio', 'volumeUp', 'volumeDown', 'nextChannel', 'previosChannel', \
+		keySetNames = ['playRadio', 'stopRadio', 'volumeUp', 'volumeDown', 'nextChannel', 'previosChannel',
 				 	 'likeCurrent', 'dislikeCurrent', 'broadcastCurrent']
 
 		if not g_dataHolder.settings.get('isModpack', False):
@@ -250,16 +250,16 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			keyValue = parseKeyValue(keySetData)
 			keyHasAlt, keyHasCtrl, keyHasShift = parseKeyModifiers(keySetData)
 			isAccepting = g_controllers.hotkey.accepting and g_controllers.hotkey.acceptingName == keySetName
-			hotkeys.append({'name': keySetName, 'label': l10n('ui.hotkeys.%s' % keySetName), 'value': keyValue, \
-					 'modifierCtrl': keyHasCtrl, 'modiferShift': keyHasShift, 'modifierAlt': keyHasAlt, \
-					 'isEmpty': not keySetData, 'isAccepting': isAccepting, 'labelDefault': l10n('ui.hotkeys.cmdDefault'), \
+			hotkeys.append({'name': keySetName, 'label': l10n('ui.hotkeys.%s' % keySetName), 'value': keyValue,
+					 'modifierCtrl': keyHasCtrl, 'modiferShift': keyHasShift, 'modifierAlt': keyHasAlt,
+					 'isEmpty': not keySetData, 'isAccepting': isAccepting, 'labelDefault': l10n('ui.hotkeys.cmdDefault'),
 					 'labelClean': l10n('ui.hotkeys.cmdClean')})
 		return {'hotkeys': hotkeys}
 
 	def __generateSettingsCtx(self):
 		"""result represented by SettingsVO"""
 		settings = []
-		settingsFields = ['saveVolume', 'saveChannel', 'muteOnVoip', 'autoPlay', 'sendStatistic', \
+		settingsFields = ['saveVolume', 'saveChannel', 'muteOnVoip', 'autoPlay', 'sendStatistic',
 							'showBattleTips', 'muteOnMinimize']
 		for settingName in settingsFields:
 			value = g_dataHolder.settings.get(settingName, False)
@@ -271,6 +271,6 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 	def __generateChannelsCtx(self):
 		channels = []
 		for channelIdx, channelData in enumerate(g_controllers.channel.channels):
-			channels.append({'data': channelIdx, 'label': channelData['displayName'], \
+			channels.append({'data': channelIdx, 'label': channelData['displayName'],
 							'enabled': channelData['available']})
 		return {'channels': channels}

@@ -12,8 +12,8 @@ from avatar_helpers import getAvatarDatabaseID
 from account_helpers import getAccountDatabaseID
 from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
 
-__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers', \
- 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields', \
+__all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers',
+ 'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields',
  'readFromVFS', 'timestamp')
 
 def override(holder, name, target=None):
@@ -294,7 +294,7 @@ def request_thread(url, callback, headers, timeout, method, postData, onlyRespon
 	connection.close()
 	return callback((responce.status == 200, responceData))
 
-def fetchURL(url, callback, headers=None, timeout=30.0, method='GET', postData=None, \
+def fetchURL(url, callback, headers=None, timeout=30.0, method='GET', postData=None,
 			onlyResponceStatus=False):
 	""" piece of shit down
 	Ingame BigWorld.fetchUrl cant work with self-signed ssl certificates
@@ -302,7 +302,7 @@ def fetchURL(url, callback, headers=None, timeout=30.0, method='GET', postData=N
 	Ingame _ssl fail with handshake on cloudflare.com (SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure)
 	"""
 	if onlyResponceStatus:
-		threading.Thread(target=request_thread, args=(url, callback, headers, timeout, method, \
+		threading.Thread(target=request_thread, args=(url, callback, headers, timeout, method,
 					postData, onlyResponceStatus)).start()
 	else:
 		if headers:

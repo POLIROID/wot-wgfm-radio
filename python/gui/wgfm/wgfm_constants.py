@@ -6,67 +6,67 @@ import Keys
 
 from gui.wgfm import __version__
 
-DEFAULT_CONFIG = { \
-	"version": 1, \
-	"updateUrl": "https://wgmods.net/19/details", \
-	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi", \
-	"channels": [ \
-		{ \
-			"displayName": "WGFM Main", \
-			"stream_url": "http://sv.wargaming.fm:8061/128", \
-			"ext_url": "http://wargaming.fm/1", \
-			"tags_url": "https://sv.wargaming.fm/tag1/title.xml" \
-		}, \
-		{ \
-			"displayName": "WGFM Music only", \
-			"stream_url": "http://sv.wargaming.fm:8062/128", \
-			"ext_url": "http://wargaming.fm/2", \
-			"tags_url": "https://sv.wargaming.fm/tag2/title.xml" \
-		}, \
-		{ \
-			"displayName": "WGFM Trance", \
-			"stream_url": "http://sv.wargaming.fm:8063/128", \
-			"ext_url": "http://wargaming.fm/3", \
-			"tags_url": "https://sv.wargaming.fm/tag3/title.xml" \
-		}, \
-		{ \
-			"displayName": "WGFM Rock", \
-			"stream_url": "http://sv.wargaming.fm:8064/128", \
-			"ext_url": "http://wargaming.fm/4", \
-			"tags_url": "https://sv.wargaming.fm/tag4/title.xml" \
-		} \
-	] \
+DEFAULT_CONFIG = {
+	"version": 1,
+	"updateUrl": "https://wgmods.net/19/details",
+	"ratingUrl" :"http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
+	"channels": [
+		{
+			"displayName": "WGFM Main",
+			"stream_url": "http://sv.wargaming.fm:8061/128",
+			"ext_url": "http://wargaming.fm/1",
+			"tags_url": "https://sv.wargaming.fm/tag1/title.xml"
+		},
+		{
+			"displayName": "WGFM Music only",
+			"stream_url": "http://sv.wargaming.fm:8062/128",
+			"ext_url": "http://wargaming.fm/2",
+			"tags_url": "https://sv.wargaming.fm/tag2/title.xml"
+		},
+		{
+			"displayName": "WGFM Trance",
+			"stream_url": "http://sv.wargaming.fm:8063/128",
+			"ext_url": "http://wargaming.fm/3",
+			"tags_url": "https://sv.wargaming.fm/tag3/title.xml"
+		},
+		{
+			"displayName": "WGFM Rock",
+			"stream_url": "http://sv.wargaming.fm:8064/128",
+			"ext_url": "http://wargaming.fm/4",
+			"tags_url": "https://sv.wargaming.fm/tag4/title.xml"
+		}
+	]
 }
 
-DEFAULT_BINDINGS = { \
-	'broadcastHello': [Keys.KEY_L, [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL]], \
-	'broadcastCurrent': [Keys.KEY_L], \
-	'likeCurrent': [Keys.KEY_Y], \
-	'dislikeCurrent': [Keys.KEY_U], \
-	'previosChannel': [Keys.KEY_PGDN], \
-	'nextChannel': [Keys.KEY_PGUP], \
-	'playRadio': [Keys.KEY_F9], \
-	'stopRadio': [Keys.KEY_F10], \
-	'volumeDown': [Keys.KEY_F11], \
-	'volumeUp': [Keys.KEY_F12] \
+DEFAULT_BINDINGS = {
+	'broadcastHello': [Keys.KEY_L, [Keys.KEY_LCONTROL, Keys.KEY_RCONTROL]],
+	'broadcastCurrent': [Keys.KEY_L],
+	'likeCurrent': [Keys.KEY_Y],
+	'dislikeCurrent': [Keys.KEY_U],
+	'previosChannel': [Keys.KEY_PGDN],
+	'nextChannel': [Keys.KEY_PGUP],
+	'playRadio': [Keys.KEY_F9],
+	'stopRadio': [Keys.KEY_F10],
+	'volumeDown': [Keys.KEY_F11],
+	'volumeUp': [Keys.KEY_F12]
 }
 
-DEFAULT_SETTINGS = { \
-	'saveVolume': True, \
-	'lastVolume': 1.0, \
-	'saveChannel': True, \
-	'lastChannel': 0, \
-	'muteOnVoip': False, \
-	'sendStatistic': True, \
-	'autoPlay': False, \
-	'showBattleTips': True, \
-	'isModpack': False, \
-	'muteOnMinimize': True, \
-	'keyBindings': DEFAULT_BINDINGS \
+DEFAULT_SETTINGS = {
+	'saveVolume': True,
+	'lastVolume': 1.0,
+	'saveChannel': True,
+	'lastChannel': 0,
+	'muteOnVoip': False,
+	'sendStatistic': True,
+	'autoPlay': False,
+	'showBattleTips': True,
+	'isModpack': False,
+	'muteOnMinimize': True,
+	'keyBindings': DEFAULT_BINDINGS
 }
 
-DEFAULT_CACHE = { \
-	'announced_ids': [] \
+DEFAULT_CACHE = {
+	'announced_ids': []
 }
 
 class CONFIG:
@@ -119,15 +119,15 @@ WGFM_LOBBY_WINDOW_UI = 'wgfmLobby'
 WGFM_BATTLE_INJECTOR_UI = 'wgfmBattleInjector'
 WGFM_BATTLE_COMPONENTS_UI = 'wgfmBattle'
 
-LANGUAGE_CODES = ('ru', 'uk', 'be', 'en', 'de', 'et', 'bg', 'da', 'fi', 'fil', 'fr', 'el', 'hu', 'id', \
-	'it', 'ja', 'ms', 'nl', 'no', 'pl', 'pt', 'pt_br', 'ro', 'sr', 'vi', 'zh_sg', 'zh_tw', 'hr', 'th', \
+LANGUAGE_CODES = ('ru', 'uk', 'be', 'en', 'de', 'et', 'bg', 'da', 'fi', 'fil', 'fr', 'el', 'hu', 'id',
+	'it', 'ja', 'ms', 'nl', 'no', 'pl', 'pt', 'pt_br', 'ro', 'sr', 'vi', 'zh_sg', 'zh_tw', 'hr', 'th',
 	'lv', 'lt', 'cs', 'es_ar', 'tr', 'zh_cn', 'es', 'kk', 'sv', )
 
 LANGUAGE_FILE_PATH = 'mods/net.wargaming.wgfmradio/text/%s.yml'
 
 DEFAULT_UI_LANGUAGE = 'ru'
 
-wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8', \
+wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8',
 																		errors='ignore'))))
 SETTINGS_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'setting.dat')
 CONFIG_CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'config.dat')

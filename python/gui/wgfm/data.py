@@ -9,8 +9,8 @@ from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import byteify, fetchURL, unpackTempFiles
-from gui.wgfm.wgfm_constants import CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE, \
-	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT, SETTINGS_VERSION
+from gui.wgfm.wgfm_constants import (CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE,
+	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT, SETTINGS_VERSION)
 
 __all__ = ('g_dataHolder', )
 
@@ -69,7 +69,7 @@ class DataHolder(object):
 	@process
 	def __parseConfig(self, callback=None):
 		result = True
-		status, data = yield lambda callback: fetchURL(url=CONFIG.CONFIG_URL, callback=callback, timeout=5.0, \
+		status, data = yield lambda callback: fetchURL(url=CONFIG.CONFIG_URL, callback=callback, timeout=5.0,
 										headers={'User-Agent': USER_AGENT})
 		if not status:
 			result = False

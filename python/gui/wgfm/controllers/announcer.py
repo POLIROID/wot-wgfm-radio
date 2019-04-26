@@ -67,8 +67,8 @@ class AnnounceController(object):
 			if idNum in self.__showedIds:
 				continue
 			if idNum not in self.__cache:
-				self.__cache[idNum] = { \
-					'showed': False \
+				self.__cache[idNum] = {
+					'showed': False
 				}
 			self.__cache[idNum]['id'] = announcementItem['id']
 			self.__cache[idNum]['start'] = announcementItem['start']
@@ -88,12 +88,12 @@ class AnnounceController(object):
 	@process
 	def __getAnnounceData(callback=None):
 
-		request = { \
-			'url': ANNOUNCE_GATEWAY, \
-			'timeout': 5.0, \
-			'headers': { \
-				'User-Agent': USER_AGENT \
-			} \
+		request = {
+			'url': ANNOUNCE_GATEWAY,
+			'timeout': 5.0,
+			'headers': {
+				'User-Agent': USER_AGENT
+			}
 		}
 
 		status, data = yield lambda callback: fetchURL(callback=callback, **request)

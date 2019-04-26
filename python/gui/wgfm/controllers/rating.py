@@ -87,7 +87,7 @@ class RatingController(object):
 
 		data = {'accID': accountID, 'rate': 1 if userLiked else -1, 'tag': savedTag, 'channelName': channelName}
 
-		url = CONFIG.RATING_GATEWAY.format(url=g_dataHolder.config.get('ratingUrl', CONFIG.RATING_URL), \
+		url = CONFIG.RATING_GATEWAY.format(url=g_dataHolder.config.get('ratingUrl', CONFIG.RATING_URL),
 					time=str(int(time.time())), data=urlencode(data))
 
 		self.__states[savedTag] = [userLiked, True]
@@ -102,7 +102,7 @@ class RatingController(object):
 	@process
 	def __sendRatingData(self, url, callback=None):
 		LOG_DEBUG('sendRatingData', url, self.__votes)
-		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0, \
+		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,
 													headers={'User-Agent': USER_AGENT})
 		callback(status)
 

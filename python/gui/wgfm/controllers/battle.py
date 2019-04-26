@@ -8,8 +8,8 @@ from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import getChannelName, parseKeyValueFull
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, BROADCAST_INTERVAL, WGFM_BATTLE_INJECTOR_UI, \
-									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME
+from gui.wgfm.wgfm_constants import (PLAYER_STATUS, BROADCAST_INTERVAL, WGFM_BATTLE_INJECTOR_UI,
+									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME)
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from messenger.m_constants import PROTO_TYPE
@@ -102,15 +102,15 @@ class BattleController(object):
 		if g_controllers.player.tag:
 			self.__showInfoMessage(g_controllers.player.tag, useChannel=True, important=True)
 
-		self.__showInfoMessage(l10n('battle.tips.control%s' % str(random.randint(1, 7))).format( \
-				playRadio=parseKeyValueFull(g_dataHolder.settings['keyBindings']['playRadio']), \
-				stopRadio=parseKeyValueFull(g_dataHolder.settings['keyBindings']['stopRadio']), \
-				nextChannel=parseKeyValueFull(g_dataHolder.settings['keyBindings']['nextChannel']), \
-				previosChannel=parseKeyValueFull(g_dataHolder.settings['keyBindings']['previosChannel']), \
-				volumeDown=parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeDown']), \
-				volumeUp=parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeUp']), \
-				dislikeCurrent=parseKeyValueFull(g_dataHolder.settings['keyBindings']['dislikeCurrent']), \
-				likeCurrent=parseKeyValueFull(g_dataHolder.settings['keyBindings']['likeCurrent']) \
+		self.__showInfoMessage(l10n('battle.tips.control%s' % str(random.randint(1, 7))).format(
+				playRadio=parseKeyValueFull(g_dataHolder.settings['keyBindings']['playRadio']),
+				stopRadio=parseKeyValueFull(g_dataHolder.settings['keyBindings']['stopRadio']),
+				nextChannel=parseKeyValueFull(g_dataHolder.settings['keyBindings']['nextChannel']),
+				previosChannel=parseKeyValueFull(g_dataHolder.settings['keyBindings']['previosChannel']),
+				volumeDown=parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeDown']),
+				volumeUp=parseKeyValueFull(g_dataHolder.settings['keyBindings']['volumeUp']),
+				dislikeCurrent=parseKeyValueFull(g_dataHolder.settings['keyBindings']['dislikeCurrent']),
+				likeCurrent=parseKeyValueFull(g_dataHolder.settings['keyBindings']['likeCurrent'])
 			), important=True)
 
 	def __onShowBattlePage(self):

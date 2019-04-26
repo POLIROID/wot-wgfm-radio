@@ -62,7 +62,7 @@ class PlayerController(object):
 
 		def launch_player(data):
 			# starting player process
-			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE, \
+			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
 													stderr=subprocess.PIPE, shell=True)
 			# initing player
 			self.__executePlayerCommand(PLAYER_COMMANDS.INIT)
@@ -194,7 +194,7 @@ class PlayerController(object):
 	@process
 	def __parseChannelTag(self, url, callback=None):
 		LOG_DEBUG('parseChannelTag', url, self.__tag)
-		status, data = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0, \
+		status, data = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,
 										headers={'User-Agent': USER_AGENT})
 		parsedTag = None
 		if status:
