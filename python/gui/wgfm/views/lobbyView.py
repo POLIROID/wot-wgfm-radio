@@ -3,8 +3,6 @@ import GUI
 import Keys
 from debug_utils import *
 
-from gui.shared.personality import ServicesLocator
-from gui.app_loader.settings import APP_NAME_SPACE
 from gui.Scaleform.genConsts.APP_CONTAINERS_NAMES import APP_CONTAINERS_NAMES
 from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractViewMeta
 from gui.Scaleform.framework.entities.View import View

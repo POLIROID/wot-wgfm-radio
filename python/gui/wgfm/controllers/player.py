@@ -1,10 +1,10 @@
 import os
 import subprocess
 import threading
-from adisp import async, process
 from xml.dom import minidom
 
 import BigWorld
+from adisp import async, process
 from debug_utils import LOG_DEBUG, LOG_WARNING
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder

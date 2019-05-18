@@ -10,10 +10,7 @@ __status__ = "Production"
 
 from gui.wgfm.data import *
 from gui.wgfm.hooks import *
-from gui.wgfm.lang import *
-from gui.wgfm.events import *
-from gui.wgfm.utils import *
-from gui.wgfm.wgfm_constants import *
+from gui.wgfm.events import g_eventsManager
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.views import *
 
