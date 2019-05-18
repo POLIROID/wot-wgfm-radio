@@ -53,7 +53,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 	def __init__(self, ctx=None):
 		super(WGFMLobbyView, self).__init__(ctx)
-		self.__blur = None
+		self._blur = None
 
 	def _populate(self):
 
