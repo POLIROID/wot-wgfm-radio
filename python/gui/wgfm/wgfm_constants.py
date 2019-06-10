@@ -82,7 +82,7 @@ class CONFIG:
 	RATING_URL = 'http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi'
 	RATING_GATEWAY = '{url}?time={time}&{data}'
 
-ANNOUNCE_GATEWAY = 'http://static.wgmods.org/wgfm/announcements.json'
+ANNOUNCE_GATEWAY = 'https://static.wgmods.org/wgfm/announcements.json'
 
 class PLAYER_STATUS:
 	INITED = 'inited'
