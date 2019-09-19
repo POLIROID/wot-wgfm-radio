@@ -58,7 +58,7 @@ DEFAULT_BINDINGS = {
 
 DEFAULT_SETTINGS = {
 	'saveVolume': True,
-	'lastVolume': 1.0,
+	'lastVolume': 0.5,
 	'saveChannel': True,
 	'lastChannel': 0,
 	'muteOnVoip': False,
