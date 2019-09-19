@@ -52,7 +52,7 @@ class DataHolder(object):
 		if os.path.exists(CACHE_FILE):
 			self.loadCache()
 		else:
-			LOG_DEBUG('No settings file')
+			LOG_DEBUG('No cache file')
 			self.saveCache()
 
 	@async
