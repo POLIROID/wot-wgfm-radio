@@ -21,10 +21,6 @@ package poliroid.gui.lobby.wgfm.data
 		
 		public var modiferShift:Boolean = false;
 		
-		public var labelDefault:String = "";
-		
-		public var labelClean:String = "";
-		
 		public function HotkeyItemVO(data:Object) 
 		{
 			super(data);

@@ -1,11 +1,14 @@
 import BigWorld
 import Keys
 from debug_utils import LOG_ERROR
+from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.controllers import g_controllers
+from gui.wgfm.lang import l10n
 from gui.wgfm.utils import nextChannel, previosChannel, checkKeySet
 from gui.wgfm.wgfm_constants import HOTKEYS_COMMANDS, DEFAULT_BINDINGS, PLAYER_STATUS
+from gui.Scaleform.framework.managers import context_menu
+from gui.Scaleform.framework.managers.context_menu import AbstractContextMenuHandler
 from messenger import MessengerEntry
 
 __all__ = ('HotkeyController', )
@@ -53,10 +56,6 @@ class HotkeyController(object):
 			self.__acceptingHotkeyName = None
 			self.__isAccepting = False
 			g_eventsManager.onHotkeysChanged()
-		elif command == HOTKEYS_COMMANDS.DEFAULT:
-			self.defaultCertain(name)
-		elif command == HOTKEYS_COMMANDS.CLEAN:
-			self.cleanCertain(name)
 		else:
 			LOG_ERROR('unknown command', command)
 
@@ -164,3 +163,34 @@ class HotkeyController(object):
 		self.__isAccepting = False
 		self.__acceptingHotkeyName = None
 		g_eventsManager.onHotkeysChanged()
+
+class HotkeyContextHandler(AbstractContextMenuHandler):
+
+	def __init__(self, cmProxy, ctx=None):
+		self._controlName = None
+		super(HotkeyContextHandler, self).__init__(cmProxy, ctx, handlers={
+			'setValueToEmpty': 'setValueToEmpty',
+			'setValueToDefault': 'setValueToDefault'
+		})
+
+	def _initFlashValues(self, ctx):
+		self._controlName = ctx.controlName
+
+	def _clearFlashValues(self):
+		self._controlName = None
+
+	def setValueToEmpty(self):
+		if self._controlName:
+			g_controllers.hotkey.cleanCertain(self._controlName)
+
+	def setValueToDefault(self):
+		if self._controlName:
+			g_controllers.hotkey.defaultCertain(self._controlName)
+
+	def _generateOptions(self, ctx=None):
+		return [
+			self._makeItem('setValueToEmpty', l10n('ui.hotkeys.cmdClean'), None),
+			self._makeItem('setValueToDefault', l10n('ui.hotkeys.cmdDefault'), None)
+		]
+
+context_menu.registerHandlers(('wgfmHotkeyContextHandler', HotkeyContextHandler))
