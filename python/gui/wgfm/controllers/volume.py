@@ -29,7 +29,7 @@ class VolumeController(object):
 		g_eventsManager.onSetVoipActive += self.__onSetVoipActive
 
 		if g_dataHolder.settings.get('saveVolume', True):
-			self.__volume = g_dataHolder.settings.get('lastVolume', 1.0)
+			self.__volume = g_dataHolder.settings.get('lastVolume', 0.5)
 
 		self.__mutedByWindowVisibility()
 

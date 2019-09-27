@@ -245,8 +245,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 			isAccepting = g_controllers.hotkey.accepting and g_controllers.hotkey.acceptingName == keySetName
 			hotkeys.append({'name': keySetName, 'label': l10n('ui.hotkeys.%s' % keySetName), 'value': keyValue,
 					 'modifierCtrl': keyHasCtrl, 'modiferShift': keyHasShift, 'modifierAlt': keyHasAlt,
-					 'isEmpty': not keySetData, 'isAccepting': isAccepting, 'labelDefault': l10n('ui.hotkeys.cmdDefault'),
-					 'labelClean': l10n('ui.hotkeys.cmdClean')})
+					 'isEmpty': not keySetData, 'isAccepting': isAccepting})
 		return {'hotkeys': hotkeys}
 
 	def __generateSettingsCtx(self):
