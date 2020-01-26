@@ -7,6 +7,7 @@
 	{
 		override protected function onPopulate() : void
 		{
+			autoDestroy = true;
 			componentName = "wgfmBattle";
 			componentUI = wgfmBattleWrapper;
 			super.onPopulate();
