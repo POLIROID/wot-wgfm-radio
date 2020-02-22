@@ -5,7 +5,7 @@
 
 Code license: CC BY-NC-SA 4.0
 
-P0LIR0ID 2016-2019
+P0LIR0ID 2016-2020
 
 ### An example of what radio looks like
 ![An example of what radio looks like](https://static.poliroid.ru/wgfmRadio.jpg)
