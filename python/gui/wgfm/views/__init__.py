@@ -1,7 +1,7 @@
 from gui.Scaleform.framework import g_entitiesFactories, ViewSettings, GroupedViewSettings, ViewTypes, ScopeTemplates
 from gui.Scaleform.framework.entities.View import View
 
-from gui.wgfm.wgfm_constants import WGFM_BATTLE_INJECTOR_UI, WGFM_BATTLE_COMPONENTS_UI, WGFM_LOBBY_WINDOW_UI
+from gui.wgfm._constants import WGFM_BATTLE_INJECTOR_UI, WGFM_BATTLE_COMPONENTS_UI, WGFM_LOBBY_WINDOW_UI
 from gui.wgfm.views.battleView import WGFMBattleView
 from gui.wgfm.views.lobbyView import WGFMLobbyView
 

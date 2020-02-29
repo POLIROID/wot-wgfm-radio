@@ -6,7 +6,7 @@ from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import nextChannel, previosChannel, checkKeySet
-from gui.wgfm.wgfm_constants import HOTKEYS_COMMANDS, DEFAULT_BINDINGS, PLAYER_STATUS
+from gui.wgfm._constants import HOTKEYS_COMMANDS, DEFAULT_BINDINGS, PLAYER_STATUS
 from gui.Scaleform.framework.managers import context_menu
 from gui.Scaleform.framework.managers.context_menu import AbstractContextMenuHandler
 from messenger import MessengerEntry

@@ -9,7 +9,7 @@ from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import byteify, fetchURL, unpackTempFiles
-from gui.wgfm.wgfm_constants import (CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE,
+from gui.wgfm._constants import (CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE,
 	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT, SETTINGS_VERSION)
 
 __all__ = ('g_dataHolder', )

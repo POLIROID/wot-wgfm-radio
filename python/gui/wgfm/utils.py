@@ -57,7 +57,7 @@ def getChannelName():
 def getCurrentChannelIdx():
 	from gui.wgfm.controllers import g_controllers
 	from gui.wgfm.data import g_dataHolder
-	from gui.wgfm.wgfm_constants import PLAYER_STATUS
+	from gui.wgfm._constants import PLAYER_STATUS
 
 	result = 0
 	player = g_controllers.player

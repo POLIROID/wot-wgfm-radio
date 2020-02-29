@@ -11,7 +11,7 @@ from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import fetchURL
-from gui.wgfm.wgfm_constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, TAGS_UPDATE_INTERVAL, USER_AGENT
+from gui.wgfm._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, TAGS_UPDATE_INTERVAL, USER_AGENT
 
 __all__ = ('PlayerController', )
 

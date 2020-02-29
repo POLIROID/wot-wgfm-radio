@@ -11,7 +11,7 @@ from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.utils import getCurrentChannelIdx, parseKeyValue, parseKeyModifiers
 from gui.wgfm.lang import l10n
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, UI_VOLUME_MULTIPLIYER
+from gui.wgfm._constants import PLAYER_STATUS, UI_VOLUME_MULTIPLIYER
 
 __all__ = ('WGFMLobbyViewMeta', )
 
