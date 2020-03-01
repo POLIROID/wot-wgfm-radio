@@ -5,7 +5,7 @@ from xml.dom import minidom
 
 import BigWorld
 from adisp import async, process
-from debug_utils import LOG_DEBUG, LOG_WARNING
+from debug_utils import LOG_DEBUG, LOG_WARNING, LOG_ERROR
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
@@ -56,25 +56,10 @@ class PlayerController(object):
 		self.__currentChannel = 0
 		if g_dataHolder.settings.get('saveChannel', False):
 			self.__currentChannel = g_dataHolder.settings.get('lastChannel', 0)
+		self.__terminated = False
 
 	def init(self):
-
-		def launch_player(data):
-			# starting player process
-			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-													stderr=subprocess.PIPE, shell=True)
-			# initing player
-			self.__executePlayerCommand(PLAYER_COMMANDS.INIT)
-			# updating status
-			self.__status = PLAYER_STATUS.INITED
-			# setting volume
-			volume = 0.0
-			if not g_controllers.volume.muted:
-				volume = g_controllers.volume.volume
-			self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume)
-
-		data = [CONSOLE_PLAYER, '-pid', str(os.getpid())]
-		threading.Thread(target=launch_player, args=(data, )).start()
+		self.__launch_radio()
 
 		g_eventsManager.onVolumeChanged += self.__onVolumeChanged
 		g_eventsManager.onVolumeChangedHidden += self.__onVolumeChanged
@@ -92,6 +77,8 @@ class PlayerController(object):
 		g_eventsManager.onVolumeChanged -= self.__onVolumeChanged
 		g_eventsManager.onVolumeChangedHidden += self.__onVolumeChanged
 		g_eventsManager.onChannelsUpdated -= self.__onChannelsUpdated
+
+		self.__terminated = True
 
 		self.__executePlayerCommand(PLAYER_COMMANDS.EXIT)
 
@@ -155,12 +142,45 @@ class PlayerController(object):
 			if self.__status == PLAYER_STATUS.PLAYING:
 				self.playRadio()
 
+	def __launch_radio(self, restart=False):
+
+		def launch_player(data):
+
+			# starting player process
+			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
+													stderr=subprocess.PIPE, shell=True)
+
+			# initing player
+			self.__executePlayerCommand(PLAYER_COMMANDS.INIT)
+			# updating status
+			if not restart:
+				self.__status = PLAYER_STATUS.INITED
+			# setting volume
+			volume = 0.0
+			if not g_controllers.volume.muted:
+				volume = g_controllers.volume.volume
+			self.__executePlayerCommand(PLAYER_COMMANDS.VOLUME, volume)
+
+			# updating params on restart
+			if restart:
+				self.__onChannelsUpdated()
+				if self.__status == PLAYER_STATUS.PLAYING:
+					self.playRadio()
+
+		data = [CONSOLE_PLAYER, '-pid', str(os.getpid())]
+		threading.Thread(target=launch_player, args=(data, )).start()
+
 	def __executePlayerCommand(self, command, arg=None):
 		if self.__playerProcess:
-			self.__playerProcess.stdin.write(command + '\n')
-			if arg is not None:
-				self.__playerProcess.stdin.write(str(arg) + '\n')
-			self.__playerProcess.stdin.flush()
+			try:
+				self.__playerProcess.stdin.write(command + '\n')
+				if arg is not None:
+					self.__playerProcess.stdin.write(str(arg) + '\n')
+				self.__playerProcess.stdin.flush()
+			except IOError:
+				LOG_ERROR('Player process gone')
+				if not self.__terminated:
+					self.__launch_radio(restart=True)
 		else:
 			BigWorld.callback(0.1, lambda: self.__executePlayerCommand(command, arg))
 
