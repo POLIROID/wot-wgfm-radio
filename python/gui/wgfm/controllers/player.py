@@ -11,7 +11,8 @@ from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import fetchURL
-from gui.wgfm._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, TAGS_UPDATE_INTERVAL, USER_AGENT
+from gui.wgfm._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, \
+								TAGS_UPDATE_INTERVAL, USER_AGENT, MAX_RESTART_ATTEMPS
 
 __all__ = ('PlayerController', )
 
@@ -57,6 +58,7 @@ class PlayerController(object):
 		if g_dataHolder.settings.get('saveChannel', False):
 			self.__currentChannel = g_dataHolder.settings.get('lastChannel', 0)
 		self.__terminated = False
+		self.__restarts = 0
 
 	def init(self):
 		self.__launch_radio()
@@ -179,8 +181,9 @@ class PlayerController(object):
 				self.__playerProcess.stdin.flush()
 			except IOError:
 				LOG_ERROR('Player process gone')
-				if not self.__terminated:
+				if not self.__terminated and self.__restarts < MAX_RESTART_ATTEMPS:
 					self.__launch_radio(restart=True)
+					self.__restarts += 1
 		else:
 			BigWorld.callback(0.1, lambda: self.__executePlayerCommand(command, arg))
 
