@@ -53,10 +53,9 @@ class PlayerController(object):
 		self.__channelName = ''
 		self.__playerProcess = None
 		self.__tagsCallback = None
+		self.__currentChannel = 0
 		if g_dataHolder.settings.get('saveChannel', False):
 			self.__currentChannel = g_dataHolder.settings.get('lastChannel', 0)
-		else:
-			self.__currentChannel = 0
 
 	def init(self):
 
@@ -101,7 +100,8 @@ class PlayerController(object):
 		for channel in g_controllers.channel.channels:
 			if channel['available']:
 				data.append(channel['stream_url'])
-
+		if not data:
+			return
 		self.__executePlayerCommand(PLAYER_COMMANDS.ADD_CHANNELS, '##'.join(data))
 
 	def playRadio(self, channelNum=None):
