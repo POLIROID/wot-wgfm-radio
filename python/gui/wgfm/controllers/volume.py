@@ -2,7 +2,7 @@ import BigWorld
 import SoundGroups
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
-from gui.wgfm.wgfm_constants import VOLUME_STEP, VOLUME_STEP_LOW, VOLUME_STEP_VERY_LOW
+from gui.wgfm._constants import VOLUME_STEP, VOLUME_STEP_LOW, VOLUME_STEP_VERY_LOW
 
 __all__ = ('VolumeController', )
 

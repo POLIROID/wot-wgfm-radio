@@ -8,7 +8,7 @@ from helpers import isPlayerAccount
 from gui import SystemMessages
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.utils import byteify, fetchURL, timestamp
-from gui.wgfm.wgfm_constants import ANNOUNCE_GATEWAY, USER_AGENT, TAGS_UPDATE_INTERVAL, ANNOUNCMENTS_UPDATE_INTERVAL
+from gui.wgfm._constants import ANNOUNCE_GATEWAY, USER_AGENT, TAGS_UPDATE_INTERVAL, ANNOUNCMENTS_UPDATE_INTERVAL
 from PlayerEvents import g_playerEvents
 
 __all__ = ('AnnounceController', )

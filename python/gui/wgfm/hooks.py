@@ -7,7 +7,7 @@ from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.lang import l10n
 from gui.wgfm.utils import override
-from gui.wgfm.wgfm_constants import WGFM_LOBBY_WINDOW_UI
+from gui.wgfm._constants import WGFM_LOBBY_WINDOW_UI
 from skeletons.gui.app_loader import GuiGlobalSpaceID
 from VOIP.VOIPManager import VOIPManager
 

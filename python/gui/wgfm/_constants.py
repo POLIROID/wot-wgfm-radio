@@ -1,5 +1,6 @@
 ﻿import os
 import tempfile
+import platform
 
 import BigWorld
 import Keys
@@ -141,7 +142,10 @@ CACHE_FILE = "%s\\wgfm\\%s" % (wgAppDataFolder, 'cache.dat')
 TEMP_DATA_FOLDER = '%s\\world_of_tanks\\%s' % (tempfile.gettempdir(), 'wgfm')
 TEMP_DATA_FOLDER_VFS = 'mods/net.wargaming.wgfmradio/temp'
 
-CONSOLE_PLAYER = '%s\\wgfm_player.exe' % TEMP_DATA_FOLDER
+CONSOLE_PLAYER = '%s\\win32\\wgfm_player.exe' % TEMP_DATA_FOLDER
+if platform.architecture()[0] == '64bit':
+	CONSOLE_PLAYER = '%s\\win64\\wgfm_player.exe' % TEMP_DATA_FOLDER
+MAX_RESTART_ATTEMPS = 10
 
 # (r, g, b) color to AS3 Flash RGBHEX(uint)
 DEFAULT_BATTLE_MESSAGE_COLOR = 116 << 16 | 199 << 8 | 48

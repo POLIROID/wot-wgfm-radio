@@ -7,7 +7,7 @@ from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import userDBID, fetchURL
-from gui.wgfm.wgfm_constants import PLAYER_STATUS, BUTTON_STATES, CONFIG, USER_AGENT
+from gui.wgfm._constants import PLAYER_STATUS, BUTTON_STATES, CONFIG, USER_AGENT
 
 __all__ = ('RatingController', )
 

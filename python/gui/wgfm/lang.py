@@ -1,7 +1,7 @@
 from constants import DEFAULT_LANGUAGE
 from helpers import getClientLanguage
 
-from gui.wgfm.wgfm_constants import DEFAULT_UI_LANGUAGE, LANGUAGE_CODES, LANGUAGE_FILE_PATH
+from gui.wgfm._constants import DEFAULT_UI_LANGUAGE, LANGUAGE_CODES, LANGUAGE_FILE_PATH
 from gui.wgfm.utils import parseLangFields
 
 __all__ = ('l10n', )

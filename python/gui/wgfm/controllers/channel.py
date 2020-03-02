@@ -4,7 +4,7 @@ from debug_utils import LOG_DEBUG
 from gui.wgfm.data import g_dataHolder
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.utils import fetchURL
-from gui.wgfm.wgfm_constants import USER_AGENT
+from gui.wgfm._constants import USER_AGENT
 
 __all__ = ('ChannelController', )
 
