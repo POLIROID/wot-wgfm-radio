@@ -1,0 +1,39 @@
+<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" backgroundColor="#CCCCCC" width="1024" height="768" currentTimeline="1" xflVersion="2.971" creatorInfo="Adobe Animate" platform="Windows" versionInfo="Saved by Animate Windows 20.0 build 19255" majorVersion="20" buildNumber="19255" vanishingPoint3DX="512" vanishingPoint3DY="384" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F" fileGUID="3C96B59B565A64489B16A68E5C18C8F4">
+     <timelines>
+          <DOMTimeline name="Scene 1">
+               <layers>
+                    <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true" heightLiteral="24">
+                         <frames>
+                              <DOMFrame index="0" keyMode="9728">
+                                   <elements/>
+                              </DOMFrame>
+                         </frames>
+                    </DOMLayer>
+               </layers>
+          </DOMTimeline>
+     </timelines>
+     <scripts/>
+     <PrinterSettings/>
+     <publishHistory>
+          <PublishItem publishSize="2302" publishTime="1585507221"/>
+          <PublishItem publishSize="2302" publishTime="1585507220"/>
+          <PublishItem publishSize="2302" publishTime="1585507219"/>
+          <PublishItem publishSize="2296" publishTime="1548186556"/>
+          <PublishItem publishSize="1838" publishTime="1488485858"/>
+          <PublishItem publishSize="1838" publishTime="1486833687"/>
+          <PublishItem publishSize="1838" publishTime="1486833683"/>
+          <PublishItem publishSize="1838" publishTime="1486833683"/>
+          <PublishItem publishSize="1838" publishTime="1486833682"/>
+          <PublishItem publishSize="1838" publishTime="1486833679"/>
+          <PublishItem publishSize="53" publishTime="1486833663"/>
+          <PublishItem publishSize="53" publishTime="1486833662"/>
+          <PublishItem publishSize="53" publishTime="1486833640"/>
+          <PublishItem publishSize="53" publishTime="1486833632"/>
+          <PublishItem publishSize="287" publishTime="1486833618"/>
+          <PublishItem publishSize="287" publishTime="1486833618"/>
+          <PublishItem publishSize="287" publishTime="1486833618"/>
+          <PublishItem publishSize="287" publishTime="1486833616"/>
+          <PublishItem publishSize="287" publishTime="1486833573"/>
+          <PublishItem publishSize="1837" publishTime="1482080798"/>
+     </publishHistory>
+</DOMDocument>

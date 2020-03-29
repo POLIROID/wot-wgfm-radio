@@ -1,0 +1,48 @@
+<DOMComponentItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="imports/DropdownMenu" itemID="589ef5ca-000002ab" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageClassName="DropdownMenuUI" linkageURL="guiControlsLobbyBattle.swf" lastModified="1488505569" displayAsComponent="false" customIconID="0" persistLivePreview11="true" editFrameIndex="1" requiredMinimumPlayerVersion="0" requiredMinimumASVersion="0" parametersAreLocked="true">
+  <timeline>
+    <DOMTimeline name="DropdownMenu">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#666666"/>
+                    </FillStyle>
+                  </fills>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge fillStyle1="1" strokeStyle="1" edges="!0 0|1600 0!1600 0|1600 400!1600 400|0 400!0 400|0 0"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+  <parametersAsXML><![CDATA[   <property id="dropdown">
+      <Inspectable name="dropdown" unlocalizedName="dropdown" variable="dropdown" category="" verbose="0" defaultValue="" type="Default"/>
+   </property>
+   <property id="itemRenderer">
+      <Inspectable name="itemRenderer" unlocalizedName="itemRenderer" variable="itemRenderer" category="" verbose="0" defaultValue="" type="Default"/>
+   </property>
+   <property id="inspectableMenuOffset">
+      <Inspectable name="inspectableMenuOffset" unlocalizedName="inspectableMenuOffset" variable="inspectableMenuOffset" category="" verbose="0" defaultValue="top:0,right:0,bottom:0,left:0" type="Object"/>
+   </property>
+   <property id="width">
+      <Inspectable name="width" unlocalizedName="width" variable="width" category="" verbose="0" defaultValue="80" type="Number"/>
+   </property>
+]]></parametersAsXML>
+</DOMComponentItem>

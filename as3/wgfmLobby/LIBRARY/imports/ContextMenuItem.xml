@@ -1,0 +1,15 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="imports/ContextMenuItem" itemID="58bf1ddf-00000d5c" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageClassName="ContextMenuItem" linkageURL="guiControlsLobbyBattleDynamic.swf" lastModified="1488920031">
+  <timeline>
+    <DOMTimeline name="ContextMenuItem">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
