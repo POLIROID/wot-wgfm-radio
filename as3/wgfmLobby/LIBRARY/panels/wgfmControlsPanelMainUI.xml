@@ -1,0 +1,74 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/wgfmControlsPanelMainUI" itemID="58bb4c42-0000058a" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.wgfm.components.ControlsPanelMain" linkageClassName="wgfmControlsPanelMainUI" lastModified="1538234067" lastUniqueIdentifier="3">
+  <timeline>
+    <DOMTimeline name="wgfmControlsPanelMainUI">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/volumeButton/wgfmVolumeButtonUI" name="volumeButton">
+                  <matrix>
+                    <Matrix tx="27"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="controls/playButton/wgfmPlayButtonUI" name="playButton" selected="true">
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMComponentInstance libraryItemName="imports/Slider" name="volumeSlider" uniqueID="1">
+                  <matrix>
+                    <Matrix a="1.375" tx="58"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="40" y="10"/>
+                  </transformationPoint>
+                  <parametersAsXML><![CDATA[   <property id="enabled">
+      <Inspectable name="enabled" unlocalizedName="enabled" variable="enabled" category="" verbose="0" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="minimum">
+      <Inspectable name="minimum" unlocalizedName="minimum" variable="minimum" category="" verbose="0" defaultValue="0" type="Number"/>
+   </property>
+   <property id="maximum">
+      <Inspectable name="maximum" unlocalizedName="maximum" variable="maximum" category="" verbose="0" defaultValue="10" type="Number"/>
+   </property>
+   <property id="mouseEnabled">
+      <Inspectable name="mouseEnabled" unlocalizedName="mouseEnabled" variable="mouseEnabled" category="" verbose="0" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="width">
+      <Inspectable name="width" unlocalizedName="width" variable="width" category="" verbose="0" defaultValue="110" type="Number"/>
+   </property>
+]]></parametersAsXML>
+                </DOMComponentInstance>
+                <DOMComponentInstance libraryItemName="imports/DropdownMenu" name="stationsDropdown" centerPoint3DX="238" centerPoint3DY="9" uniqueID="3">
+                  <matrix>
+                    <Matrix a="1.625" tx="173" ty="-1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="40" y="10"/>
+                  </transformationPoint>
+                  <parametersAsXML><![CDATA[   <property id="dropdown">
+      <Inspectable name="dropdown" unlocalizedName="dropdown" variable="dropdown" category="" verbose="0" defaultValue="DropdownMenu_ScrollingList" type="Default"/>
+   </property>
+   <property id="itemRenderer">
+      <Inspectable name="itemRenderer" unlocalizedName="itemRenderer" variable="itemRenderer" category="" verbose="0" defaultValue="DropDownListItemRendererSound" type="Default"/>
+   </property>
+   <property id="inspectableMenuOffset">
+      <Inspectable name="inspectableMenuOffset" unlocalizedName="inspectableMenuOffset" variable="inspectableMenuOffset" category="" verbose="0" defaultValue="top:-5,right:0,bottom:0,left:3" type="Object"/>
+   </property>
+   <property id="width">
+      <Inspectable name="width" unlocalizedName="width" variable="width" category="" verbose="0" defaultValue="130" type="Number"/>
+   </property>
+]]></parametersAsXML>
+                </DOMComponentInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

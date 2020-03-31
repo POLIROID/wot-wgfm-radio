@@ -1,0 +1,42 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="controls/keyInput/symbols/acceptingAnim" itemID="57aac403-000000f8" lastModified="1585508170" lastUniqueIdentifier="1">
+  <timeline>
+    <DOMTimeline name="acceptingAnim">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true" heightLiteral="24">
+          <frames>
+            <DOMFrame index="0" duration="11" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/keyInput/symbols/key_input_accept_key">
+                  <transformationPoint>
+                    <Point x="30" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="11" duration="12" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/keyInput/symbols/key_input_accept_key" centerPoint3DX="30" centerPoint3DY="12.5">
+                  <transformationPoint>
+                    <Point x="30" y="12.5"/>
+                  </transformationPoint>
+                  <color>
+                    <Color alphaMultiplier="0.6015625"/>
+                  </color>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/keyInput/symbols/key_input_accept_key" centerPoint3DX="30" centerPoint3DY="12.5">
+                  <transformationPoint>
+                    <Point x="30" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

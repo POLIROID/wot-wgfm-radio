@@ -1,0 +1,30 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/symbols/backgound" itemID="58bb3a85-0000028a" lastModified="1488668365">
+  <timeline>
+    <DOMTimeline name="backgound">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true" heightLiteral="24">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor alpha="0.698039215686274"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!0 0|600 0!600 0|600 600!600 600|0 600!0 600|0 0"/>
+                    <Edge cubics="!0 0(;0,0 600,0 600,0q0 0 600 0);"/>
+                    <Edge cubics="!600 600(;600,600 0,600 0,600q600 600 0 600);"/>
+                    <Edge cubics="!0 600(;0,600 0,0 0,0q0 600 0 0);"/>
+                    <Edge cubics="!600 0(;600,0 600,600 600,600q600 0 600 600);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

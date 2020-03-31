@@ -1,0 +1,66 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="controls/stationName/wgfmStationNameUI" itemID="589efff6-0000020b" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.wgfm.controls.StationName" linkageClassName="wgfmStationNameUI" lastModified="1538234000">
+  <timeline>
+    <DOMTimeline name="wgfmStationNameUI">
+      <layers>
+        <DOMLayer name="mask" color="#FF800A" locked="true" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/stationName/symbols/mask" name="clickMask">
+                  <matrix>
+                    <Matrix a="42.6000061035156" d="5.39999389648438"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMDynamicText name="stationNameTF" width="216" height="20" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="4" ty="4"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>stationNameTF</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="16.8" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#EDEDD5"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4F80FF" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMDynamicText name="stationNameHiddenTF" selected="true" width="216" height="20" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="4" ty="4"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters></characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="16.8" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#FF0000"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
