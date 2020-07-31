@@ -130,10 +130,6 @@
         <swc-path>./lib/gui_lobby-1.0-SNAPSHOT.swc</swc-path>
         <linkage>external</linkage>
       </library-path-entry>
-      <library-path-entry>
-        <swc-path>./lib/greensock.swc</swc-path>
-        <linkage>merge</linkage>
-      </library-path-entry>
     </LibraryPath>
     <LibraryVersions>
     </LibraryVersions>

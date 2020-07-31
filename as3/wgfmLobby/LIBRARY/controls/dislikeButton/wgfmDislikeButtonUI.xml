@@ -268,7 +268,7 @@
             </DOMFrame>
             <DOMFrame index="49" tweenType="motion" motionTweenSnap="true" keyMode="22017">
               <elements>
-                <DOMSymbolInstance libraryItemName="controls/dislikeButton/symbols/dislike_hovered" selected="true" symbolType="graphic" loop="loop">
+                <DOMSymbolInstance libraryItemName="controls/dislikeButton/symbols/dislike_hovered" symbolType="graphic" loop="loop">
                   <transformationPoint>
                     <Point x="12.5" y="12.5"/>
                   </transformationPoint>

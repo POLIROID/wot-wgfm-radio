@@ -1,9 +1,9 @@
-package poliroid.gui.lobby.wgfm.components.settings 
+﻿package poliroid.gui.lobby.wgfm.components.settings 
 {
 	import flash.display.MovieClip;
 	import flash.geom.Rectangle;
 	
-	import com.greensock.TweenLite;
+	import scaleform.clik.motion.Tween;
 	
 	import poliroid.gui.lobby.wgfm.components.settings.SettingsRenderer;
 	import poliroid.gui.lobby.wgfm.data.SettingsVO;
@@ -19,25 +19,18 @@ package poliroid.gui.lobby.wgfm.components.settings
 		
 		public function setSettings(data:SettingsVO) : void
 		{
-			try {
-				renderer.setSettings(data);
-			} catch (e:Error) {
-				DebugUtils.LOG_ERROR("setSettings");
-				DebugUtils.LOG_ERROR(e.name);
-				DebugUtils.LOG_ERROR(e.message);
-				DebugUtils.LOG_ERROR(e.getStackTrace());
-			}
+			renderer.setSettings(data);
 			scrollRect = new Rectangle(0, 0, renderer.width, renderer.height);
 		}
 		
 		public function show() : void
 		{
-			TweenLite.to(renderer, 0.5, {y: 0});
+			new Tween(400, renderer, {y: 0}, {fastTransform:false});
 		}
 		
 		public function hide() : void
 		{
-			TweenLite.to(renderer, 0.5, {y: -renderer.height});
+			new Tween(400, renderer, {y: -renderer.height}, {fastTransform:false});
 		}
 	}
 
