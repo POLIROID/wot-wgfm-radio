@@ -1,9 +1,9 @@
-package poliroid.gui.lobby.wgfm.components.hotkeys 
+﻿package poliroid.gui.lobby.wgfm.components.hotkeys 
 {
 	import flash.display.MovieClip;
 	import flash.geom.Rectangle;
 	
-	import com.greensock.TweenLite;
+	import scaleform.clik.motion.Tween;
 	
 	import poliroid.gui.lobby.wgfm.components.hotkeys.HotkeysRenderer;
 	import poliroid.gui.lobby.wgfm.data.HotkeysVO;
@@ -31,12 +31,12 @@ package poliroid.gui.lobby.wgfm.components.hotkeys
 		
 		public function show() : void
 		{
-			TweenLite.to(renderer, 0.5, {y: 0});
+			new Tween(400, renderer, {y: 0}, {fastTransform:false});
 		}
 		
 		public function hide() : void
 		{
-			TweenLite.to(renderer, 0.5, {y: -renderer.height});
+			new Tween(400, renderer, {y: -renderer.height}, {fastTransform:false});
 		}
 	}
 
