@@ -11,7 +11,7 @@ def getViewSettings():
 										None, ScopeTemplates.GLOBAL_SCOPE))
 	viewSettings.append(ViewSettings(WGFM_BATTLE_COMPONENTS_UI, WGFMBattleView, None, ViewTypes.COMPONENT,
 										None, ScopeTemplates.DEFAULT_SCOPE))
-	viewSettings.append(ViewSettings(WGFM_LOBBY_WINDOW_UI, WGFMLobbyView, 'wgfmLobby.swf', ViewTypes.WINDOW,
+	viewSettings.append(ViewSettings(WGFM_LOBBY_WINDOW_UI, WGFMLobbyView, 'wgfmLobby.swf', ViewTypes.TOP_WINDOW,
 										None, ScopeTemplates.GLOBAL_SCOPE))
 	return viewSettings
 

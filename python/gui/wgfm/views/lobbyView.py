@@ -78,12 +78,13 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		self._blur = GUI.WGUIBackgroundBlur()
 		self._blur.enable = True
-		ownLayer = APP_CONTAINERS_NAMES.VIEWS
+		ownLayer = APP_CONTAINERS_NAMES.WINDOWS
 		blurAnimRepeatCount = 5
 		layers = [
 			APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
 			APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
-			APP_CONTAINERS_NAMES.MARKER
+			APP_CONTAINERS_NAMES.MARKER,
+			APP_CONTAINERS_NAMES.VIEWS,
 		]
 		self.app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
 
