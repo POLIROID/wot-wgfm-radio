@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/symbols/backgound" itemID="58bb3a85-0000028a" lastModified="1488668365">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/symbols/backgound" itemID="58bb3a85-0000028a" lastModified="1602600425">
   <timeline>
     <DOMTimeline name="backgound">
       <layers>
@@ -9,7 +9,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor alpha="0.698039215686274"/>
+                      <SolidColor alpha="0.949019607843137"/>
                     </FillStyle>
                   </fills>
                   <edges>

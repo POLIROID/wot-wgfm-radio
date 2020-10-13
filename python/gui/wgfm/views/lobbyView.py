@@ -3,7 +3,6 @@ import GUI
 import Keys
 from debug_utils import *
 
-from gui.Scaleform.genConsts.APP_CONTAINERS_NAMES import APP_CONTAINERS_NAMES
 from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractViewMeta
 from gui.Scaleform.framework.entities.View import View
 from gui.wgfm.events import g_eventsManager
@@ -51,10 +50,6 @@ class WGFMLobbyViewMeta(View, AbstractViewMeta):
 
 class WGFMLobbyView(WGFMLobbyViewMeta):
 
-	def __init__(self, ctx=None):
-		super(WGFMLobbyView, self).__init__(ctx)
-		self._blur = None
-
 	def _populate(self):
 
 		super(WGFMLobbyView, self)._populate()
@@ -76,25 +71,7 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		self._dependedData()
 
-		self._blur = GUI.WGUIBackgroundBlur()
-		self._blur.enable = True
-		ownLayer = APP_CONTAINERS_NAMES.VIEWS
-		blurAnimRepeatCount = 5
-		layers = [
-			APP_CONTAINERS_NAMES.SYSTEM_MESSAGES,
-			APP_CONTAINERS_NAMES.SERVICE_LAYOUT,
-			APP_CONTAINERS_NAMES.MARKER
-		]
-		self.app.blurBackgroundViews(ownLayer, layers, blurAnimRepeatCount)
-
 	def _dispose(self):
-
-		if self._blur is not None:
-			self._blur.enable = False
-			self._blur = None
-
-		self.app.unblurBackgroundViews()
-
 		g_eventsManager.onRadioChannelChanged -= self.__onRadioChannelChanged
 		g_eventsManager.onRadioTagChanged -= self.__onRadioTagChanged
 		g_eventsManager.onVolumeChanged -= self.__onVolumeChanged

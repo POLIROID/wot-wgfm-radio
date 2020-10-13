@@ -7,13 +7,13 @@
 	},
 	"game": {
 		"folder": "E:\\wot\\ct",
-		"version": "1.10.0.0"
+		"version": "1.10.1.0"
 	},
 	"info": {
 		"id": "wgfmradio",
 		"author": "poliroid",
 		"name": "WarGaming.FM",
 		"description": "Listen WarGaming.FM directly ingame",
-		"version": "3.5.0"
+		"version": "3.5.1"
 	}
 }
