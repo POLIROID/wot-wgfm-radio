@@ -1,6 +1,6 @@
 ﻿package mods.common
 {
-	import net.wg.data.constants.generated.APP_CONTAINERS_NAMES;
+	import net.wg.data.constants.generated.LAYER_NAMES;
 	import net.wg.gui.battle.views.BaseBattlePage;
 	import net.wg.gui.components.containers.MainViewContainer;
 	import net.wg.gui.components.containers.ManagedContainer;
@@ -33,22 +33,9 @@
 		{
 			super.onPopulate();
 
-			var mainViewContainer:IManagedContainer;
-			var windowContainer:ISimpleManagedContainer;
+			var mainViewContainer:MainViewContainer = MainViewContainer(App.containerMgr.getContainer(LAYER_NAMES.LAYER_ORDER.indexOf(LAYER_NAMES.VIEWS)));
+			var windowContainer:ISimpleManagedContainer = App.containerMgr.getContainer(LAYER_NAMES.LAYER_ORDER.indexOf(LAYER_NAMES.WINDOWS));
 
-			for each (var container:ISimpleManagedContainer in (App.containerMgr as ContainerManagerBase).containersMap)
-			{
-				if ((container as MainViewContainer) != null)
-				{
-					mainViewContainer = container as MainViewContainer;
-				}
-				var mngdContainer:ManagedContainer = container as ManagedContainer;
-				if (mngdContainer != null && mngdContainer.type == APP_CONTAINERS_NAMES.WINDOWS)
-				{
-					windowContainer = container;
-				}
-			}
-			
 			for (var idx:int = 0; idx < mainViewContainer.numChildren; ++idx)
 			{
 				var view:BaseBattlePage = mainViewContainer.getChildAt(idx) as BaseBattlePage;
@@ -71,8 +58,11 @@
 			
 			if (autoDestroy)
 			{
-				destroy();
+				App.utils.scheduler.scheduleOnNextFrame(function() {
+					destroy();
+				});
 			}
+			
 		}
 	}
 }
