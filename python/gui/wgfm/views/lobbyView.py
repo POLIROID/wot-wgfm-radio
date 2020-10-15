@@ -5,6 +5,8 @@ from debug_utils import *
 
 from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractViewMeta
 from gui.Scaleform.framework.entities.View import View
+from gui.shared.view_helpers.blur_manager import CachedBlur
+from frameworks.wulf import WindowLayer
 from gui.wgfm.events import g_eventsManager
 from gui.wgfm.controllers import g_controllers
 from gui.wgfm.data import g_dataHolder
@@ -54,6 +56,8 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		super(WGFMLobbyView, self)._populate()
 
+		self._blur = CachedBlur(enabled=True, ownLayer=WindowLayer.OVERLAY - 1)
+
 		if not g_controllers.channel.inited:
 			g_controllers.channel.grabChannels()
 
@@ -80,6 +84,8 @@ class WGFMLobbyView(WGFMLobbyViewMeta):
 
 		if g_controllers.hotkey:
 			g_controllers.hotkey.delForced(self.__forcesKeyEventHandler)
+
+		self._blur.fini()
 
 		super(WGFMLobbyView, self)._dispose()
 
