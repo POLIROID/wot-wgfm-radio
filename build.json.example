@@ -1,0 +1,19 @@
+{
+	"version": 3,
+	"software": {
+		"animate": "/path/to/adobe_animate",
+		"python": "/path/to/python_27",
+		"sonar": ""
+	},
+	"game": {
+		"folder": "/path/to/wot_dir",
+		"version": "wot_version"
+	},
+	"info": {
+		"id": "wgfmradio",
+		"author": "poliroid",
+		"name": "WarGaming.FM",
+		"description": "Listen WarGaming.FM directly ingame",
+		"version": "mod_version"
+	}
+}
