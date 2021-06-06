@@ -2,7 +2,7 @@
   <timeline>
     <DOMTimeline name="wgfmHotkeyUI" guides='&lt;guidelines&gt;&lt;guideline direction="v"&gt;0&lt;/guideline&gt;&lt;guideline direction="h"&gt;0&lt;/guideline&gt;&lt;guideline direction="h"&gt;25&lt;/guideline&gt;&lt;guideline direction="v"&gt;274&lt;/guideline&gt;&lt;/guidelines&gt;'>
       <layers>
-        <DOMLayer name="as" color="#FF4FFF" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="as" color="#FF4FFF" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="9" keyMode="9728">
               <elements/>
@@ -44,7 +44,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="names" color="#943EE8" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="names" color="#943EE8" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" name="up" labelType="name" keyMode="9728">
               <elements/>
@@ -63,7 +63,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="hitAreaA" color="#4F80FF" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="hitAreaA" color="#4F80FF" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
@@ -79,11 +79,11 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="labelTF" color="#FF800A" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="labelTF" color="#FF800A" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
-                <DOMDynamicText name="labelTF" width="156" height="16" isSelectable="false">
+                <DOMDynamicText name="labelTF" width="156" height="16.95" isSelectable="false">
                   <matrix>
                     <Matrix tx="4" ty="4"/>
                   </matrix>
@@ -91,7 +91,7 @@
                     <DOMTextRun>
                       <characters>hotkeyNameTF</characters>
                       <textAttrs>
-                        <DOMTextAttrs aliasText="false" lineHeight="15.6" size="14" bitmapSize="280" face="$FieldFont*" fillColor="#666666"/>
+                        <DOMTextAttrs aliasText="false" lineHeight="16.95" size="14" bitmapSize="280" face="$FieldFont*" fillColor="#666666"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>
@@ -100,11 +100,11 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="valueTF" color="#FF4FFF" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="valueTF" color="#FF4FFF" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
-                <DOMDynamicText name="valueTF" width="50.45" height="15.6" isSelectable="false">
+                <DOMDynamicText name="valueTF" width="50.45" height="16.95" isSelectable="false">
                   <matrix>
                     <Matrix tx="217" ty="4"/>
                   </matrix>
@@ -112,7 +112,7 @@
                     <DOMTextRun>
                       <characters>F1</characters>
                       <textAttrs>
-                        <DOMTextAttrs alignment="center" aliasText="false" lineHeight="15.6" size="14" bitmapSize="280" face="$FieldFont*" fillColor="#666666"/>
+                        <DOMTextAttrs alignment="center" aliasText="false" lineHeight="16.95" size="14" bitmapSize="280" face="$FieldFont*" fillColor="#666666"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>
@@ -121,7 +121,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="acceptAnimMC" color="#9933CC" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="acceptAnimMC" color="#9933CC" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
@@ -137,7 +137,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="noKeyAnimMC" color="#4F80FF" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="noKeyAnimMC" color="#4F80FF" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
@@ -153,7 +153,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="modifiers" color="#009999" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="modifiers" color="#009999" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>
@@ -185,7 +185,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="pressed" color="#FF4F4F" locked="true" current="true" isSelected="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="pressed" color="#FF4F4F" locked="true" current="true" isSelected="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="20" keyMode="9728">
               <elements/>
@@ -249,7 +249,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="hovered" color="#669900" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="hovered" color="#669900" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" keyMode="9728">
               <elements/>
@@ -322,7 +322,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="normal" color="#808080" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="normal" color="#808080" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements>

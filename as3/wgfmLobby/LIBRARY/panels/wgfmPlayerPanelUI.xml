@@ -14,7 +14,7 @@
                     <DOMTextRun>
                       <characters>Wargaming.FM</characters>
                       <textAttrs>
-                        <DOMTextAttrs alignment="center" aliasText="false" autoKern="false" lineHeight="29.05" size="26" bitmapSize="520" face="$TitleFont*" fillColor="#EDEDD5"/>
+                        <DOMTextAttrs alignment="center" aliasText="false" autoKern="false" lineHeight="32.6" size="26" bitmapSize="520" face="$TitleFont*" fillColor="#EDEDD5"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>

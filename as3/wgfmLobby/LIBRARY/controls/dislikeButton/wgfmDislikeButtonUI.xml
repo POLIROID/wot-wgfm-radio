@@ -2,7 +2,7 @@
   <timeline>
     <DOMTimeline name="wgfmDislikeButtonUI">
       <layers>
-        <DOMLayer name="as" color="#FF4FFF" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="as" color="#FF4FFF" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="9" keyMode="9728">
               <elements/>
@@ -93,7 +93,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="names" color="#943EE8" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="names" color="#943EE8" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" name="up" labelType="name" keyMode="9728">
               <elements/>
@@ -133,7 +133,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="disabled" color="#009999" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="disabled" color="#009999" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="50" keyMode="9728">
               <elements/>
@@ -161,7 +161,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="pressed" color="#FF4FFF" locked="true" current="true" isSelected="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="pressed" color="#FF4FFF" locked="true" current="true" isSelected="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="20" keyMode="9728">
               <elements/>
@@ -222,7 +222,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="hover" color="#FF800A" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="hover" color="#FF800A" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" keyMode="9728">
               <elements/>
@@ -286,7 +286,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="normal" color="#9933CC" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="normal" color="#9933CC" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="60" keyMode="9728">
               <elements>

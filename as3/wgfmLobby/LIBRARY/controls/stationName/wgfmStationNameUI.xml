@@ -30,7 +30,7 @@
                     <DOMTextRun>
                       <characters>stationNameTF</characters>
                       <textAttrs>
-                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="16.8" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#EDEDD5"/>
+                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="18.85" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#EDEDD5"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>
@@ -51,7 +51,7 @@
                     <DOMTextRun>
                       <characters></characters>
                       <textAttrs>
-                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="16.8" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#FF0000"/>
+                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="18.85" size="15" bitmapSize="300" face="$TitleFont*" fillColor="#FF0000"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>

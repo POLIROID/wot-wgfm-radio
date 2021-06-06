@@ -2,7 +2,7 @@
   <timeline>
     <DOMTimeline name="wgfmGroupViewButtonUI" currentFrame="8">
       <layers>
-        <DOMLayer name="as" color="#FF4FFF" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="as" color="#FF4FFF" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="9" keyMode="9728">
               <elements/>
@@ -79,7 +79,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="names" color="#943EE8" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="names" color="#943EE8" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" name="show_up" labelType="name" keyMode="9728">
               <elements/>
@@ -113,7 +113,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="hitMask" color="#009999" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="hitMask" color="#009999" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="100" keyMode="9728">
               <elements>
@@ -129,7 +129,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="titleLabel" color="#9933CC" locked="true" current="true" isSelected="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="titleLabel" color="#9933CC" locked="true" current="true" isSelected="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" tweenType="motion" motionTweenSnap="true" keyMode="22017">
               <elements>
@@ -355,7 +355,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="pressed" color="#FF4F4F" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="pressed" color="#FF4F4F" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="20" keyMode="9728">
               <elements/>
@@ -443,7 +443,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="hover" color="#669900" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="hover" color="#669900" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" keyMode="9728">
               <elements/>
@@ -561,7 +561,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="normal" color="#808080" locked="true" autoNamed="false" heightLiteral="24">
+        <DOMLayer name="normal" color="#808080" locked="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" duration="10" keyMode="9728">
               <elements>

@@ -1,6 +1,6 @@
-<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" backgroundColor="#666666" width="1024" height="768" frameRate="50" currentTimeline="1" xflVersion="2.971" creatorInfo="Adobe Animate" platform="Windows" versionInfo="Saved by Animate Windows 20.0 build 19255" majorVersion="20" buildNumber="19255" rulerVisible="true" vanishingPoint3DX="512" vanishingPoint3DY="384" sharedLibraryURL="com.poliroid.gui.lobby.wgfm.components.HotkeysPanel" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F" fileGUID="383E24FB2F6F31448874374908C82905">
+<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" backgroundColor="#666666" width="1024" height="768" frameRate="50" currentTimeline="1" xflVersion="2.981" creatorInfo="Adobe Animate" platform="Windows" versionInfo="Saved by Animate Windows 21.0 build 41649" majorVersion="21" buildNumber="41649" rulerVisible="true" vanishingPoint3DX="512" vanishingPoint3DY="384" sharedLibraryURL="com.poliroid.gui.lobby.wgfm.components.HotkeysPanel" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F" fileGUID="383E24FB2F6F31448874374908C82905">
      <folders>
-          <DOMFolderItem name="controls" itemID="589e4b05-000008c6" isExpanded="true"/>
+          <DOMFolderItem name="controls" itemID="589e4b05-000008c6"/>
           <DOMFolderItem name="controls/dislikeButton" itemID="589e4b02-000008c5"/>
           <DOMFolderItem name="controls/dislikeButton/images" itemID="589e4ae3-000008bc" isExpanded="true"/>
           <DOMFolderItem name="controls/dislikeButton/symbols" itemID="589e4aec-000008c3"/>
@@ -23,15 +23,15 @@
           <DOMFolderItem name="controls/volumeButton" itemID="589e4b76-000008e4"/>
           <DOMFolderItem name="controls/volumeButton/images" itemID="589e4b5c-000008e1"/>
           <DOMFolderItem name="controls/volumeButton/symbols" itemID="589e4b60-000008e2"/>
-          <DOMFolderItem name="imports" itemID="589f0662-00000191" isExpanded="true"/>
+          <DOMFolderItem name="imports" itemID="589f0662-00000191"/>
           <DOMFolderItem name="panels" itemID="58bcc898-000006b6" isExpanded="true"/>
           <DOMFolderItem name="panels/hotkeysPanel" itemID="58be1366-000001b6" isExpanded="true"/>
           <DOMFolderItem name="panels/settingsPanel" itemID="58bce092-00000709" isExpanded="true"/>
           <DOMFolderItem name="panels/symbols" itemID="58bcc8c4-000006bf" isExpanded="true"/>
      </folders>
      <fonts>
-          <DOMFontItem name="imports/$TitleFont" itemID="5832c456-00003909" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageBaseClass="flash.text.Font" linkageClassName="$TitleFont" linkageURL="gfxfontlib.swf" font="ZurichCondBold-Regular" size="0" id="13" sourceLastImported="1361352889"/>
-          <DOMFontItem name="imports/$FieldFont" itemID="5832c456-00003907" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageBaseClass="flash.text.Font" linkageClassName="$FieldFont" linkageURL="gfxfontlib.swf" font="ZurichCond-Regular" size="0" id="14" sourceLastImported="1364979294"/>
+          <DOMFontItem name="imports/$TitleFont" itemID="5832c456-00003909" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageClassName="$TitleFont" linkageURL="gfxfontlib.swf" font="ZurichCondBold" size="0" id="13" sourceLastImported="1622962956"/>
+          <DOMFontItem name="imports/$FieldFont" itemID="5832c456-00003907" linkageImportForRS="true" linkageExportInFirstFrame="false" linkageClassName="$FieldFont" linkageURL="gfxfontlib.swf" font="ZurichCond" size="0" id="14" sourceLastImported="1364979294"/>
      </fonts>
      <media>
           <DOMBitmapItem name="controls/dislikeButton/images/dislike_blocked.png" itemID="5e80ed73-000000ac" sourceExternalFilepath="./LIBRARY/controls/dislikeButton/images/dislike_blocked.png" sourceLastImported="1596234640" externalFileSize="530" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="controls/dislikeButton/images/dislike_blocked.png" bitmapDataHRef="M 1 1585507626.dat" frameRight="500" frameBottom="500"/>
@@ -158,7 +158,7 @@
           <Include href="panels/settingsPanel/mask.xml" loadImmediate="false" itemID="58bceb61-00000743" lastModified="1488761161"/>
           <Include href="panels/settingsPanel/wgfmSettingsHolderUI.xml" itemID="58bce0a7-0000070c" lastModified="1538234053"/>
           <Include href="panels/settingsPanel/wgfmSettingsRendererUI.xml" itemID="58bce0d2-00000711" lastModified="1538234057"/>
-          <Include href="panels/symbols/backgound.xml" loadImmediate="false" itemID="58bb3a85-0000028a" lastModified="1488668365"/>
+          <Include href="panels/symbols/backgound.xml" loadImmediate="false" itemID="58bb3a85-0000028a" lastModified="1602600425"/>
           <Include href="panels/wgfmControlsPanelActiveUI.xml" itemID="58bb4c39-00000589" lastModified="1538234063"/>
           <Include href="panels/wgfmControlsPanelMainUI.xml" itemID="58bb4c42-0000058a" lastModified="1538234067"/>
           <Include href="panels/wgfmHotkeysPanelUI.xml" itemID="58be1226-000001b2" lastModified="1538234071"/>
@@ -170,7 +170,7 @@
      <timelines>
           <DOMTimeline name="Scene 1">
                <layers>
-                    <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true" heightLiteral="24">
+                    <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <elements>
