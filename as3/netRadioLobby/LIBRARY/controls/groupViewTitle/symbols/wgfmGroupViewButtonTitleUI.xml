@@ -1,0 +1,29 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="controls/groupViewTitle/symbols/NetRadioGroupViewButtonTitleUI" itemID="58bcb89a-00000693" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.controls.GroupViewButtonTitle" linkageClassName="NetRadioGroupViewButtonTitleUI" lastModified="1585507993">
+  <timeline>
+    <DOMTimeline name="NetRadioGroupViewButtonTitleUI">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMDynamicText name="titleTF" width="271" height="20" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="2" ty="2"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>titleTF</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" autoKern="false" lineHeight="16.95" size="14" bitmapSize="280" face="$FieldFont*" fillColor="#959586"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

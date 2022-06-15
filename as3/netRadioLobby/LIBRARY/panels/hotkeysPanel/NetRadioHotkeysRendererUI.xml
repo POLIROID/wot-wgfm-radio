@@ -1,0 +1,40 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/hotkeysPanel/NetRadioHotkeysRendererUI" itemID="58be141d-0000021a" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.components.hotkeys.HotkeysRenderer" linkageClassName="NetRadioHotkeysRendererUI" lastModified="1538234049" lastUniqueIdentifier="7">
+  <timeline>
+    <DOMTimeline name="NetRadioHotkeysRendererUI">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="imports/HyperLinkUI" name="defaultHotkeys">
+                  <matrix>
+                    <Matrix tx="25" ty="8.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="40" y="12"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="mask" color="#FF4FFF" outline="true" useOutlineView="true" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="panels/hotkeysPanel/mask">
+                  <matrix>
+                    <Matrix a="59.9996795654297" d="20"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="2.5" y="2.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

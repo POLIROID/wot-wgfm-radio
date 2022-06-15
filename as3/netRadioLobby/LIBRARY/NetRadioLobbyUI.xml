@@ -1,0 +1,37 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="NetRadioLobbyUI" itemID="58bb3d6c-00000292" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.Player" linkageClassName="NetRadioLobbyUI" lastModified="1653672267">
+  <timeline>
+    <DOMTimeline name="NetRadioLobbyUI">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="panels/NetRadioPlayerPanelUI" name="player" selected="true">
+                  <transformationPoint>
+                    <Point x="253.95" y="77.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4F80FF" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="panels/symbols/backgound" name="background">
+                  <matrix>
+                    <Matrix a="9.99998474121094" d="9.99992370605469"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="15" y="15"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
