@@ -2,6 +2,7 @@ import httplib
 import os
 import socket
 import threading
+import functools
 import types
 import urlparse
 
@@ -14,7 +15,7 @@ from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
 
 __all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers',
  'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields',
- 'readFromVFS', 'timestamp')
+ 'readFromVFS', 'timestamp', 'cacheResult')
 
 def override(holder, name, wrapper=None, setter=None):
 	"""Override methods, properties, functions, attributes
@@ -324,3 +325,15 @@ def fetchURL(url, callback, headers=None, timeout=30.0, method='GET', postData=N
 def timestamp():
 	from helpers import time_utils
 	return time_utils.getCurrentLocalServerTimestamp()
+
+def cacheResult(function):
+	memo = {}
+	@functools.wraps(function)
+	def wrapper(cache_key):
+		try:
+			return memo[cache_key]
+		except KeyError:
+			rv = function(cache_key)
+			memo[cache_key] = rv
+			return rv
+	return wrapper
