@@ -104,18 +104,18 @@ LANGUAGE_FILE_PATH = 'mods/ru.poliroid.netradio/text/%s.yml'
 
 DEFAULT_UI_LANGUAGE = 'ru'
 
-wgAppDataFolder = os.path.normpath(os.path.join(os.path.dirname(unicode(BigWorld.wg_getPreferencesFilePath(), 'utf-8',
-																		errors='ignore'))))
-SETTINGS_FILE = "%s\\netradio\\%s" % (wgAppDataFolder, 'setting.dat')
-CONFIG_CACHE_FILE = "%s\\netradio\\%s" % (wgAppDataFolder, 'config.dat')
-CACHE_FILE = "%s\\netradio\\%s" % (wgAppDataFolder, 'cache.dat')
+from external_strings_utils import unicode_from_utf8
+prefsFilePath = unicode_from_utf8(BigWorld.wg_getPreferencesFilePath())[1]
+SETTINGS_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'setting.dat'))
+CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'cache.dat'))
+CONFIG_CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'config.dat'))
 
-TEMP_DATA_FOLDER = '%s\\world_of_tanks\\%s' % (tempfile.gettempdir(), 'netradio')
+TEMP_DATA_FOLDER = os.path.normpath(os.path.join(tempfile.gettempdir(), 'world_of_tanks', 'netradio'))
 TEMP_DATA_FOLDER_VFS = 'mods/ru.poliroid.netradio/temp'
 
-CONSOLE_PLAYER = '%s\\win32\\net_radio_player.exe' % TEMP_DATA_FOLDER
+CONSOLE_PLAYER = os.path.normpath(os.path.join(TEMP_DATA_FOLDER, 'win32', 'net_radio_player.exe'))
 if platform.architecture()[0] == '64bit':
-	CONSOLE_PLAYER = '%s\\win64\\net_radio_player.exe' % TEMP_DATA_FOLDER
+	CONSOLE_PLAYER = os.path.normpath(os.path.join(TEMP_DATA_FOLDER, 'win64', 'net_radio_player.exe'))
 MAX_RESTART_ATTEMPS = 10
 
 # (r, g, b) color to AS3 Flash RGBHEX(uint)
@@ -125,5 +125,3 @@ DEFAULT_BATTLE_MESSAGE_LIFETIME = 4000
 SETTINGS_VERSION = 1
 
 UI_VOLUME_MULTIPLIYER = 10.0
-
-del wgAppDataFolder, os, Keys, tempfile, BigWorld, __version__
