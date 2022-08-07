@@ -1,0 +1,63 @@
+battle.player.volumeup: Volume up
+battle.player.volumedown: Volume down
+battle.player.stop: Radio player stopped
+battle.player.loading: Loading...
+battle.tips.cooldown: You can only broadcast in chat once every 5 minutes
+battle.tips.rating: Thank you. Your vote has been counted!
+battle.tips.control1: Enable NETradioWOT — [{playRadio}], disable — [{stopRadio}]
+battle.tips.control2: Switch NETradioWOT channels in battle using [{nextChannel}] and [{previosChannel}] keys
+battle.tips.control3: Adjust the volume of NETradioWOT with [{volumeDown}] (down), and [{volumeUp}] (up)
+battle.tips.control4: Tonight's show starts at 19:00 UTC. Turn on NETradioWOT
+battle.tips.control5: If you like a track, press Like [{likeCurrent}]. If you want to remove a song from the air, press Dislike [{dislikeCurrent}]
+battle.tips.control6: Adjust the volume in battle to suit you with the keys [{volumeDown}] and [{volumeUp}]
+battle.tips.control7: You can turn on a good mood in battle by pressing the [{playRadio}] key
+battle.broadcast.track1: Tanking with [%s] on NETradioWOT!
+battle.broadcast.track2: Lead to victory with [%s] on NETradioWOT!
+battle.broadcast.track3: Play [%s] on NETradioWOT!
+battle.broadcast.track4: I love it! Join now! [%s] on NETradioWOT!
+battle.broadcast.track5: Choose the music to win! [%s] on NETradioWOT!
+battle.broadcast.hello1: Thank you WGFM for great music!
+battle.broadcast.hello2: Great mood, thanks WGFM!
+battle.broadcast.hello3: NETradioWOT, you are awesome! Thank you!
+battle.broadcast.hello4: WGFM, let's get some more driving!
+battle.broadcast.hello5: Thank you, tank radio! WGFM forever!
+battle.broadcast.hello6: These are some funny hosts on NETradioWOT! Ahahahah
+error.workingDir: Error. Mod files not found!
+error.localRadioUrl: Error. Something is blocking the wgfm_player.exe file from accessing the Internet.
+error.cache: Error. Failed to get the broadcast link!
+error.wgfmUrl: Error. Radio NETradioWOT is not available!
+error.streamTags: Error. No connection to NETradioWOT. Broadcasting will be restored soon!
+modslist.name: NETradioWOT
+modslist.description: Listen to the radio NETradioWOT directly in the game client
+ui.waiting.grabbingData: Grabbing data
+ui.title: NETradioWOT
+ui.closeButton: CLOSE
+ui.settings.title: Other settings
+ui.settings.label.saveVolume: Save volume
+ui.settings.label.saveChannel: Save selected channel
+ui.settings.label.muteOnVoip: Use VOIP settings
+ui.settings.label.autoPlay: Auto-play on startup
+ui.settings.label.sendStatistic: Send statistics
+ui.settings.label.showBattleTips: Show battle tips
+ui.settings.label.muteOnMinimize: Mute when minimized
+ui.settings.tooltip.saveVolume: {HEADER}Save volume{/HEADER}{BODY}The volume will remain at the same level next time you turn it on{/BODY}
+ui.settings.tooltip.saveChannel: {HEADER}Save selected channel{/HEADER}{BODY}The last channel you selected will be played the next time{/BODY}
+ui.settings.tooltip.muteOnVoip: {HEADER}Use VOIP settings{/HEADER}{BODY}While using in-game communication, the radio will be muted. The level of muting depends on the "Ambience level during chat" setting in the game client{/BODY}
+ui.settings.tooltip.autoPlay: {HEADER}Auto-play on startup{/HEADER}{BODY}The radio will automatically turn on when the client starts{/BODY}
+ui.settings.tooltip.sendStatistic: {HEADER}Send statistics{/HEADER}{BODY}Help us improve the radio by sending us statistics about your usage!{/BODY}
+ui.settings.tooltip.showBattleTips: {HEADER}Show battle tips{/HEADER}{BODY}Show control keys at the start of battle{/BODY}
+ui.settings.tooltip.muteOnMinimize: {HEADER}Mute when minimized{/HEADER}{BODY}Mute radio when the game client is minimized{/BODY}
+ui.hotkeys.title: Hotkeys
+ui.hotkeys.defaultLink: Default settings
+ui.hotkeys.cmdDefault: Default
+ui.hotkeys.cmdClean: Clean
+ui.hotkeys.playRadio: Start playing
+ui.hotkeys.stopRadio: Stop the radio
+ui.hotkeys.volumeUp: Volume up
+ui.hotkeys.volumeDown: Volume down
+ui.hotkeys.nextChannel: Next channel
+ui.hotkeys.previosChannel: Previous channel
+ui.hotkeys.broadcastCurrent: Paste current song on the chat
+ui.hotkeys.likeCurrent: Like!
+ui.hotkeys.dislikeCurrent: Dislike
+ui.hotkeys.broadcastHello: I wish you a good game
