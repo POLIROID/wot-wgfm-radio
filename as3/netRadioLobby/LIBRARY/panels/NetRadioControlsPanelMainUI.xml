@@ -1,0 +1,53 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/NetRadioControlsPanelMainUI" itemID="58bb4c42-0000058a" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.components.ControlsPanelMain" linkageClassName="NetRadioControlsPanelMainUI" lastModified="1653721808" lastUniqueIdentifier="3">
+  <timeline>
+    <DOMTimeline name="NetRadioControlsPanelMainUI">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/volumeButton/NetRadioVolumeButtonUI" name="volumeButton">
+                  <matrix>
+                    <Matrix tx="27"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="controls/playButton/NetRadioPlayButtonUI" name="playButton">
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMComponentInstance libraryItemName="imports/Slider" name="volumeSlider" uniqueID="1">
+                  <matrix>
+                    <Matrix a="2.96235656738281" tx="57.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="40.05" y="10"/>
+                  </transformationPoint>
+                  <parametersAsXML><![CDATA[   <property id="enabled">
+      <Inspectable name="enabled" unlocalizedName="enabled" variable="enabled" category="" verbose="0" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="minimum">
+      <Inspectable name="minimum" unlocalizedName="minimum" variable="minimum" category="" verbose="0" defaultValue="0" type="Number"/>
+   </property>
+   <property id="maximum">
+      <Inspectable name="maximum" unlocalizedName="maximum" variable="maximum" category="" verbose="0" defaultValue="10" type="Number"/>
+   </property>
+   <property id="mouseEnabled">
+      <Inspectable name="mouseEnabled" unlocalizedName="mouseEnabled" variable="mouseEnabled" category="" verbose="0" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="width">
+      <Inspectable name="width" unlocalizedName="width" variable="width" category="" verbose="0" defaultValue="237" type="Number"/>
+   </property>
+]]></parametersAsXML>
+                </DOMComponentInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

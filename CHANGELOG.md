@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.6.0
+
+* rebrended to NETradioWOT
+
 ## v3.5.5
 
 * Flash fixed fonts in UI

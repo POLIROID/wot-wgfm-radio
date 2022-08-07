@@ -1,0 +1,250 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/NetRadioControlsPanelActiveUI" itemID="58bb4c39-00000589" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.components.ControlsPanelActive" linkageClassName="NetRadioControlsPanelActiveUI" lastModified="1653721149" lastUniqueIdentifier="10">
+  <timeline>
+    <DOMTimeline name="NetRadioControlsPanelActiveUI">
+      <layers>
+        <DOMLayer name="as" color="#FF800A" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="19" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <Actionscript>
+                <script><![CDATA[stop();
+]]></script>
+              </Actionscript>
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="20" duration="19" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="39" keyMode="9728">
+              <Actionscript>
+                <script><![CDATA[stop();
+]]></script>
+              </Actionscript>
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="names" color="#FF4FFF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="20" name="hide" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="20" duration="20" name="show" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="equalizerAnimation" color="#4F80FF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/equalizerAnimation/NetRadioEqualizerAnimationUI" name="equalizerAnimation">
+                  <matrix>
+                    <Matrix tx="1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/equalizerAnimation/NetRadioEqualizerAnimationUI" name="equalizerAnimation" centerPoint3DX="13.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="1" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/equalizerAnimation/NetRadioEqualizerAnimationUI" name="equalizerAnimation" centerPoint3DX="13.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="1" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="39" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/equalizerAnimation/NetRadioEqualizerAnimationUI" name="equalizerAnimation" centerPoint3DX="13.5" centerPoint3DY="12.5">
+                  <matrix>
+                    <Matrix tx="1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="likeButton" color="#808080" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/likeButton/NetRadioLikeButtonUI" name="likeButton">
+                  <matrix>
+                    <Matrix tx="246"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/likeButton/NetRadioLikeButtonUI" name="likeButton" centerPoint3DX="258.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="246" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/likeButton/NetRadioLikeButtonUI" name="likeButton" centerPoint3DX="258.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="246" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="39" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/likeButton/NetRadioLikeButtonUI" name="likeButton" centerPoint3DX="258.5" centerPoint3DY="12.5">
+                  <matrix>
+                    <Matrix tx="246"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="dislikeButton" color="#009999" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/dislikeButton/NetRadioDislikeButtonUI" name="dislikeButton">
+                  <matrix>
+                    <Matrix tx="273"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/dislikeButton/NetRadioDislikeButtonUI" name="dislikeButton" centerPoint3DX="285.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="273" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/dislikeButton/NetRadioDislikeButtonUI" name="dislikeButton" centerPoint3DX="285.5" centerPoint3DY="-15.5">
+                  <matrix>
+                    <Matrix tx="273" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="39" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/dislikeButton/NetRadioDislikeButtonUI" name="dislikeButton" centerPoint3DX="285.5" centerPoint3DY="12.5">
+                  <matrix>
+                    <Matrix tx="273"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="12.5" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="stationName" color="#9933CC" current="true" isSelected="true" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/stationName/NetRadioStationNameUI" name="stationName">
+                  <matrix>
+                    <Matrix tx="30"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="111" y="13.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/stationName/NetRadioStationNameUI" name="stationName" centerPoint3DX="141" centerPoint3DY="-14.5">
+                  <matrix>
+                    <Matrix tx="30" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="111" y="13.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" duration="19" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/stationName/NetRadioStationNameUI" name="stationName" centerPoint3DX="141" centerPoint3DY="-14.5">
+                  <matrix>
+                    <Matrix tx="30" ty="-28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="111" y="13.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="39" tweenType="motion" motionTweenSnap="true" keyMode="22017">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/stationName/NetRadioStationNameUI" name="stationName" centerPoint3DX="141" centerPoint3DY="13.5">
+                  <matrix>
+                    <Matrix tx="30"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="111" y="13.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

@@ -1,0 +1,63 @@
+battle.player.volumeup: Громкость увеличена
+battle.player.volumedown: Громкость уменьшена
+battle.player.stop: Радио-плеер остановлен
+battle.player.loading: Загрузка...
+battle.tips.cooldown: Вещать в чат можно не чаще чем раз в 5 минут
+battle.tips.rating: Спасибо. Ваш голос учтён!
+battle.tips.control1: Включить NETradioWOT - [{playRadio}], выключить - [{stopRadio}]
+battle.tips.control2: Переключайте каналы NETradioWOT в бою клавишами [{nextChannel}] и [{previosChannel}]
+battle.tips.control3: Регулируйте громкость NETradioWOT клавишами [{volumeDown}] - тише, и [{volumeUp}] - громче
+battle.tips.control4: Вечернее шоу начинается в 19:00 МСК. Включайте NETradioWOT
+battle.tips.control5: Нравится трек - жми лайк [{likeCurrent}] хочешь убрать из эфира песню - жми дизлайк [{dislikeCurrent}]
+battle.tips.control6: Настраивайте удобную для вас громкость в бою клавишами [{volumeDown}] и [{volumeUp}]
+battle.tips.control7: Включить хорошее настроение в бою можно клавишей [{playRadio}]
+battle.broadcast.track1: Танкуем под [%s] на NETradioWOT!
+battle.broadcast.track2: Тащим до победы вместе с [%s] на NETradioWOT!
+battle.broadcast.track3: Включай [%s] на NETradioWOT!
+battle.broadcast.track4: Мне нравится! Присоединяйся! [%s] на NETradioWOT!
+battle.broadcast.track5: Выбери музыку для победы! [%s] на NETradioWOT!
+battle.broadcast.hello1: Спасибо NETradioWOT за хорошую музыку!
+battle.broadcast.hello2: Отличное настроение, спасибо NETradioWOT!
+battle.broadcast.hello3: NETradioWOT - вы крутые! Спасибо!
+battle.broadcast.hello4: NETradioWOT, давай еще больше драйва!
+battle.broadcast.hello5: Держи благодарочку, танковое радио! NETradioWOT форэва!
+battle.broadcast.hello6: Вот это ржачные ведущие на NETradioWOT! Ахахахах
+error.workingDir: Ошибка. Файлы мода не найдены!
+error.localRadioUrl: Ошибка. Чтото блокирует файлу net_radio_player.exe доступ к сети интернет.
+error.cache: Ошибка. Не удалось получить ссылку на вещание!
+error.netRadioUrl: Ошибка. Радио NETradioWOT недоступно!
+error.streamTags: Ошибка. Нет соединения с NETradioWOT. Вещание будет восстановлено в ближайшее время!
+modslist.name: NETradioWOT
+modslist.description: Слушайте радио NETradioWOT прямо в клиенте игры
+ui.waiting.grabbingData: Получение данных
+ui.title: NETradioWOT
+ui.closeButton: ЗАКРЫТЬ
+ui.settings.title: Другие настройки
+ui.settings.label.saveVolume: Запомнить громкость
+ui.settings.label.saveChannel: Запомнить выбранный канал
+ui.settings.label.muteOnVoip: Использовать настройки VOIP
+ui.settings.label.autoPlay: Авто-воспроизведение при старте
+ui.settings.label.sendStatistic: Отправлять статистику
+ui.settings.label.showBattleTips: Отображать подсказки в бою
+ui.settings.label.muteOnMinimize: Приглушать при сворачивании
+ui.settings.tooltip.saveVolume: {HEADER}Запомнить громкость{/HEADER}{BODY}При следующем включении громкость останется на том же уровне{/BODY}
+ui.settings.tooltip.saveChannel: {HEADER}Запомнить выбранный канал{/HEADER}{BODY}При следующем включении звучать будет последний выбранный вами канал{/BODY}
+ui.settings.tooltip.muteOnVoip: {HEADER}Использовать настройки VOIP{/HEADER}{BODY}При использовании внутриигровой связи радио будет приглушаться. Уровень приглушения зависит от настройки "Общий уровень громкости окружения во время разговора" в игровом клиенте{/BODY}
+ui.settings.tooltip.autoPlay: {HEADER}Авто-воспроизведение при старте{/HEADER}{BODY}При запуске клиента радио будет автоматически включаться{/BODY}
+ui.settings.tooltip.sendStatistic: {HEADER}Отправлять статистику{/HEADER}{BODY}Помогите нам улучшить радио, отправив нам статистику его использования вами!{/BODY}
+ui.settings.tooltip.showBattleTips: {HEADER}Отображать подсказки в бою{/HEADER}{BODY}Показывать клавиши управления в начале боя{/BODY}
+ui.settings.tooltip.muteOnMinimize: {HEADER}Приглушать при сворачивании{/HEADER}{BODY}Приглушать радио при сворачивании клиента игры{/BODY}
+ui.hotkeys.title: Горячие клавиши
+ui.hotkeys.defaultLink: Стандартные настройки
+ui.hotkeys.cmdDefault: По умолчанию
+ui.hotkeys.cmdClean: Очистить
+ui.hotkeys.playRadio: Начать воспроизведение
+ui.hotkeys.stopRadio: Остановить радио
+ui.hotkeys.volumeUp: Увеличить громкость
+ui.hotkeys.volumeDown: Уменьшить громкость
+ui.hotkeys.nextChannel: Следующий канал
+ui.hotkeys.previosChannel: Предыдущий канал
+ui.hotkeys.broadcastCurrent: Вещание песни в чат
+ui.hotkeys.likeCurrent: Мне нравится!
+ui.hotkeys.dislikeCurrent: Мне не нравится
+ui.hotkeys.broadcastHello: Пожелать хорошей игры

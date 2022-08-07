@@ -1,0 +1,29 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/NetRadioSettingsPanelUI" itemID="58bcc82a-00000695" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.components.SettingsPanel" linkageClassName="NetRadioSettingsPanelUI" lastModified="1538234080">
+  <timeline>
+    <DOMTimeline name="NetRadioSettingsPanelUI">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/groupViewTitle/NetRadioGroupViewButtonUI" name="header">
+                  <transformationPoint>
+                    <Point x="150" y="12.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="panels/settingsPanel/NetRadioSettingsHolderUI" name="body">
+                  <matrix>
+                    <Matrix ty="20"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="150" y="75"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

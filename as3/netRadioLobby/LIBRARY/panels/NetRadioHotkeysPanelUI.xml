@@ -1,0 +1,29 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="panels/NetRadioHotkeysPanelUI" itemID="58be1226-000001b2" linkageExportForAS="true" linkageBaseClass="poliroid.gui.lobby.net_radio.components.HotkeysPanel" linkageClassName="NetRadioHotkeysPanelUI" lastModified="1538234071">
+  <timeline>
+    <DOMTimeline name="NetRadioHotkeysPanelUI">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="controls/groupViewTitle/NetRadioGroupViewButtonUI" name="header">
+                  <transformationPoint>
+                    <Point x="150" y="13.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="panels/hotkeysPanel/NetRadioHotkeysHolderUI" name="body" selected="true">
+                  <matrix>
+                    <Matrix ty="25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="150" y="75"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

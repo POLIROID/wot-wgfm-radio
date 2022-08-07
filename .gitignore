@@ -23,3 +23,5 @@
 
 # Builder config file
 build.json
+
+*.dat
