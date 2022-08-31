@@ -15,7 +15,7 @@ from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
 
 __all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers',
  'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields',
- 'readFromVFS', 'timestamp', 'cacheResult')
+ 'readFromVFS', 'timestamp', 'cacheResult', 'fixed_environ')
 
 def override(holder, name, wrapper=None, setter=None):
 	"""Override methods, properties, functions, attributes
@@ -337,3 +337,13 @@ def cacheResult(function):
 			memo[cache_key] = rv
 			return rv
 	return wrapper
+
+def fixed_environ():
+	fixe_env = {}
+	for (key, val) in os.environ.items():
+		try:
+			key, val = str(key), str(val)
+			fixe_env[key] = val
+		except:
+			pass
+	return fixe_env

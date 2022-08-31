@@ -10,7 +10,7 @@ from gui.netradio.controllers import g_controllers
 from gui.netradio.data import g_dataHolder
 from gui.netradio.events import g_eventsManager
 from gui.netradio.lang import l10n
-from gui.netradio.utils import fetchURL
+from gui.netradio.utils import fetchURL, fixed_environ
 from gui.netradio._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, \
 								TAGS_UPDATE_INTERVAL, USER_AGENT, MAX_RESTART_ATTEMPS
 
@@ -150,7 +150,7 @@ class PlayerController(object):
 
 			# starting player process
 			self.__playerProcess = subprocess.Popen(data, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-													stderr=subprocess.PIPE, shell=True)
+													stderr=subprocess.PIPE, shell=True, env=fixed_environ())
 
 			# initing player
 			self.__executePlayerCommand(PLAYER_COMMANDS.INIT)
