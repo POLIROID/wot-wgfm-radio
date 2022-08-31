@@ -41,7 +41,7 @@ class PlayerController(object):
 		return self.__errorLabel
 
 	@errorLabel.setter
-	def set_errorLebel(self, errorLabel):
+	def errorLabel(self, errorLabel):
 		if not self.__errorLabel:
 			self.__status = PLAYER_STATUS.ERROR
 			self.__errorLabel = errorLabel
