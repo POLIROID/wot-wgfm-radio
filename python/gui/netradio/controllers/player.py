@@ -107,7 +107,10 @@ class PlayerController(object):
 		if g_dataHolder.settings.get('saveChannel', True):
 			g_dataHolder.settings['lastChannel'] = channelNum
 
-		channel = g_controllers.channel.channels[channelNum]
+		try:
+			channel = g_controllers.channel.channels[channelNum]
+		except IndexError:
+			return
 
 		if not channel['available']:
 			return
