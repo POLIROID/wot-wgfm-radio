@@ -106,9 +106,9 @@ DEFAULT_UI_LANGUAGE = 'ru'
 
 from external_strings_utils import unicode_from_utf8
 prefsFilePath = unicode_from_utf8(BigWorld.wg_getPreferencesFilePath())[1]
-SETTINGS_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'setting.dat'))
-CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'cache.dat'))
-CONFIG_CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'netradio', 'config.dat'))
+SETTINGS_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'setting.dat'))
+CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'cache.dat'))
+CONFIG_CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'config.dat'))
 
 TEMP_DATA_FOLDER = os.path.normpath(os.path.join(tempfile.gettempdir(), 'world_of_tanks', 'netradio'))
 TEMP_DATA_FOLDER_VFS = 'mods/ru.poliroid.netradio/temp'
