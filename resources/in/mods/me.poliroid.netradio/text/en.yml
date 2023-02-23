@@ -16,16 +16,15 @@ battle.broadcast.track2: Lead to victory with [%s] on NETradioWOT!
 battle.broadcast.track3: Play [%s] on NETradioWOT!
 battle.broadcast.track4: I love it! Join now! [%s] on NETradioWOT!
 battle.broadcast.track5: Choose the music to win! [%s] on NETradioWOT!
-battle.broadcast.hello1: Thank you WGFM for great music!
-battle.broadcast.hello2: Great mood, thanks WGFM!
+battle.broadcast.hello1: Thank you NETradioWOT for great music!
+battle.broadcast.hello2: Great mood, thanks NETradioWOT!
 battle.broadcast.hello3: NETradioWOT, you are awesome! Thank you!
-battle.broadcast.hello4: WGFM, let's get some more driving!
-battle.broadcast.hello5: Thank you, tank radio! WGFM forever!
+battle.broadcast.hello4: NETradioWOT, let's get some more driving!
+battle.broadcast.hello5: Thank you, tank radio! NETradioWOT forever!
 battle.broadcast.hello6: These are some funny hosts on NETradioWOT! Ahahahah
 error.workingDir: Error. Mod files not found!
-error.localRadioUrl: Error. Something is blocking the wgfm_player.exe file from accessing the Internet.
+error.localRadioUrl: Error. Something is blocking the net_radio_player.exe file from accessing the Internet.
 error.cache: Error. Failed to get the broadcast link!
-error.wgfmUrl: Error. Radio NETradioWOT is not available!
 error.streamTags: Error. No connection to NETradioWOT. Broadcasting will be restored soon!
 modslist.name: NETradioWOT
 modslist.description: Listen to the radio NETradioWOT directly in the game client

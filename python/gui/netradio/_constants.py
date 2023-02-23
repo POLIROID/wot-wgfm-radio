@@ -10,7 +10,7 @@ from . import __version__
 
 DEFAULT_CONFIG = {
 	"version": 1,
-	"ratingUrl": "http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi",
+	"ratingUrl": "http://cfg.netradio.by/cgi-bin/ratingwot.cgi",
 	"channels": [
 		{
 			"displayName": "netradio.by/wot",
@@ -52,9 +52,9 @@ DEFAULT_CACHE = {}
 class CONFIG:
 	SAVE_SETTINGS = True
 	SAVE_CACHE = True
-	CONFIG_URL = 'http://cfg.wargaming.fm/v1'
+	CONFIG_URL = 'http://cfg.netradio.by/v1'
 	EXPIRE_TIME = 6
-	RATING_URL = 'http://cfg.wargaming.fm/cgi-bin/ratingwot.cgi'
+	RATING_URL = 'http://cfg.netradio.by/cgi-bin/ratingwot.cgi'
 	RATING_GATEWAY = '{url}?time={time}&{data}'
 
 class PLAYER_STATUS:
@@ -86,7 +86,6 @@ class HOTKEYS_COMMANDS:
 
 BROADCAST_INTERVAL = 300
 TAGS_UPDATE_INTERVAL = 20
-ANNOUNCMENTS_UPDATE_INTERVAL = 15 * 60
 VOLUME_STEP = 0.1
 VOLUME_STEP_LOW = 0.05
 VOLUME_STEP_VERY_LOW = 0.02
@@ -101,7 +100,7 @@ LANGUAGE_CODES = ('ru', 'uk', 'be', 'en', 'de', 'et', 'bg', 'da', 'fi', 'fil', '
 	'it', 'ja', 'ms', 'nl', 'no', 'pl', 'pt', 'pt_br', 'ro', 'sr', 'vi', 'zh_sg', 'zh_tw', 'hr', 'th',
 	'lv', 'lt', 'cs', 'es_ar', 'tr', 'zh_cn', 'es', 'kk', 'sv', )
 
-LANGUAGE_FILE_MASK = 'mods/ru.poliroid.netradio/text/%s.yml'
+LANGUAGE_FILE_MASK = 'mods/me.poliroid.netradio/text/%s.yml'
 
 DEFAULT_UI_LANGUAGE = 'ru'
 
@@ -111,7 +110,7 @@ CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods
 CONFIG_CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'config.dat'))
 
 TEMP_DATA_FOLDER = os.path.normpath(os.path.join(tempfile.gettempdir(), 'world_of_tanks', 'netradio'))
-TEMP_DATA_FOLDER_VFS = 'mods/ru.poliroid.netradio/temp'
+TEMP_DATA_FOLDER_VFS = 'mods/me.poliroid.netradio/temp'
 
 CONSOLE_PLAYER = os.path.normpath(os.path.join(TEMP_DATA_FOLDER, 'win32', 'net_radio_player.exe'))
 if platform.architecture()[0] == '64bit':
