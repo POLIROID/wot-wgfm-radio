@@ -4,7 +4,7 @@ import threading
 from xml.dom import minidom
 
 import BigWorld
-from adisp import async, process
+from adisp import adisp_async, adisp_process
 from debug_utils import LOG_DEBUG, LOG_WARNING, LOG_ERROR
 
 from ..controllers import g_controllers
@@ -207,7 +207,7 @@ class PlayerController(object):
 		self.__tagsCallback = BigWorld.callback(TAGS_UPDATE_INTERVAL, self.__updateRadioTags)
 		self.__grabChannelTag()
 
-	@process
+	@adisp_process
 	def __grabChannelTag(self):
 		tagUrl = g_controllers.channel.channels[self.channelIdx].get('tags_url', None)
 		if not tagUrl:
@@ -217,8 +217,8 @@ class PlayerController(object):
 			self.__tag = parsedTag
 			g_eventsManager.onRadioTagChanged()
 
-	@async
-	@process
+	@adisp_async
+	@adisp_process
 	def __parseChannelTag(self, url, callback=None):
 		LOG_DEBUG('parseChannelTag', url, self.__tag)
 		status, data = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,

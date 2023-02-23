@@ -3,7 +3,7 @@ import json
 import os
 import time
 import zlib
-from adisp import async, process
+from adisp import adisp_async, adisp_process
 
 from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
@@ -55,8 +55,8 @@ class DataHolder(object):
 			LOG_DEBUG('No cache file')
 			self.saveCache()
 
-	@async
-	@process
+	@adisp_async
+	@adisp_process
 	def initConfigOnStart(self, callback):
 		parsedFromNet = yield self.__parseConfig()
 		if parsedFromNet:
@@ -65,8 +65,8 @@ class DataHolder(object):
 			self.loadConfigCache()
 		callback(True)
 
-	@async
-	@process
+	@adisp_async
+	@adisp_process
 	def __parseConfig(self, callback=None):
 		result = True
 		status, data = yield lambda callback: fetchURL(url=CONFIG.CONFIG_URL, callback=callback, timeout=5.0,

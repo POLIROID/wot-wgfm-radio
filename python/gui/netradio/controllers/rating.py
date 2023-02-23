@@ -1,7 +1,7 @@
 import time
 from urllib import urlencode
 
-from adisp import async, process
+from adisp import adisp_async, adisp_process
 from debug_utils import LOG_DEBUG
 
 from ..controllers import g_controllers
@@ -77,7 +77,7 @@ class RatingController(object):
 		if player.tag != savedTag or force:
 			self.__processRatingData(userLiked, channelIdx if force else player.channelIdx, savedTag)
 
-	@process
+	@adisp_process
 	def __processRatingData(self, userLiked, channelIdx, savedTag):
 
 		accountID = userDBID()
@@ -99,8 +99,8 @@ class RatingController(object):
 		if successful:
 			del self.__votes[channelIdx]
 
-	@async
-	@process
+	@adisp_async
+	@adisp_process
 	def __sendRatingData(self, url, callback=None):
 		LOG_DEBUG('sendRatingData', url, self.__votes)
 		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,

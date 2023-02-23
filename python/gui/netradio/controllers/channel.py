@@ -1,4 +1,4 @@
-from adisp import async, process
+from adisp import adisp_async, adisp_process
 from debug_utils import LOG_DEBUG
 
 from ..data import g_dataHolder
@@ -39,7 +39,7 @@ class ChannelController(object):
 			self.__initStarted = True
 			self.__channelsStatusGrabber()
 
-	@process
+	@adisp_process
 	def __channelsStatusGrabber(self):
 		yield g_dataHolder.initConfigOnStart()
 		channels = g_dataHolder.config.get('channels', [])
@@ -53,8 +53,8 @@ class ChannelController(object):
 		self.__inited = True
 		g_eventsManager.onChannelsUpdated()
 
-	@async
-	@process
+	@adisp_async
+	@adisp_process
 	def __channelStatus(self, url, callback=None):
 		LOG_DEBUG('channelStatus', url, self.__status)
 		status, _ = yield lambda callback: fetchURL(url=url, callback=callback, timeout=5.0,
