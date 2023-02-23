@@ -1,8 +1,8 @@
 import BigWorld
 import SoundGroups
-from gui.netradio.data import g_dataHolder
-from gui.netradio.events import g_eventsManager
-from gui.netradio._constants import VOLUME_STEP, VOLUME_STEP_LOW, VOLUME_STEP_VERY_LOW
+from ..data import g_dataHolder
+from ..events import g_eventsManager
+from .._constants import VOLUME_STEP, VOLUME_STEP_LOW, VOLUME_STEP_VERY_LOW
 
 __all__ = ('VolumeController', )
 
@@ -20,7 +20,6 @@ class VolumeController(object):
 		self.__volume = 1.0
 		self.__volumeVOIP = None
 		self.__voipActive = False
-		self.__isAudioPlaying = False
 		self.__isWindowVisible = True
 		self.__mutedCallbackID = None
 		self.__muted = False

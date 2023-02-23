@@ -1,19 +1,21 @@
 import random
 
 import BigWorld
+
 from debug_utils import LOG_DEBUG, LOG_ERROR, LOG_CURRENT_EXCEPTION
 from gui.shared.personality import ServicesLocator
 from gui.app_loader.settings import APP_NAME_SPACE
 from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
-from gui.netradio.events import g_eventsManager
-from gui.netradio.lang import l10n
-from gui.netradio.utils import getChannelName, parseKeyValueFull
-from gui.netradio._constants import (PLAYER_STATUS, BROADCAST_INTERVAL, BATTLE_INJECTOR_UI,
-									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME)
-from gui.netradio.controllers import g_controllers
-from gui.netradio.data import g_dataHolder
 from messenger.m_constants import PROTO_TYPE
 from messenger.proto import proto_getter
+
+from ..events import g_eventsManager
+from ..lang import l10n
+from ..utils import getChannelName, parseKeyValueFull
+from .._constants import (PLAYER_STATUS, BROADCAST_INTERVAL, BATTLE_INJECTOR_UI,
+									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME)
+from ..controllers import g_controllers
+from ..data import g_dataHolder
 
 __all__ = ('BattleController', )
 

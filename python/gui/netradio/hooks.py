@@ -1,15 +1,17 @@
 ﻿import game
+
 from debug_utils import LOG_ERROR
 from gui.app_loader.settings import APP_NAME_SPACE
 from gui.shared.personality import ServicesLocator
 from gui.Scaleform.framework.managers.loaders import SFViewLoadParams
-from gui.netradio.data import g_dataHolder
-from gui.netradio.events import g_eventsManager
-from gui.netradio.lang import l10n
-from gui.netradio.utils import override
-from gui.netradio._constants import LOBBY_WINDOW_UI
 from skeletons.gui.app_loader import GuiGlobalSpaceID
 from VOIP.VOIPManager import VOIPManager
+
+from .data import g_dataHolder
+from .events import g_eventsManager
+from .lang import l10n
+from .utils import override
+from ._constants import LOBBY_WINDOW_UI
 
 __all__ = ()
 
@@ -24,8 +26,8 @@ def showPlayer():
 # Data Collect
 g_dataCollector = None
 try:
-	from gui.netradio import __version__ #NOSONAR
-	from gui.netradio.data_collector import g_dataCollector #NOSONAR
+	from . import __version__ #NOSONAR
+	from .data_collector import g_dataCollector #NOSONAR
 except ImportError:
 	LOG_ERROR('datacollector broken')
 if g_dataCollector and g_dataHolder.settings.get("sendStatistic", True):
@@ -72,7 +74,7 @@ def hooked_restoreMasterVolume(baseMethod, baseObject):
 # ingame keyHandler hook
 @override(game, 'handleKeyEvent')
 def handleKeyEvent(baseMethod, event):
-	from gui.netradio.controllers import g_controllers
+	from .controllers import g_controllers
 	# handling forced keylistners
 	for keyHandler in g_controllers.hotkey.forced:
 		if keyHandler(event):

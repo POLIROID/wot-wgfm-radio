@@ -5,7 +5,8 @@ import platform
 import BigWorld
 import Keys
 
-from gui.netradio import __version__
+from external_strings_utils import unicode_from_utf8
+from . import __version__
 
 DEFAULT_CONFIG = {
 	"version": 1,
@@ -104,7 +105,6 @@ LANGUAGE_FILE_MASK = 'mods/ru.poliroid.netradio/text/%s.yml'
 
 DEFAULT_UI_LANGUAGE = 'ru'
 
-from external_strings_utils import unicode_from_utf8
 prefsFilePath = unicode_from_utf8(BigWorld.wg_getPreferencesFilePath())[1]
 SETTINGS_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'setting.dat'))
 CACHE_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'cache.dat'))

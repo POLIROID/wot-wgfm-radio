@@ -1,2 +1,2 @@
 
-from gui.netradio import *
+from ..netradio import *

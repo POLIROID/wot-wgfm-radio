@@ -8,11 +8,11 @@ __maintainer__ = "Andrii Andrushchyshyn"
 __email__ = "contact@poliroid.me"
 __status__ = "Production"
 
-from gui.netradio.data import *
-from gui.netradio.hooks import *
-from gui.netradio.events import g_eventsManager
-from gui.netradio.controllers import g_controllers
-from gui.netradio.views import *
+from .data import *
+from .hooks import *
+from .events import g_eventsManager
+from .controllers import g_controllers
+from .views import *
 
 __all__ = ('init', 'fini')
 

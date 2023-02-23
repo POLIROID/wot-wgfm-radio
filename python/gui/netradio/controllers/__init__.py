@@ -1,4 +1,4 @@
-﻿from gui.netradio.events import g_eventsManager
+﻿from ..events import g_eventsManager
 
 __all__ = ('g_controllers', )
 
@@ -13,12 +13,12 @@ class ControllersHolder():
 
 	def init(self):
 
-		from gui.netradio.controllers.battle import BattleController
-		from gui.netradio.controllers.channel import ChannelController
-		from gui.netradio.controllers.hotkey import HotkeyController
-		from gui.netradio.controllers.player import PlayerController
-		from gui.netradio.controllers.rating import RatingController
-		from gui.netradio.controllers.volume import VolumeController
+		from .battle import BattleController
+		from .channel import ChannelController
+		from .hotkey import HotkeyController
+		from .player import PlayerController
+		from .rating import RatingController
+		from .volume import VolumeController
 
 		self.battle = BattleController()
 		self.channel = ChannelController()

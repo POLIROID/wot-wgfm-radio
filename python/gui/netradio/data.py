@@ -7,9 +7,9 @@ from adisp import async, process
 
 from debug_utils import LOG_ERROR, LOG_DEBUG, LOG_CURRENT_EXCEPTION
 
-from gui.netradio.events import g_eventsManager
-from gui.netradio.utils import byteify, fetchURL, unpackTempFiles
-from gui.netradio._constants import (CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE,
+from .events import g_eventsManager
+from .utils import byteify, fetchURL, unpackTempFiles
+from ._constants import (CONFIG, DEFAULT_CONFIG, DEFAULT_SETTINGS, DEFAULT_CACHE, SETTINGS_FILE,
 	CONFIG_CACHE_FILE, CACHE_FILE, TEMP_DATA_FOLDER, TEMP_DATA_FOLDER_VFS, USER_AGENT, SETTINGS_VERSION)
 
 __all__ = ('g_dataHolder', )

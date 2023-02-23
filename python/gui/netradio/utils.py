@@ -50,15 +50,15 @@ def byteify(data):
 
 def getChannelName():
 	"""using for format and cut WGFM on current channel name"""
-	from gui.netradio.controllers import g_controllers
+	from .controllers import g_controllers
 	channelName = g_controllers.player.channelName
 	formattedName = channelName.replace('WGFM ', '').replace('WGFM', '').replace(' ', '')
 	return formattedName
 
 def getCurrentChannelIdx():
-	from gui.netradio.controllers import g_controllers
-	from gui.netradio.data import g_dataHolder
-	from gui.netradio._constants import PLAYER_STATUS
+	from .controllers import g_controllers
+	from .data import g_dataHolder
+	from ._constants import PLAYER_STATUS
 
 	result = 0
 	player = g_controllers.player
@@ -120,7 +120,7 @@ def parseKeyModifiers(keyset):
 	return alt, ctrl, shift
 
 def previosChannel():
-	from gui.netradio.controllers import g_controllers
+	from .controllers import g_controllers
 	result = -1
 	if not g_controllers.channel.inited:
 		g_controllers.channel.grabChannels()
@@ -132,7 +132,7 @@ def previosChannel():
 	return result
 
 def nextChannel():
-	from gui.netradio.controllers import g_controllers
+	from .controllers import g_controllers
 	result = -1
 	if not g_controllers.channel.inited:
 		g_controllers.channel.grabChannels()

@@ -7,12 +7,12 @@ from gui.Scaleform.framework.entities.abstract.AbstractViewMeta import AbstractV
 from gui.Scaleform.framework.entities.View import View
 from gui.shared.view_helpers.blur_manager import CachedBlur
 from frameworks.wulf import WindowLayer
-from gui.netradio.events import g_eventsManager
-from gui.netradio.controllers import g_controllers
-from gui.netradio.data import g_dataHolder
-from gui.netradio.utils import getCurrentChannelIdx, parseKeyValue, parseKeyModifiers
-from gui.netradio.lang import l10n
-from gui.netradio._constants import PLAYER_STATUS, UI_VOLUME_MULTIPLIYER
+from ..events import g_eventsManager
+from ..controllers import g_controllers
+from ..data import g_dataHolder
+from ..utils import getCurrentChannelIdx, parseKeyValue, parseKeyModifiers
+from ..lang import l10n
+from .._constants import PLAYER_STATUS, UI_VOLUME_MULTIPLIYER
 
 __all__ = ('NetRadioLobbyView', )
 

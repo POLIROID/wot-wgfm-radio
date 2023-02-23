@@ -1,15 +1,17 @@
 import BigWorld
 import Keys
+
 from debug_utils import LOG_ERROR
-from gui.netradio.controllers import g_controllers
-from gui.netradio.data import g_dataHolder
-from gui.netradio.events import g_eventsManager
-from gui.netradio.lang import l10n
-from gui.netradio.utils import nextChannel, previosChannel, checkKeySet
-from gui.netradio._constants import HOTKEYS_COMMANDS, DEFAULT_BINDINGS, PLAYER_STATUS
 from gui.Scaleform.framework.managers import context_menu
 from gui.Scaleform.framework.managers.context_menu import AbstractContextMenuHandler
 from messenger import MessengerEntry
+
+from ..controllers import g_controllers
+from ..data import g_dataHolder
+from ..events import g_eventsManager
+from ..lang import l10n
+from ..utils import nextChannel, previosChannel, checkKeySet
+from .._constants import HOTKEYS_COMMANDS, DEFAULT_BINDINGS, PLAYER_STATUS
 
 __all__ = ('HotkeyController', )
 

@@ -2,9 +2,9 @@ from gui.Scaleform.framework import g_entitiesFactories, ViewSettings, ScopeTemp
 from gui.Scaleform.framework.entities.View import View
 from frameworks.wulf import WindowLayer
 
-from gui.netradio._constants import BATTLE_INJECTOR_UI, BATTLE_COMPONENT_UI, LOBBY_WINDOW_UI
-from gui.netradio.views.battleView import NetRadioBattleView
-from gui.netradio.views.lobbyView import NetRadioLobbyView
+from .._constants import BATTLE_INJECTOR_UI, BATTLE_COMPONENT_UI, LOBBY_WINDOW_UI
+from ..views.battleView import NetRadioBattleView
+from ..views.lobbyView import NetRadioLobbyView
 
 def getViewSettings():
 	viewSettings = []

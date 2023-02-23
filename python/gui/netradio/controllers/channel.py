@@ -1,10 +1,10 @@
 from adisp import async, process
 from debug_utils import LOG_DEBUG
 
-from gui.netradio.data import g_dataHolder
-from gui.netradio.events import g_eventsManager
-from gui.netradio.utils import fetchURL
-from gui.netradio._constants import USER_AGENT
+from ..data import g_dataHolder
+from ..events import g_eventsManager
+from ..utils import fetchURL
+from .._constants import USER_AGENT
 
 __all__ = ('ChannelController', )
 

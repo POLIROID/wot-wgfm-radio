@@ -2,7 +2,7 @@
 from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
 from gui.Scaleform.framework.entities.DisposableEntity import EntityState
 
-from gui.netradio.events import g_eventsManager
+from ..events import g_eventsManager
 
 __all__ = ('NetRadioBattleView', )
 

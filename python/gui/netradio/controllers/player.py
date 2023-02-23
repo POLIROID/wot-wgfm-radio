@@ -6,12 +6,13 @@ from xml.dom import minidom
 import BigWorld
 from adisp import async, process
 from debug_utils import LOG_DEBUG, LOG_WARNING, LOG_ERROR
-from gui.netradio.controllers import g_controllers
-from gui.netradio.data import g_dataHolder
-from gui.netradio.events import g_eventsManager
-from gui.netradio.lang import l10n
-from gui.netradio.utils import fetchURL, fixed_environ
-from gui.netradio._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, \
+
+from ..controllers import g_controllers
+from ..data import g_dataHolder
+from ..events import g_eventsManager
+from ..lang import l10n
+from ..utils import fetchURL, fixed_environ
+from .._constants import CONSOLE_PLAYER, PLAYER_COMMANDS, PLAYER_STATUS, \
 								TAGS_UPDATE_INTERVAL, USER_AGENT, MAX_RESTART_ATTEMPS
 
 __all__ = ('PlayerController', )
