@@ -12,10 +12,12 @@ import ResMgr
 from avatar_helpers import getAvatarDatabaseID
 from account_helpers import getAccountDatabaseID
 from debug_utils import LOG_ERROR, LOG_WARNING, LOG_CURRENT_EXCEPTION
+from helpers import dependency
+from skeletons.gui.impl import IGuiLoader
 
 __all__ = ('byteify', 'override', 'getChannelName', 'parseKeyValue', 'parseKeyValueFull', 'parseKeyModifiers',
  'previosChannel', 'nextChannel', 'checkKeySet', 'unpackTempFiles', 'fetchURL', 'userDBID', 'parseLangFields',
- 'readFromVFS', 'timestamp', 'cacheResult', 'fixed_environ')
+ 'readFromVFS', 'timestamp', 'cacheResult', 'fixed_environ', 'getParentWindow')
 
 def override(holder, name, wrapper=None, setter=None):
 	"""Override methods, properties, functions, attributes
@@ -347,3 +349,8 @@ def fixed_environ():
 		except:
 			pass
 	return fixe_env
+
+def getParentWindow():
+	uiLoader = dependency.instance(IGuiLoader)
+	if uiLoader and uiLoader.windowsManager:
+		return uiLoader.windowsManager.getMainWindow()

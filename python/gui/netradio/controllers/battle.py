@@ -11,7 +11,7 @@ from messenger.proto import proto_getter
 
 from ..events import g_eventsManager
 from ..lang import l10n
-from ..utils import getChannelName, parseKeyValueFull
+from ..utils import parseKeyValueFull, getParentWindow
 from .._constants import (PLAYER_STATUS, BROADCAST_INTERVAL, BATTLE_INJECTOR_UI,
 									DEFAULT_BATTLE_MESSAGE_COLOR, DEFAULT_BATTLE_MESSAGE_LIFETIME)
 from ..controllers import g_controllers
@@ -121,7 +121,7 @@ class BattleController(object):
 		app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_BATTLE)
 		if not app:
 			return
-		app.loadView(SFViewLoadParams(BATTLE_INJECTOR_UI, BATTLE_INJECTOR_UI), {})
+		app.loadView(SFViewLoadParams(BATTLE_INJECTOR_UI, parent=getParentWindow()))
 
 		self.__lastBroadcastTime = - BROADCAST_INTERVAL
 		BigWorld.callback(1.0, self.showControlsMessage)
@@ -135,9 +135,6 @@ class BattleController(object):
 	def __showInfoMessage(self, text, useChannel=False, important=False):
 		LOG_DEBUG('showInfoMessage', self.__isPlayerInBattle, text, useChannel, important)
 		color = DEFAULT_BATTLE_MESSAGE_COLOR
-		#if useChannel:
-		#	message = '[NetRadio-%s] %s' % (getChannelName(), text)
-		#else:
 		message = '[NetRadio] %s' % text
 		if important:
 			lifeTime = DEFAULT_BATTLE_MESSAGE_LIFETIME + 2000

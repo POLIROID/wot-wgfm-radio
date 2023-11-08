@@ -10,7 +10,7 @@ from VOIP.VOIPManager import VOIPManager
 from .data import g_dataHolder
 from .events import g_eventsManager
 from .lang import l10n
-from .utils import override
+from .utils import override, getParentWindow
 from ._constants import LOBBY_WINDOW_UI
 
 __all__ = ()
@@ -21,7 +21,7 @@ def showPlayer():
 	app = ServicesLocator.appLoader.getApp(APP_NAME_SPACE.SF_LOBBY)
 	if not app:
 		return
-	app.loadView(SFViewLoadParams(LOBBY_WINDOW_UI), {})
+	app.loadView(SFViewLoadParams(LOBBY_WINDOW_UI, parent=getParentWindow()))
 
 # Data Collect
 g_dataCollector = None
