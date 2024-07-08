@@ -1,4 +1,7 @@
-﻿import os
+﻿# SPDX-License-Identifier: MIT
+# Copyright (c) 2015-2024 Andrii Andrushchyshyn
+
+import os
 import tempfile
 import platform
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.3
+
+* license update
+
 ## v1.2.2
 
 * improved views loading

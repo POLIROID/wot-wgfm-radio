@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2015-2024 Andrii Andrushchyshyn
+
 import BigWorld
 import SoundGroups
 from ..data import g_dataHolder

@@ -1,4 +1,7 @@
-﻿import game
+﻿# SPDX-License-Identifier: MIT
+# Copyright (c) 2015-2024 Andrii Andrushchyshyn
+
+import game
 
 from debug_utils import LOG_ERROR
 from gui.app_loader.settings import APP_NAME_SPACE

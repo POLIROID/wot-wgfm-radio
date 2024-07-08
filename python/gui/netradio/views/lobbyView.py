@@ -1,5 +1,7 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2015-2024 Andrii Andrushchyshyn
+
 import BigWorld
-import GUI
 import Keys
 from debug_utils import *
 
