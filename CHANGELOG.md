@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.4
+
+* fix extarnal radio link
+* improved localization
+* handle unsupported battle apps
+* update copyright and license
+
 ## v1.2.3
 
 * license update

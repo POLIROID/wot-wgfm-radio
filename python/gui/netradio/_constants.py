@@ -99,13 +99,9 @@ LOBBY_WINDOW_UI = 'NetRadioLobby'
 BATTLE_INJECTOR_UI = 'NetRadioBattleInjector'
 BATTLE_COMPONENT_UI = 'NetRadioBattle'
 
-LANGUAGE_CODES = ('ru', 'uk', 'be', 'en', 'de', 'et', 'bg', 'da', 'fi', 'fil', 'fr', 'el', 'hu', 'id',
-	'it', 'ja', 'ms', 'nl', 'no', 'pl', 'pt', 'pt_br', 'ro', 'sr', 'vi', 'zh_sg', 'zh_tw', 'hr', 'th',
-	'lv', 'lt', 'cs', 'es_ar', 'tr', 'zh_cn', 'es', 'kk', 'sv', )
-
-LANGUAGE_FILE_MASK = 'mods/me.poliroid.netradio/text/%s.yml'
-
-DEFAULT_UI_LANGUAGE = 'ru'
+LANGUAGE_FILES = 'mods/me.poliroid.netradio/text'
+LANGUAGE_DEFAULT = 'ru'
+LANGUAGE_FALLBACK = ('ru', 'be', 'kk', )
 
 prefsFilePath = unicode_from_utf8(BigWorld.wg_getPreferencesFilePath())[1]
 SETTINGS_FILE = os.path.normpath(os.path.join(os.path.dirname(prefsFilePath), 'mods', 'netradio', 'setting.dat'))
