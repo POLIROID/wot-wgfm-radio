@@ -18,7 +18,7 @@ DEFAULT_CONFIG = {
 		{
 			"displayName": "netradio.by/wot",
 			"stream_url": "http://sv.netradio.by:8061/128",
-			"ext_url": "http://nr.by/wot",
+			"ext_url": "https://netradio.by/wot",
 			"tags_url": "http://sv.netradio.by:81/broad.xml"
 		}
 	]
