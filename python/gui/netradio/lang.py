@@ -4,7 +4,7 @@
 from helpers import getClientLanguage
 
 from ._constants import LANGUAGE_DEFAULT, LANGUAGE_FALLBACK, LANGUAGE_FILES
-from .utils import parse_localization_file, vfs_dir_list_files, cache_result
+from .utils import parse_localization_file, vfs_dir_list, cache_result
 
 __all__ = ('l10n', )
 
@@ -14,7 +14,7 @@ class Localization:
 
 		# all available languages
 		self.languages = {}
-		for file_name in vfs_dir_list_files(locale_folder):
+		for file_name in vfs_dir_list(locale_folder, only_files=True):
 			if not file_name.endswith('.yml'):
 				continue
 			file_path = '%s/%s' % (locale_folder, file_name)

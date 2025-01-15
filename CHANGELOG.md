@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5
+
+* fix temporary folder unpack bug
+
 ## v1.2.4
 
 * fix extarnal radio link

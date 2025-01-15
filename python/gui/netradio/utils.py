@@ -174,18 +174,22 @@ def unpackTempFiles(vfs_path, realfs_path):
 			with open(realfs_path, 'wb') as fh:
 				fh.write(data)
 	elif ResMgr.isDir(vfs_path):
-		for item in vfs_dir_list_files(vfs_path):
+		for item in vfs_dir_list(vfs_path):
 			unpackTempFiles(vfs_path + '/' + item, realfs_path + '\\' + item)
 
-def vfs_dir_list_files(folder_path):
+def vfs_dir_list(vfs_path, only_files=False):
 	"""using for list files in VFS dir"""
 	result = []
-	folder = ResMgr.openSection(folder_path)
-	if folder is not None and ResMgr.isDir(folder_path):
-		for file_name in folder.keys():
-			file_path = '%s/%s' % (folder_path, file_name)
-			if file_name not in result and ResMgr.isFile(file_path):
-				result.append(file_name)
+	folder = ResMgr.openSection(vfs_path)
+	if folder is not None and ResMgr.isDir(vfs_path):
+		for item_name in folder.keys():
+			if item_name in result:
+				continue
+			vfs_item_path = '%s/%s' % (vfs_path, item_name)
+			if only_files and ResMgr.isFile(vfs_item_path):
+				result.append(item_name)
+			elif not only_files:
+				result.append(item_name)
 	return result
 
 def vfs_file_read(path):
